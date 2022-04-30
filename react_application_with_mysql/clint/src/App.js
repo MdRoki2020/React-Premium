@@ -6,11 +6,14 @@ import Axios from 'axios';
 
 function App() {
 
+  //for input box
   const [username,setusername]=useState('');
   const [userpassword,setuserpassword]=useState('');
 
+
+  //for input box
   const register=()=>{
-    Axios.post("http://localhost:3000/register",{
+    Axios.post("http://localhost:3001/register",{
       username:username,
       userpassword:userpassword
     }).then((response)=>{
@@ -35,7 +38,9 @@ function App() {
           <button type="submit" onClick={register} class="btn btn-primary form-control">Submit</button>
         </form>
       </div>
-      <div class='col-md-4'></div>
+      <div class='col-md-4'>
+        <h3>fetch data</h3>
+      </div>
     </div>
   );
 }

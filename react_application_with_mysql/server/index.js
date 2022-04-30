@@ -9,15 +9,22 @@ app.use(cors());
 let con=mysql.createConnection({host:"localhost",user:"root",password:"",database:"react"});
 
 
-
+// for data insert...
 app.post("/register",(req,res)=>{
 
     const username=req.body.username;
     const userpassword=req.body.userpassword;
 
     con.query("INSERT INTO `employee`(`userName`, `userPassword`) VALUES (?,?)",[username,userpassword]);
-}).listen(3000)
+}).listen(3001)
 
-// app.listen(3000,()=>{
-//     console.log('server running at port 3000');
-// });
+
+// for data view...
+app.get("/view",(req,res)=>{
+
+    // const username=req.body.username;
+    // const userpassword=req.body.userpassword;
+
+    con.query("INSERT INTO `employee`(`userName`, `userPassword`) VALUES (?,?)",[username,userpassword]);
+}).listen(3001)
+
