@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form,Button,Table } from 'react-bootstrap';
 import Axios from 'axios';
@@ -6,15 +6,25 @@ import './App.css';
 
 function App() {
 
-  const [userName,setUsername]=useState('');
-  const [userPhone,setuserPhone]=useState('');
+  const [userName,setusername]=useState('');
+  const [userPhone,setuserphone]=useState('');
+
+  const [fetchData,setfetchData]=useState([]);
+
+  useEffect(()=>{
+    Axios.get('http://localhost:3002/fetch').then((res)=>{
+      setfetchData(res.data);
+    })
+  },[]);
 
   const submitData=()=>{
-    Axios.post('http://localhost:3001/api/insert',{userName:userName,userPhone:userPhone}
-    ).then(()=>{
-      alert('Insert Successful');
-    })
-  }
+    Axios.post('http://localhost:3001/insert',{
+      userName:userName,
+      userPhone:userPhone
+  }).then((res)=>{
+      console.log(res);
+    });
+  };
 
 
   return (
@@ -29,12 +39,12 @@ function App() {
         <Form>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>User Name</Form.Label>
-            <Form.Control onClick={(e)=>{ setUsername(e.target.value) }} type="text" placeholder="Enter Your User Name" />
+            <input className='form-control' onChange={(e)=>{setusername(e.target.value)}} type="text" placeholder="Enter Your User Name" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>User Phone</Form.Label>
-            <Form.Control onClick={(e)=>{setuserPhone(e.target.value)}} type="text" placeholder="Enter Your User Phone" />
+            <input className='form-control' onChange={(e)=>{setuserphone(e.target.value)}} type="text" placeholder="Enter Your User Phone" />
           </Form.Group>
       
           <Button onClick={submitData} className='form-control' variant="primary" type="submit">Submit</Button>
@@ -61,20 +71,19 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Roki</td>
-              <td>01717453205</td>
-              <td>10:37</td>
-              <td><button className='btn btn-info'>Edit</button> <button className='btn btn-danger'>Delete</button></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Tithee</td>
-              <td>01642861758</td>
-              <td>11:37</td>
-              <td><button className='btn btn-info'>Edit</button> <button className='btn btn-danger'>Delete</button></td>
-            </tr>
+
+          {
+              fetchData.map((value)=>
+              <tr>
+                <td>{value.id}</td>
+                <td>{value.userName}</td>
+                <td>{value.userPhone}</td>
+                <td>{value.time}</td>
+                <td><button className='btn btn-info'>Edit</button> <button className='btn btn-danger'>Delete</button></td>
+              </tr>
+              )
+            }
+
           </tbody>
         </Table>
         </div>
