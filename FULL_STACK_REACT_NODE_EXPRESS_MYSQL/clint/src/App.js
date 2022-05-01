@@ -11,12 +11,17 @@ function App() {
 
   const [fetchData,setfetchData]=useState([]);
 
+
+  //for fetch data...
   useEffect(()=>{
     Axios.get('http://localhost:3002/fetch').then((res)=>{
       setfetchData(res.data);
     })
   },[]);
 
+
+
+  //for insert data...
   const submitData=()=>{
     Axios.post('http://localhost:3001/insert',{
       userName:userName,
@@ -24,6 +29,12 @@ function App() {
   }).then((res)=>{
       console.log(res);
     });
+  };
+
+
+  //delete data
+  const deleteData=(id)=>{
+    Axios.delete(`http://localhost:3003/delete/${id}`);
   };
 
 
@@ -79,7 +90,7 @@ function App() {
                 <td>{value.userName}</td>
                 <td>{value.userPhone}</td>
                 <td>{value.time}</td>
-                <td><button className='btn btn-info'>Edit</button> <button className='btn btn-danger'>Delete</button></td>
+                <td><button className='btn btn-info'>Edit</button> <button onClick={()=> {deleteData(value.id)}} className='btn btn-danger'>Delete</button></td>
               </tr>
               )
             }

@@ -29,3 +29,14 @@ app.get("/fetch",(req,res)=>{
     });
 }).listen(3002);
 
+
+// for data delete...
+app.delete("/delete/:id",(req,res)=>{
+
+    const id=req.params.id;
+
+    const deleteQuery='DELETE FROM `users` WHERE `id`=?';
+    con.query(deleteQuery,id,(err,data)=>{
+        console.log(err);
+    })
+}).listen(3003);
