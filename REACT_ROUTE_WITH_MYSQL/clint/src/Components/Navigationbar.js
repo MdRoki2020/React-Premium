@@ -3,7 +3,8 @@ import { Navbar,Container,Nav,Form,FormControl,Button } from 'react-bootstrap';
 import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import About from './About';
 import Contact from './Contact';
-import Portfolio from './Portfolio';
+import Admin from './Admin';
+import Dashboard from './Dashboard';
 
 export default class Navigationbar extends Component {
   render() {
@@ -22,7 +23,7 @@ export default class Navigationbar extends Component {
                 <Nav className="">
                     <Nav.Link as={Link} to={'/'}> About</Nav.Link>
                     <Nav.Link as={Link} to={'/contact'}> Contact</Nav.Link>
-                    <Nav.Link as={Link} to={'/portfolio'}> Portfolio</Nav.Link>
+                    <Nav.Link as={Link} to={'/admin'}> Admin</Nav.Link>
                     
                 </Nav>
                 </Navbar.Collapse>
@@ -33,7 +34,8 @@ export default class Navigationbar extends Component {
         <Routes>
           <Route path="/" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     )
