@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 const bodyparser=require('body-parser');
-app.use(bodyparser.urlencoded({extended:false}));
+app.use(bodyparser.urlencoded({extended:true}));
 
 
 let con=mysql.createConnection({host:"localhost",user:"root",password:"",database:"fullstack"});
@@ -26,23 +26,34 @@ app.post("/insert",(req,res)=>{
 }).listen(3001);
 
 
+const credential={
+    email:"roki",
+    password:"1234"
+}
+
+
 // for login
 app.post("/login",(req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
 
+    console.log(email)
+    console.log(password)
 
-    if(email=='roki' || password=='1234'){
-         res.redirect("http://localhost:3000/dashboard");
+    if(email=='roki' && password=='1234'){
+        console.log('login success...');
+        return  res.redirect(308,"https://www.google.com/");
     }else{
-        res.end('not okey');
+        console.log('invlid..');
     }
 
     // con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],
     // (err,result)=>{
     //     if(result==true){
-    //         res.send({err:err});
-    //         res.redirect('/dashboard');
+    //         console.log('login success');
+    //         // res.redirect('http://localhost:3000/dashboard');
+    //     }else{
+    //         console.log('something went wrong');
     //     }
     //     if(result.length>0){
     //         res.send(result);
