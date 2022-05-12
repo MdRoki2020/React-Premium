@@ -15,6 +15,8 @@ let con=mysql.createConnection({host:"localhost",user:"root",password:"",databas
 
 
 
+
+
 // for data insert...
 app.post("/insert",(req,res)=>{
 
@@ -26,10 +28,32 @@ app.post("/insert",(req,res)=>{
 }).listen(3001);
 
 
-const credential={
-    email:"roki",
-    password:"1234"
-}
+
+
+
+
+//for data fetch...
+app.get('/fetch',(req,res)=>{
+    con.query("SELECT * FROM `users`",(err,data)=>{
+        res.send(data);
+    })
+}).listen(3002)
+
+
+
+
+
+//for data delete...
+app.delete('/delete/:id',(req,res)=>{
+
+    const id=req.params.id;
+    con.query("DELETE FROM `users` WHERE `id`=?",[id]);
+}).listen(3003);
+
+
+
+
+
 
 
 // for login
@@ -40,12 +64,12 @@ app.post("/login",(req,res)=>{
     console.log(email)
     console.log(password)
 
-    if(email=='roki' && password=='1234'){
-        console.log('login success...');
-        return  res.redirect(308,"https://www.google.com/");
-    }else{
-        console.log('invlid..');
-    }
+     if(email=='roki' && password=='1234'){
+         console.log('login success...');
+         res.redirect("http://localhost:3000/dashboard");
+     }else{
+         console.log('invlid..');
+     }
 
     // con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],
     // (err,result)=>{
@@ -61,4 +85,4 @@ app.post("/login",(req,res)=>{
     //         res.send({message: "wrong Email or password"});
     //     }
     // })
-}).listen(3002);
+}).listen(3004);

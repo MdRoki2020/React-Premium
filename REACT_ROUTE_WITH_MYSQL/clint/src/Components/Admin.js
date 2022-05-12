@@ -8,7 +8,7 @@ export default function Admin() {
 
 
   const login=()=>{
-    Axios.post('http://localhost:3002/login',{
+    Axios.post('http://localhost:3004/login',{
       email:email,
       password:password
     }).then((res)=>{
