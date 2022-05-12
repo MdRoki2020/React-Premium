@@ -5,6 +5,7 @@ import About from './About';
 import Contact from './Contact';
 import Admin from './Admin';
 import Dashboard from './Dashboard';
+import ContactUpdate from './ContactUpdate';
 
 export default class Navigationbar extends Component {
   render() {
@@ -36,6 +37,7 @@ export default class Navigationbar extends Component {
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/contactUpdate/:id" element={<ContactUpdate />} />
         </Routes>
       </Router>
     )

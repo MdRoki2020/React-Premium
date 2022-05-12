@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Axios from 'axios'
-import {Table} from 'react-bootstrap'
+import {Table} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 
 export default function Dashboard() {
 
@@ -18,6 +19,13 @@ export default function Dashboard() {
   //for delete data...
   const deleteData=(id)=>{
     Axios.delete(`http://localhost:3003/delete/${id}`);
+  }
+
+
+
+  //for update data...
+  const updateData=(id)=>{
+    Axios.put(`http://localhost:3004/update/${id}`);
   }
 
   return (
@@ -48,7 +56,7 @@ export default function Dashboard() {
                 <td>{value.userName}</td>
                 <td>{value.userPhone}</td>
                 <td>{value.time}</td>
-                <td><button className='btn btn-info'>Edit</button> <button onClick={()=>{deleteData(value.id)}} className='btn btn-danger'>Delete</button></td>
+                <td><Link to={"/contactUpdate/"+value.id}><button onClick={()=>{updateData(value.id)}} className='btn btn-info'>Edit</button></Link> <button onClick={()=>{deleteData(value.id)}} className='btn btn-danger'>Delete</button></td>
               </tr>
               )
             }
@@ -59,7 +67,7 @@ export default function Dashboard() {
           <div className='col-sm-2'></div>
         </div>
       </div>
-
+      
     </div>
   )
 }
