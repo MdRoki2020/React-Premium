@@ -11,6 +11,24 @@ export default function ContactUpdate() {
   //for fetching data...
   const {id}=useParams();
 
+  useEffect(
+    ()=>{
+      Axios.get("http://localhost:3004/update").then(res=>{
+        setUserName(res.data)
+      }).catch(err=>console.error(err))
+    },[]
+  )
+
+
+  function submit(e){
+    e.preventDefault()
+    Axios.post("http://localhost:3004/update",data).then(res=>{
+      console.log(res.data)
+      const mydata=[...userName,res.data]
+      setUserName(mydata)
+    }).catch(err=>console.error(err))
+  }
+
 
 
   console.log(id)
