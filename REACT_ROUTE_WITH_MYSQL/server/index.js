@@ -57,6 +57,7 @@ app.delete('/delete/:id',(req,res)=>{
 //for data update...
 app.put('/update',(req,res)=>{
     const id=req.params.id;
+
     con.query("UPDATE `users` SET `userName`=?,`userPhone`=? WHERE `id`=?",[userName,userPhone,id])
     res.redirect('http://localhost:3000/dashboard');
 }).listen(3004);

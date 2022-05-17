@@ -25,7 +25,7 @@ export default function Dashboard() {
 
   //for update data...
   const updateData=(id)=>{
-    Axios.put(`http://localhost:3004/update/${id}`);
+    console.log(id);
   }
 
   return (

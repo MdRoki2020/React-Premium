@@ -1,37 +1,37 @@
-import { Axios } from 'axios';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
+
 export default function ContactUpdate() {
+
+  const {id}=useParams();
 
 
     const [userName,setUserName]=useState('');
     const [userPhone,setUserPhone]=useState('');
 
-  //for fetching data...
-  const {id}=useParams();
+  
+    // useEffect(()=>{
+    //   const getDataById=async()=>{
+    //     const {data}=await axios.get(`http://localhost:3002/fetch/${id}`)
+    //     setUserName(data.userName)
+    //     setUserPhone(data.userPhone)
 
-  useEffect(
-    ()=>{
-      Axios.get("http://localhost:3004/update").then(res=>{
-        setUserName(res.data)
-      }).catch(err=>console.error(err))
-    },[]
-  )
-
-
-  function submit(e){
-    e.preventDefault()
-    Axios.post("http://localhost:3004/update",data).then(res=>{
-      console.log(res.data)
-      const mydata=[...userName,res.data]
-      setUserName(mydata)
-    }).catch(err=>console.error(err))
-  }
+    //   }
+    //   getDataById()
+    // },[id])
 
 
+    useEffect(()=>{
+      axios.get(`http://localhost:3002/fetch/${id}`).then((res)=>{
+        setUserName(res.data);
+      })
+    },[])
 
-  console.log(id)
+    console.log(userName);
+
+
 
   
 
@@ -58,14 +58,14 @@ export default function ContactUpdate() {
                         <div className='col-md-6'>
                             <h6>Update Contact Form</h6>
                             <hr />
-                            <form action=''>
+                            <form >
                               <div className='form-group'>
                                   <label className='mb-1'>User Name</label>
-                                  <input type='text' onChange={(e)=>{setUserName(e.target.value)}} className='form-control'  placeholder='Enter User Name'/>
+                                  <input type='text' value={userName} onChange={(e)=>{setUserName(e.target.value)}} className='form-control'  placeholder='Enter User Name'/>
                               </div>
                               <div className='form-group my-2'>
                                   <label className='mb-1'>Phone Number</label>
-                                  <input type='text' onChange={(e)=>{setUserPhone(e.target.value)}} className='form-control'  placeholder='Enter Phone Number'/>
+                                  <input type='text' value={userPhone}  onChange={(e)=>{setUserPhone(e.target.value)}} className='form-control'  placeholder='Enter Phone Number'/>
                               </div>
                               <div className='form-group my-3'>
                                   <button className='btn btn-primary form-control'  type='submit'>Submit</button>
