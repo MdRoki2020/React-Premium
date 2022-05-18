@@ -23,11 +23,31 @@ export default function ContactUpdate() {
     // },[id])
 
 
-    useEffect(()=>{
-      axios.get(`http://localhost:3002/fetch/${id}`).then((res)=>{
-        setUserName(res.data);
-      })
-    },[])
+    // useEffect(()=>{
+    //   axios.get(`http://localhost:3002/fetch`+id).then((res)=>{
+    //     console.log(res.data);
+    //   })
+    // })
+
+    useEffect(() => {
+      axios.get("http://localhost:3002/fetch/1").then((response) => {
+        setUserName(response.data);
+      });
+    }, []);
+
+    // const updateData=(id)=>{
+    //   fetch("http://localhost:3002/fetch"+id,{
+    //     method:"get",
+    //   })
+    //   .then((res)=>res.json())
+    //   .then((result)=>{
+    //     console.log(result);
+    //   })
+    //   .catch((error)=>console.log("error",error));
+    // };
+
+
+    
 
     console.log(userName);
 
@@ -45,7 +65,7 @@ export default function ContactUpdate() {
             </div>
             <div className='col-md-8 my-auto'>
               <h6 className='float-end'>Update / Contact Us</h6>
-            </div>
+            </div> 
           </div>
         </div>
     </section>
