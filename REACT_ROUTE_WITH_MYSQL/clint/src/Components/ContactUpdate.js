@@ -29,11 +29,19 @@ export default function ContactUpdate() {
     //   })
     // })
 
-    useEffect(() => {
-      axios.get("http://localhost:3002/fetch/1").then((response) => {
-        setUserName(response.data);
-      });
-    }, []);
+    // const baseURL = "http://localhost:3002/fetch";
+
+    // useEffect(() => {
+    //   axios.get(`http://localhost:3002/fetch/${id}`).then((response) => {
+    //     console.log(response);
+    //   });
+    // }, []);
+
+    // useEffect(async()=>{
+    //   const response=await fetch(`http://localhost:3002/fetch/${id}`);
+    //   const data=await response.json();
+    //   console.log(data);
+    // }, []);
 
     // const updateData=(id)=>{
     //   fetch("http://localhost:3002/fetch"+id,{
@@ -49,7 +57,7 @@ export default function ContactUpdate() {
 
     
 
-    console.log(userName);
+    
 
 
 
