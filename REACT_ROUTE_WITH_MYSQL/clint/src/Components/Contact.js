@@ -38,7 +38,7 @@ export default function Contact() {
                         <div className='col-md-6'>
                             <h6>Contact Form</h6>
                             <hr />
-                            <form action=''>
+                            <form >
                               <div className='form-group'>
                                   <label className='mb-1'>User Name</label>
                                   <input type='text' onChange={(e)=>{setUserName(e.target.value)}} className='form-control'  placeholder='Enter User Name'/>
