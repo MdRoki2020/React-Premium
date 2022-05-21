@@ -73,22 +73,19 @@ app.put('/update',(req,res)=>{
 app.post("/login",(req,res)=>{
     const email=req.body.email;
     const password=req.body.password;
-
+    
     console.log(email)
     console.log(password)
 
-    
-
-
-
-    // con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",(err,results,fields){
-    //     if(results){
-    //         res.redirect("/dashboard");
-    //     }else{
-    //         console.log(err);
-    //     }
-    //     res.end();
-    // })
+    con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,results,fields)=>{
+        if(results){
+            res.redirect("/dashboard");
+            console.log("its okey");
+        }else{
+            console.log(err);
+        }
+        res.end();
+    })
 
 
 
@@ -105,18 +102,19 @@ app.post("/login",(req,res)=>{
     //      console.log('invlid..');
     //  }
 
-    con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],
-    (err,result)=>{
-        if(result==true){
-            console.log('login success');
-            res.redirect('http://localhost:3000/dashboard');
-        }else{
-            console.log('something went wrong');
-        }
-        if(result.length>0){
-            res.send(result);
-        }else{
-            res.send({message: "wrong Email or password"});
-        }
-    })
+    // con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],
+    // (err,result)=>{
+    //     if(result==true){
+    //         console.log('login success');
+            
+    //     }else{
+    //         console.log('something went wrong');
+    //         res.redirect('http://localhost:3000/dashboard');
+    //     }
+    //     if(result.length>0){
+    //         res.send(result);
+    //     }else{
+    //         res.send({message: "wrong Email or password"});
+    //     }
+    // })
 }).listen(3005);
