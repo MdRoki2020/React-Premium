@@ -79,10 +79,11 @@ app.post("/login",(req,res)=>{
 
     con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,results,fields)=>{
         if(results){
-            res.redirect("/dashboard");
+            // window.location.href="/dashboard";
+            res.redirect("https://www.google.com/");
             console.log("its okey");
         }else{
-            console.log(err);
+            console.log("something went wrong");
         }
         res.end();
     })
