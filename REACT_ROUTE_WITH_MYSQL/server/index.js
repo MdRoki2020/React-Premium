@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 const bodyparser=require('body-parser');
+const encoder=bodyparser.urlencoded();
 // const encoder=bodyparser.urlencoded();
 // app.use(bodyparser.urlencoded({extended:true}));
 
@@ -56,37 +57,54 @@ app.delete('/delete/:id',(req,res)=>{
 
 
 //for data update...
-app.put('/update',(req,res)=>{
-    const id=req.params.id;
+// app.put('/update',(req,res)=>{
+//     const id=req.params.id;
 
-    con.query("UPDATE `users` SET `userName`=?,`userPhone`=? WHERE `id`=?",[userName,userPhone,id])
-    res.redirect('http://localhost:3000/dashboard');
-}).listen(3004);
-
-
+//     con.query("UPDATE `users` SET `userName`=?,`userPhone`=? WHERE `id`=?",[userName,userPhone,id])
+//     res.redirect('http://localhost:3000/dashboard');
+// }).listen(3004);
 
 
+
+//for login
+app.post("/login",encoder,(req,res)=>{
+    var email=req.body.email;
+    var password=req.body.password;
+    con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,result,fields)=>{
+        if(result.length>0){
+            res.redirect("/dashboard")
+        }else{
+            res.redirect('/admin');
+        }
+        res.end();
+    })
+    
+}).listen(3005);
+
+app.get("/dashboard",(req,res)=>{
+    res.sendFile(__dirname+ "/clint/src/Components/Dashboard.js");
+}).listen(3000);
 
 
 
 // for login
-app.post("/login",(req,res)=>{
-    const email=req.body.email;
-    const password=req.body.password;
+// app.post("/login",(req,res)=>{
+//     const email=req.body.email;
+//     const password=req.body.password;
     
-    console.log(email)
-    console.log(password)
+//     console.log(email)
+//     console.log(password)
 
-    con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,results,fields)=>{
-        if(results){
-            // window.location.href="/dashboard";
-            res.redirect("https://www.google.com/");
-            console.log("its okey");
-        }else{
-            console.log("something went wrong");
-        }
-        res.end();
-    })
+//     con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,results,fields)=>{
+//         if(results){
+//             // window.location.href="/dashboard";
+//             res.redirect('https://www.google.com/');
+//             console.log("its okey");
+//         }else{
+//             console.log("something went wrong");
+//         }
+//         res.end();
+//     })
 
 
 
@@ -118,4 +136,3 @@ app.post("/login",(req,res)=>{
     //         res.send({message: "wrong Email or password"});
     //     }
     // })
-}).listen(3005);

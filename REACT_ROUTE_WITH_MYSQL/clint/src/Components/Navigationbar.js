@@ -6,6 +6,7 @@ import Contact from './Contact';
 import Admin from './Admin';
 import Dashboard from './Dashboard';
 import ContactUpdate from './ContactUpdate';
+import ErrorPage from './ErrorPage';
 
 export default class Navigationbar extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class Navigationbar extends Component {
                     <Nav.Link as={Link} to={'/'}> About</Nav.Link>
                     <Nav.Link as={Link} to={'/contact'}> Contact</Nav.Link>
                     <Nav.Link as={Link} to={'/admin'}> Admin</Nav.Link>
+                    <Nav.Link as={Link} to={'/dashboard'}> Dashboard</Nav.Link>
                     
                 </Nav>
                 </Navbar.Collapse>
@@ -38,6 +40,7 @@ export default class Navigationbar extends Component {
           <Route path="/admin" element={<Admin />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/contactUpdate/:id" element={<ContactUpdate />} />
+          <Route path="*" element={<ErrorPage/>} />
         </Routes>
       </Router>
     )
