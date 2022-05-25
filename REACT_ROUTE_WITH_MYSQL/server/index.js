@@ -3,12 +3,11 @@ const mysql=require('mysql');
 const cors=require("cors");
 
 
-const app=express();
+const app=express()
 app.use(express.json());
 app.use(cors());
 
 const bodyparser=require('body-parser');
-const encoder=bodyparser.urlencoded();
 // const encoder=bodyparser.urlencoded();
 // app.use(bodyparser.urlencoded({extended:true}));
 
@@ -67,23 +66,47 @@ app.delete('/delete/:id',(req,res)=>{
 
 
 //for login
-app.post("/login",encoder,(req,res)=>{
-    var email=req.body.email;
-    var password=req.body.password;
-    con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,result,fields)=>{
-        if(result.length>0){
-            res.redirect("/dashboard")
-        }else{
-            res.redirect('/admin');
+app.post("/login",(req,res)=>{
+    const email=req.body.email;
+    const password=req.body.password;
+
+    console.log(email);
+
+    con.query(
+        "SELECT * FROM `auth` WHERE `email`=?",
+        email,
+        (err,results)=>{
+            if(err){
+                console.log(err);
+            }
+            if(results){
+                if(password==results[0].password){
+                    res.send("you are logged in !");
+                }else{
+                    res.send("wrong email/password");
+                }
+            }else{
+                res.send("user dosen't exit");
+            }
+            res.send(results);
         }
-        res.end();
-    })
-    
+    );
 }).listen(3005);
 
-app.get("/dashboard",(req,res)=>{
-    res.sendFile(__dirname+ "/clint/src/Components/Dashboard.js");
-}).listen(3000);
+//for login
+// app.post("/login",encoder,(req,res)=>{
+//     var email=req.body.email;
+//     var password=req.body.password;
+//     con.query("SELECT * FROM `auth` WHERE `email`=? AND `password`=?",[email,password],(err,result,fields)=>{
+//         if(result.length>0){
+//             res.redirect("/dashboard")
+//         }else{
+//             res.redirect('/admin');
+//         }
+//         res.end();
+//     })
+    
+// }).listen(3005);
 
 
 
