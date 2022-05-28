@@ -12,4 +12,23 @@ router.post("/register",(req,res)=>{
     })
 });
 
+router.post("/login",(req,res)=>{
+    const username=req.body.username;
+    const password=req.body.password;
+    db.query("SELECT * FROM `user` WHERE `username`=?",username,(err,results)=>{
+        if(err){
+            console.log(err)
+        }
+        if(results.length>0){
+            if(password==results[0].password){
+                res.send("you are logged in!");
+            }else{
+                res.send("wrong username or password !")
+            }
+        }else{
+            res.send("user dosent exist !");
+        }
+    })
+});
+
 module.exports=router;

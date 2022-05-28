@@ -8,6 +8,6 @@ app.use(express.json());
 const userRoute=require("./routes/User");
 app.use("/user",userRoute)
 
-app.listen(3001,(req,res)=>{
+app.listen(5000,(req,res)=>{
     console.log("server Running...");
 })

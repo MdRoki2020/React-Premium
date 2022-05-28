@@ -7,7 +7,7 @@ export default function Register() {
   const [password,setPassword]=useState("")
 
   const register=()=>{
-    Axios.post("http://localhost:3001/user/register",{username:username,password:password}).then((res)=>{
+    Axios.post("http://localhost:5000/user/register",{username:username,password:password}).then((res)=>{
       console.log(res);
     })
   }
