@@ -6,9 +6,16 @@ export default function Login() {
   const [username,setUsername]=useState("")
   const [password,setPassword]=useState("")
 
+  const [errorMessage,setErrorMessage]=useState("");
+
   const login=()=>{
     Axios.post("http://localhost:5000/user/login",{username:username,password:password}).then((res)=>{
-      console.log(res);
+      if(res.data.loggedIn){
+        localStorage.setItem("loggedIn",true);
+        localStorage.setItem("username",res.data.username);
+      }else{
+        setErrorMessage(res.data.message);
+      }
     })
   }
 
@@ -22,17 +29,18 @@ export default function Login() {
               </div>
               <div className='col-md-4'>
                   <form>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" onChange={(e)=>{setUsername(e.target.value)}} class="form-control" placeholder="Username..." aria-label="Username" aria-describedby="basic-addon1"/>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">@</span>
+                    <input type="text" onChange={(e)=>{setUsername(e.target.value)}} className="form-control" placeholder="Username..." aria-label="Username" aria-describedby="basic-addon1"/>
                   </div>
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} class="form-control" placeholder="Password..." aria-label="Username" aria-describedby="basic-addon1"/>
+                  <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">@</span>
+                    <input type="password" onChange={(e)=>{setPassword(e.target.value)}} className="form-control" placeholder="Password..." aria-label="Username" aria-describedby="basic-addon1"/>
                   </div>
-                  <div class="input-group mb-3">
-                    <button type="submit" onClick={login} class="form-control" aria-label="Username" aria-describedby="basic-addon1">Login</button>
+                  <div className="input-group mb-3">
+                    <button type="submit" onClick={login} className="form-control" aria-label="Username" aria-describedby="basic-addon1">Login</button>
                   </div>
+                  {errorMessage}
 
                   </form>
               </div>

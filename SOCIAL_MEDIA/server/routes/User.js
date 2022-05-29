@@ -17,16 +17,16 @@ router.post("/login",(req,res)=>{
     const password=req.body.password;
     db.query("SELECT * FROM `user` WHERE `username`=?",username,(err,results)=>{
         if(err){
-            console.log(err)
+            console.log(err);
         }
         if(results.length>0){
             if(password==results[0].password){
-                res.send("you are logged in!");
+                res.json({ loggedIn: true, username: username });
             }else{
-                res.send("wrong username or password !")
+                res.json({loggedIn: false,message: "Wrong username/password combo!",});
             }
         }else{
-            res.send("user dosent exist !");
+            res.json({ loggedIn: false, message: "User doesn't exist" });
         }
     })
 });
