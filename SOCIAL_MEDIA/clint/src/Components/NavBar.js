@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {BrowserRouter as Router,Route,Routes,Link} from "react-router-dom";
 import {Button,Navbar,Container,Form,FormControl,Nav} from 'react-bootstrap';
 import Home from '../Pages/Home';
 import ErrorPage from '../Pages/ErrorPage';
 import Register from '../Pages/Register';
 import Login from '../Pages/Login';
+import Profile from '../Pages/Profile';
 
 export default function NavBar() {
+  const [loggedIn,setLoggedIn]=useState(false);
+
+  useEffect(()=>{
+    setLoggedIn(localStorage.getItem("loggedIn"));
+  },[localStorage.getItem("loggedIn")]);
   return (
     <Router>
         <div>
@@ -23,6 +29,7 @@ export default function NavBar() {
                     <Nav.Link as={Link} to={'/'}> About</Nav.Link>
                     <Nav.Link as={Link} to={'/register'}> Register</Nav.Link>
                     <Nav.Link as={Link} to={'/login'}> Login</Nav.Link>
+                    <Nav.Link as={Link} to={'/profile'}> Profile</Nav.Link>
                     
                 </Nav>
                 </Navbar.Collapse>
@@ -32,9 +39,21 @@ export default function NavBar() {
 
         <Routes>
           <Route path="/" element={<Home />}/>
-          <Route path="/register" element={<Register />}/>
-          <Route path="/login" element={<Login />}/>
-          <Route path="*" element={<ErrorPage/>} />
+          {loggedIn?(
+            <>
+            <Route path="/register" element={<Register />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="*" element={<ErrorPage/>} />
+            </>
+          ):(
+            <>
+            {/* <Route path="*" element={<ErrorPage/>} /> */}
+            <Route path="/profile" element={<Profile/>} />
+
+            </>
+          )}
+          
+          
           
         </Routes>
       </Router>
