@@ -9,7 +9,7 @@ const db=require('./models');
 
 //router
 const fetchRouter=require('./routes/info');
-app.use("/fetch",fetchRouter);
+app.use("/posts",fetchRouter);
 
 
 db.sequelize.sync().then(()=>{

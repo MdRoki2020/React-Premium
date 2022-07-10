@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { info } = require("../models");
+const { infos } = require("../models");
 
 //for data fetch..
 router.get("/", async (req, res) => {
-    const listOfPosts = await info.findAll();
+    const listOfPosts = await infos.findAll();
     res.json(listOfPosts);
 });
 
@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
 //for create post..
 router.post("/", async (req, res) => {
     const post = req.body;
-    await info.create(post);
+    await infos.create(post);
     res.json(post);
 });
 
