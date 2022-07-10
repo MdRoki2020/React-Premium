@@ -24,9 +24,9 @@ export default function Dashboard() {
 
 
   //for update data...
-  const updateData=(id)=>{
-    console.log(id);
-  }
+  // const updateData=(id)=>{
+  //   console.log(id);
+  // }
 
   return (
     <div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
                 <td>{value.userName}</td>
                 <td>{value.userPhone}</td>
                 <td>{value.time}</td>
-                <td><Link to={"/contactUpdate/"+value.id}><button onClick={()=>{updateData(value.id)}} className='btn btn-info'>Edit</button></Link> <button onClick={()=>{deleteData(value.id)}} className='btn btn-danger'>Delete</button></td>
+                <td><Link to={"/contactUpdate/"+value.id}><button className='btn btn-info'>Edit</button></Link> <button onClick={()=>{deleteData(value.id)}} className='btn btn-danger'>Delete</button></td>
               </tr>
               )
             }

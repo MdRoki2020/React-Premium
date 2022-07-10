@@ -21,7 +21,7 @@ export default function Admin() {
       <div className='row'>
         <div className='col-md-4'></div>
         <div className='col-md-4'>
-          <h2 className='my-3'>________________</h2>
+          <h2 className='my-3'>LOGIN</h2>
         <form>
         <div className="form-group my-1">
           <label for="exampleInputEmail1">Email address</label>

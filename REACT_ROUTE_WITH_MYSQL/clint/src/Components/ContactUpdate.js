@@ -53,14 +53,6 @@ export default function ContactUpdate() {
     //   })
     //   .catch((error)=>console.log("error",error));
     // };
-
-
-    
-
-    
-
-
-
   
 
   return (
