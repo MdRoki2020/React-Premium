@@ -6,7 +6,7 @@ function Home() {
     const [fetchdata,setfetchdata]=useState([]);
 
     useEffect(()=>{
-        Axios.get("http://localhost:3001/insert").then((res)=>{
+        Axios.get("http://localhost:3001/fetch").then((res)=>{
             setfetchdata(res.data);
         })
     },[])

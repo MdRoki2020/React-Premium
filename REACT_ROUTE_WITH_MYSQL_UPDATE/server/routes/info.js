@@ -8,4 +8,12 @@ router.get("/", async (req, res) => {
     res.json(listOfPosts);
 });
 
+
+//for create post..
+router.post("/", async (req, res) => {
+    const post = req.body;
+    await info.create(post);
+    res.json(post);
+});
+
 module.exports = router;

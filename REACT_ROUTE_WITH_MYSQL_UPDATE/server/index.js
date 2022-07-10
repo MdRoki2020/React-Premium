@@ -8,8 +8,8 @@ app.use(cors());
 const db=require('./models');
 
 //router
-const postRouter=require('./routes/info');
-app.use("/insert",postRouter);
+const fetchRouter=require('./routes/info');
+app.use("/fetch",fetchRouter);
 
 
 db.sequelize.sync().then(()=>{
