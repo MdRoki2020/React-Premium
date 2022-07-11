@@ -1,9 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import Table from 'react-bootstrap/Table';
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-    const [fetchdata,setfetchdata]=useState([]);
+
+  let navigate = useNavigate ();
+  const [fetchdata,setfetchdata]=useState([]);
 
     useEffect(()=>{
         Axios.get("http://localhost:3001/posts").then((res)=>{
@@ -30,7 +33,7 @@ function Home() {
             <tbody>
             {
                 fetchdata.map((value)=>
-                <tr key={value.id}>
+                <tr key={value.id} onClick={() => {navigate(`/post/${value.id}`);}}>
                 <td>{value.id}</td>
                 <td>{value.user_name}</td>
                 <td>{value.phone_number}</td>

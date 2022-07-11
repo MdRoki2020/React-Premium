@@ -4,6 +4,7 @@ import {Container,Navbar,Nav} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import Createpost from './components/Createpost';
+import Post from './components/Post';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Routes>
             <Route path="/" exact element={ <Home /> } />
             <Route path="/createpost" element={ <Createpost /> } />
+            <Route path="/post/:id" element={ <Post /> } />
           </Routes>
        </Router>
     </div>

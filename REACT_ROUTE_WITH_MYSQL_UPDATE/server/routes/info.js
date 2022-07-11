@@ -16,4 +16,12 @@ router.post("/", async (req, res) => {
     res.json(post);
 });
 
+
+// form id fetch data
+router.get("/byId/:id", async (req, res) => {
+    const id = req.params.id;
+    const post = await infos.findByPk(id);
+    res.json(post);
+  });
+
 module.exports = router;

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Axios from 'axios';
 import {Formik,Field,Form} from "formik";
+import { useNavigate } from 'react-router-dom';
 
 function Createpost() {
+    let navigate = useNavigate ();
 
     const onSubmit=(data)=>{
         Axios.post('http://localhost:3001/posts',data).then((res)=>{
-            console.log(res);
+            navigate('/');
         })
     }
 
