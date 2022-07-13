@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar,Container,Form,FormControl,Nav,Button } from 'react-bootstrap';
 import Home from "./components/Home";
 import Add from "./components/Add";
-import Update from "./components/Update";
+import Edit from "./components/Edit";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
 
                     <Nav.Link as={Link} to={'/'}> HOME</Nav.Link>
                     <Nav.Link as={Link} to={'/add'}> ADD STUDENT</Nav.Link>
-                    <Nav.Link as={Link} to={'/update'}> UPDATE</Nav.Link> 
+                    <Nav.Link as={Link} to={'/edit'}> UPDATE</Nav.Link> 
 
                 </Nav>
                 </Navbar.Collapse>
@@ -33,7 +33,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<Add />} />
-          <Route path="update/:id" element={<Update />} />
+          <Route path="edit/:id" element={<Edit />} />
         </Routes>
       </Router>
   );

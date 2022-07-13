@@ -40,7 +40,7 @@ function Home() {
                 <td>{value.name}</td>
                 <td>{value.tagline}</td>
                 <td>{value.description}</td>
-                <td><Link to={"/update/"+value.id}><button className='btn btn-info'>Edit</button></Link> <button className='btn btn-danger'> Delete </button></td>
+                <td><Link to={"/edit/"+value.id}><button className='btn btn-info'>Edit</button></Link> <button className='btn btn-danger'> Delete </button></td>
               </tr>
               )
             }

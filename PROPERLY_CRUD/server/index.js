@@ -4,6 +4,7 @@ const mysql=require('mysql');
 const cors=require("cors");
 
 const app=express();
+app.use(express.json());
 app.use(cors());
 
 const port=process.env.PORT || 5000;
@@ -55,6 +56,27 @@ app.get('/:id',(req,res)=>{
                 console.log(err);
             }
         })
+    })
+})
+
+
+//insert data
+app.post('/insert',(req,res)=>{
+    pool.getConnection((err,connection)=>{
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        
+        connection.query("INSERT INTO beers SET ?",params,(err,rows)=>{
+            connection.release() //return the connection to pool
+
+            if(!err){
+                res.send(`the record name: ${params.name} has been added.`);
+            }else{
+                console.log(err);
+            }
+        })
+        console.log(req.body);
     })
 })
 
