@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Button} from 'react-bootstrap'
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 
 function Edit() {
 
     const {id}=useParams();
     const [object,setobject] = useState({});
+
+    let navigate = useNavigate ();
 
 
     const [name,setName] = useState("");
@@ -30,6 +32,7 @@ function Edit() {
         }).then((res)=>{
           console.log(res);
         })
+        navigate("/");
       }
 
 

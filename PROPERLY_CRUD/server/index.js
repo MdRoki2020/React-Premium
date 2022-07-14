@@ -103,6 +103,27 @@ app.delete('/:id',(req,res)=>{
 })
 
 
+//insert
+app.post('', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        
+        const params = req.body
+        connection.query('INSERT INTO beers SET ?', params, (err, rows) => {
+        connection.release() // return the connection to pool
+        if (!err) {
+            res.send(`haha`);
+        } else {
+            console.log(err)
+        }
+        
+        console.log('The data from beer table are:11 \n', rows)
+
+        })
+    })
+});
+
 
 
 //listen on environment port or 5000

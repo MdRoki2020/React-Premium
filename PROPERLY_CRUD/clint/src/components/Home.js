@@ -1,10 +1,11 @@
 import React, { useEffect, useState, } from 'react';
 import {Table} from 'react-bootstrap';
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
 import Axios from 'axios';
 
 function Home() {
     const [fetchdata,setfetchdata]=useState([]);
+    let navigate = useNavigate ();
 
     useEffect(()=>{
         Axios.get('http://localhost:5000/').then((res)=>{
@@ -17,12 +18,7 @@ function Home() {
 const deleteData=(id)=>{
   alert("Are You Sure ?")
   Axios.delete(`http://localhost:5000/${id}`)
-  .then(()=>{
-    (fetchdata.filter((val)=>{
-      return val.id != id;
-    }))
-  })
-  
+  navigate("/");
 };
 
 
