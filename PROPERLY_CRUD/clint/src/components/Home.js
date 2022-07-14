@@ -4,13 +4,27 @@ import {Link} from "react-router-dom";
 import Axios from 'axios';
 
 function Home() {
-    const [fetchdata,setfetchdata]=useState([])
+    const [fetchdata,setfetchdata]=useState([]);
 
     useEffect(()=>{
         Axios.get('http://localhost:5000/').then((res)=>{
             setfetchdata(res.data);
         })
       },[]);
+
+
+//for delete data...
+const deleteData=(id)=>{
+  alert("Are You Sure ?")
+  Axios.delete(`http://localhost:5000/${id}`)
+  .then(()=>{
+    (fetchdata.filter((val)=>{
+      return val.id != id;
+    }))
+  })
+  
+};
+
 
   return (
     <div>
@@ -40,7 +54,7 @@ function Home() {
                 <td>{value.name}</td>
                 <td>{value.tagline}</td>
                 <td>{value.description}</td>
-                <td><Link to={"/edit/"+value.id}><button className='btn btn-info'>Edit</button></Link> <button className='btn btn-danger'> Delete </button></td>
+                <td><Link to={"/edit/"+value.id}><button className='btn btn-info'>Edit</button></Link> &nbsp; <button className='btn btn-danger' onClick={()=>{deleteData(value.id)}}> Delete </button></td>
               </tr>
               )
             }

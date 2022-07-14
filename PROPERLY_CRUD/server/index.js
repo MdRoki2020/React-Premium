@@ -84,6 +84,24 @@ app.put('', (req, res) => {
     })
 })
 
+//delete data...
+app.delete('/:id',(req,res)=>{
+    pool.getConnection((err,connection)=>{
+        if(err) throw err
+        console.log(`connected as id ${connection.threadId}`)
+
+        connection.query("delete from beers where id=?",[req.params.id],(err,rows)=>{
+            connection.release() //return the connection to pool
+
+            if(!err){
+                res.send(`the record id: ${[req.params.id]} has been removed.`);
+            }else{
+                console.log(err);
+            }
+        })
+    })
+})
+
 
 
 
