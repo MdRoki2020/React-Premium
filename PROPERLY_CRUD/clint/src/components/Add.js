@@ -11,7 +11,7 @@ function Add() {
             <div className='col-md-4'>
 
             <form>
-            <input type='text' placeholder='name' className='form-control my-3'/>
+            <input type='text'  placeholder='name' className='form-control my-3'/>
             <input type='text' placeholder='tagline' className='form-control my-3'/>
             <input type='text' placeholder='description' className='form-control my-3'/>
             <Button className='form-control'>Add Beers</Button>

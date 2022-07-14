@@ -6,51 +6,52 @@ import Axios from 'axios';
 function Edit() {
 
     const {id}=useParams();
-    const [objectPost,setobject] = useState({});
+    const [object,setobject] = useState({});
 
-    // const [name,setName] = useState("");
-    // const [tagline,setTagline] = useState("");
-    // const [description,setDescription] = useState("");
+
+    const [name,setName] = useState("");
+    const [tagline,setTagline] = useState("");
+    const [description,setDescription] = useState("");
 
     // fetch data by id
     useEffect(()=>{
         Axios.get(`http://localhost:5000/${id}`).then((res)=>{
-            setobject(res.data);
-            console.log(res.data);
+            setobject(res.data[0]);
         })
       },[id]);
 
 
       const submitData=()=>{
-        // Axios.post('http://localhost:5000/insert',{
-        //   name:name,
-        //   tagline:tagline,
-        //   description:description
-        // }).then((res)=>{
-        //   console.log(res);
-        // })
+        Axios.put('http://localhost:5000/',{
+          id:id,
+          name:name,
+          tagline:tagline,
+          description:description
+        }).then((res)=>{
+          console.log(res);
+        })
       }
+
 
   return (
 
     <div>
-        <h3>Update Data</h3>
+        <h3 className='text-center'>Update Data</h3>
     <div className='container'>
     <div className='row'>
         <div className='col-md-4'></div>
         <div className='col-md-4'>
 
         <form>
-        <input type='text'  placeholder='name'   className='form-control my-3'/>
-        <input type='text'  placeholder='tagline'   className='form-control my-3'/>
-        <input type='text'  placeholder='description'   className='form-control my-3'/>
+        {/* <input type='hidden' placeholder='name' defaultValue={object.id} onChange={(e)=>{setName(e.target.value)}} className='form-control my-3'/> */}
+        <input type='text' placeholder='name' defaultValue={object.name} onChange={(e)=>{setName(e.target.value)}}  className='form-control my-3'/>
+        <input type='text' placeholder='tagline' defaultValue={object.tagline} onChange={(e)=>{setTagline(e.target.value)}}  className='form-control my-3'/>
+        <textarea placeholder='description' defaultValue={object.description} onChange={(e)=>{setDescription(e.target.value)}} className='form-control my-3'/>
         <Button type='submit' className='form-control my-3' onClick={submitData}>Add Beers</Button>
         </form>
 
         </div>
-        <div className='col-md-4'>
-          <h3>{objectPost[0].id}</h3>
-        </div>
+        <div className='col-md-4'></div>
     </div>
     </div>
 </div>

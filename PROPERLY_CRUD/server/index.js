@@ -42,12 +42,12 @@ app.get('/',(req,res)=>{
 })
 
 //fetch data by id
-app.get('/:id',(req,res)=>{
+app.get('/:id', async (req,res)=>{
     pool.getConnection((err,connection)=>{
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
 
-        connection.query("select * from beers where id=?",[req.params.id],(err,rows)=>{
+        connection.query ("select * from beers where id=?",[req.params.id],(err,rows)=>{
             connection.release() //return the connection to pool
 
             if(!err){
@@ -60,26 +60,29 @@ app.get('/:id',(req,res)=>{
 })
 
 
-//insert data
-app.post('/insert',(req,res)=>{
-    pool.getConnection((err,connection)=>{
+//update data
+app.put('', (req, res) => {
+
+    pool.getConnection((err, connection) => {
         if(err) throw err
         console.log(`connected as id ${connection.threadId}`)
 
-        
-        connection.query("INSERT INTO beers SET ?",params,(err,rows)=>{
-            connection.release() //return the connection to pool
+        const { id, name, tagline, description } = req.body ;
 
-            if(!err){
-                res.send(`the record name: ${params.name} has been added.`);
-            }else{
-                console.log(err);
+        connection.query('UPDATE beers SET name = ?, tagline = ?, description = ? WHERE id = ?', [name, tagline, description, id] , (err, rows) => {
+            connection.release() // return the connection to pool
+
+            if(!err) {
+                res.send(`Beer with the name: ${name} has been added.`)
+            } else {
+                console.log(err)
             }
+
         })
-        console.log(req.body);
+
+        console.log(req.body)
     })
 })
-
 
 
 
