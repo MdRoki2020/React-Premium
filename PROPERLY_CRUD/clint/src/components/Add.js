@@ -17,7 +17,7 @@ function Add() {
 
     }).then((res)=>{
       if(res.send === "haha"){
-        console.log("haha");
+        console.log("its okey");
       }
     })
   }
