@@ -3,6 +3,7 @@ import {Table} from 'react-bootstrap';
 import {Link,useNavigate} from "react-router-dom";
 import Axios from 'axios';
 
+
 function Home() {
     const [fetchdata,setfetchdata]=useState([]);
     let navigate = useNavigate ();
@@ -58,10 +59,10 @@ const deleteData=(id)=>{
           </tbody>
         </Table>
         </div>
-          <div className='col-sm-2'></div>
+          <div className='col-sm-2'>
+          </div>
         </div>
       </div>
-      
     </div>
   )
 }

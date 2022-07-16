@@ -113,7 +113,7 @@ app.post('', (req, res) => {
         connection.query('INSERT INTO beers SET ?', params, (err, rows) => {
         connection.release() // return the connection to pool
         if (!err) {
-            res.send(`haha`);
+            res.render('Add',{success:"Record Insert"});
         } else {
             console.log(err)
         }

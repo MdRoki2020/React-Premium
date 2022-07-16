@@ -16,15 +16,14 @@ function Add() {
       description:description
 
     }).then((res)=>{
-      if(res.send === "haha"){
-        console.log("its okey");
-      }
+      console.log("its okey")
     })
   }
 
 
   return (
     <div>
+      
         <h3>Add Beers</h3>
         <div className='container'>
         <div className='row'>
