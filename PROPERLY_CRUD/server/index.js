@@ -110,15 +110,68 @@ app.post('', (req, res) => {
         if(err) throw err
         
         const params = req.body
-        connection.query('INSERT INTO beers SET ?', params, (err, rows) => {
+        connection.query('INSERT INTO beers SET ?', params, (err, result) => {
         connection.release() // return the connection to pool
-        if (!err) {
-            res.render('Add',{success:"Record Insert"});
-        } else {
-            console.log(err)
+        if (err) {
+            res.send({err:err});
         }
+        if(result){
+            res.send({successmessage:"Student Added Successfull"});
+        }else{
+
+            res.send({errormessage:"something went wrong"});
+        }
+
+        })
+    })
+});
+
+
+//register..
+app.post('/register', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
         
-        console.log('The data from beer table are:11 \n', rows)
+        const email=req.body.email;
+        const password=req.body.password;
+        connection.query( "INSERT INTO auth (email,password) VALUES (?,?)",[email,password],(err, result) => {
+        connection.release() // return the connection to pool
+        if (err) {
+            res.send({err:err});
+        }
+        if(result){
+            res.send({successmessage:"Your Registration Was Done"});
+        }else{
+
+            res.send({errormessage:"something went wrong"});
+        }
+
+        })
+    })
+});
+
+//login..
+app.post('/login', (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        
+        const email=req.body.email;
+        const password=req.body.password;
+        connection.query( "SELECT * FROM auth WHERE email=? AND password=?",
+        [email,password],
+        (err, result) => {
+        connection.release() // return the connection to pool
+        if (err) {
+            res.send({err:err});
+        }
+        if(result.length>0){
+            res.send(result);
+        }else{
+
+            res.send({message:"wrong username/password combination"});
+        }
 
         })
     })

@@ -8,6 +8,8 @@ function Add() {
   const [tagline,setTagline] = useState("");
   const [description,setDescription] = useState("");
 
+  const [successmessage,setSuccessMessage]=useState("");
+
 
   const submitData=()=>{
     Axios.post('http://localhost:5000/',{
@@ -16,7 +18,11 @@ function Add() {
       description:description
 
     }).then((res)=>{
-      console.log("its okey")
+      if(res.data.successmessage){
+          setSuccessMessage(res.data.successmessage);
+      }else{
+        
+      }
     })
   }
 
@@ -29,7 +35,7 @@ function Add() {
         <div className='row'>
             <div className='col-md-4'></div>
             <div className='col-md-4'>
-
+              <span>{successmessage}</span>
             <form>
             <input type='text' onChange={(e)=>{setName(e.target.value)}}  placeholder='name' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setTagline(e.target.value)}} placeholder='tagline' className='form-control my-3'/>

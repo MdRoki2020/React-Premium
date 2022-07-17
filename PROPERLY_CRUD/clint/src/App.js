@@ -5,6 +5,9 @@ import { Navbar,Container,Form,FormControl,Nav,Button } from 'react-bootstrap';
 import Home from "./components/Home";
 import Add from "./components/Add";
 import Edit from "./components/Edit";
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+import Registration from './components/Registration';
 
 function App() {
   return (
@@ -23,7 +26,8 @@ function App() {
 
                     <Nav.Link as={Link} to={'/'}> HOME</Nav.Link>
                     <Nav.Link as={Link} to={'/add'}> ADD STUDENT</Nav.Link>
-                    <Nav.Link as={Link} to={'/edit'}> UPDATE</Nav.Link> 
+                    <Nav.Link as={Link} to={'/login'}> Login</Nav.Link>
+                    <Nav.Link as={Link} to={'/registration'}> Registration</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>
@@ -35,6 +39,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/add" element={<Add />} />
           <Route path="edit/:id" element={<Edit />} />
+          <Route path="/login" element={<Login />}/>
+          <Route path="/registration" element={<Registration />}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
         </Routes>
       </Router>
   );
