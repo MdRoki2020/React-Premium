@@ -10,8 +10,10 @@ import Dashboard from './components/Dashboard';
 import Registration from './components/Registration';
 
 function App() {
+
   return (
-    <Router>
+    <div>
+      <Router>
         <div>
         <Navbar bg="light" expand="lg">
             <Container fluid>
@@ -44,6 +46,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}/>
         </Routes>
       </Router>
+
+    </div>
   );
 }
 

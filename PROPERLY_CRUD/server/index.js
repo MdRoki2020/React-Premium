@@ -170,7 +170,7 @@ app.post('/login', (req, res) => {
             res.send(result);
         }else{
 
-            res.send({message:"wrong username/password combination"});
+            res.send({message:"Email or Password Incorrect !"});
         }
 
         })

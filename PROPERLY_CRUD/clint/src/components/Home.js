@@ -2,6 +2,8 @@ import React, { useEffect, useState, } from 'react';
 import {Table} from 'react-bootstrap';
 import {Link,useNavigate} from "react-router-dom";
 import Axios from 'axios';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 function Home() {
@@ -15,12 +17,33 @@ function Home() {
       },[]);
 
 
+
 //for delete data...
 const deleteData=(id)=>{
-  alert("Are You Sure ?")
+  conformation();
   Axios.delete(`http://localhost:5000/${id}`)
-  navigate("/");
 };
+
+//sweet Alert
+const conformation=()=>{
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    }
+  })
+}
 
 
   return (
