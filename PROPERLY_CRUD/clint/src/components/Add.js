@@ -10,6 +10,7 @@ const Add=()=> {
   const [name,setName] = useState("");
   const [tagline,setTagline] = useState("");
   const [description,setDescription] = useState("");
+  const [image,setImage]=useState("");
 
   const [successmessage,setSuccessMessage]=useState("");
 
@@ -18,7 +19,8 @@ const Add=()=> {
     Axios.post('http://localhost:5000/',{
       name:name,
       tagline:tagline,
-      description:description
+      description:description,
+      image:image
 
     }).then((res)=>{
       if(res.data.successmessage){
@@ -55,10 +57,11 @@ const Add=()=> {
             <div class="alert alert-success" role="alert">
             <span>{successmessage}</span>
             </div>
-            <form>
+            <form action="" method="post" enctype="multipart/form-data">
             <input type='text' onChange={(e)=>{setName(e.target.value)}}  placeholder='name' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setTagline(e.target.value)}} placeholder='tagline' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setDescription(e.target.value)}} placeholder='description' className='form-control my-3'/>
+            <input type='file' name='image' onChange={(e)=>{setImage(e.target.value)}} placeholder='Image' className='form-control my-3'/>
             <Button onClick={submitData} className='form-control'>Add Beers</Button>
             </form>
 

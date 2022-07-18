@@ -17,16 +17,30 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
 
-
 const storage=multer.diskStorage({
-    destination:'../clint/src/image',
-    filename:(req,file,cb)=>{
-        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    destination:function(req,file,cb){
+        cb(null,'./image');
+    },
+    filename:function(req,file,cb){
+        cb(null,new Date().getTime() + path.extname(file.originalname));
     }
 })
 
+const fileFilter=(req,file,cb)=>{
+    if(file.mimetype ==='image/jpeg' || file.mimetype === 'image/png'){
+        cb(null,true);
+    }else{
+        cb(new Error('Unsupported Files'),false);
+    }
+}
+
+
 const upload=multer({
-    storage:storage
+    storage:storage,
+    limits:{
+        fileSize:1024*1024*10
+    },
+    fileFilter:fileFilter
 })
 
 //mysql
@@ -184,7 +198,7 @@ app.post('',upload.single('image'), (req, res) => {
         
         const params = req.body
         connection.query('INSERT INTO beers SET ?', params, (err, result) => {
-        connection.release() // return the connection to pool
+        connection.release()
         if (err) {
             res.send({err:err});
         }
@@ -198,6 +212,36 @@ app.post('',upload.single('image'), (req, res) => {
         })
     })
 });
+
+
+
+
+
+
+
+
+
+// app.post('',upload.single('image'), (req, res) => {
+
+//     pool.getConnection((err, connection) => {
+//         if(err) throw err
+        
+//         const params = req.body
+//         connection.query('INSERT INTO beers SET ?', params, (err, result) => {
+//         connection.release()
+//         if (err) {
+//             res.send({err:err});
+//         }
+//         if(result){
+//             res.send({successmessage:"Student Added Successfull"});
+//         }else{
+
+//             res.send({errormessage:"something went wrong"});
+//         }
+
+//         })
+//     })
+// });
 
 
 
