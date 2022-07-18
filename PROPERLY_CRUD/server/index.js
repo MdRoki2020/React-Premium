@@ -2,6 +2,9 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const mysql=require('mysql');
 const cors=require("cors");
+const multer=require("multer");
+const path=require('path');
+
 
 const app=express();
 app.use(express.json());
@@ -9,8 +12,22 @@ app.use(cors());
 
 const port=process.env.PORT || 5000;
 
+
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
+
+
+
+const storage=multer.diskStorage({
+    destination:'../clint/src/image',
+    filename:(req,file,cb)=>{
+        return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`)
+    }
+})
+
+const upload=multer({
+    storage:storage
+})
 
 //mysql
 const pool=mysql.createPool({
@@ -103,29 +120,6 @@ app.delete('/:id',(req,res)=>{
 })
 
 
-//insert
-app.post('', (req, res) => {
-
-    pool.getConnection((err, connection) => {
-        if(err) throw err
-        
-        const params = req.body
-        connection.query('INSERT INTO beers SET ?', params, (err, result) => {
-        connection.release() // return the connection to pool
-        if (err) {
-            res.send({err:err});
-        }
-        if(result){
-            res.send({successmessage:"Student Added Successfull"});
-        }else{
-
-            res.send({errormessage:"something went wrong"});
-        }
-
-        })
-    })
-});
-
 
 //register..
 app.post('/register', (req, res) => {
@@ -171,6 +165,34 @@ app.post('/login', (req, res) => {
         }else{
 
             res.send({message:"Email or Password Incorrect !"});
+        }
+
+        })
+    })
+});
+
+
+
+
+
+
+//insert
+app.post('',upload.single('image'), (req, res) => {
+
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        
+        const params = req.body
+        connection.query('INSERT INTO beers SET ?', params, (err, result) => {
+        connection.release() // return the connection to pool
+        if (err) {
+            res.send({err:err});
+        }
+        if(result){
+            res.send({successmessage:"Student Added Successfull"});
+        }else{
+
+            res.send({errormessage:"something went wrong"});
         }
 
         })
