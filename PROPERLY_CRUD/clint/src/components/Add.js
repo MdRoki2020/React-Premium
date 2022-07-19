@@ -61,7 +61,7 @@ const Add=()=> {
             <input type='text' onChange={(e)=>{setName(e.target.value)}}  placeholder='name' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setTagline(e.target.value)}} placeholder='tagline' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setDescription(e.target.value)}} placeholder='description' className='form-control my-3'/>
-            <input type='file' name='image' onChange={(e)=>{setImage(e.target.value)}} placeholder='Image' className='form-control my-3'/>
+            <input type='file' name='image' onChange={(e)=>{setImage(e.target.files)}} placeholder='Image' className='form-control my-3'/>
             <Button onClick={submitData} className='form-control'>Add Beers</Button>
             </form>
 
