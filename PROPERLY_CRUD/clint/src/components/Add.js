@@ -10,26 +10,49 @@ const Add=()=> {
   const [name,setName] = useState("");
   const [tagline,setTagline] = useState("");
   const [description,setDescription] = useState("");
-  const [image,setImage]=useState("");
+  const [file,setFile]=useState("");
 
   const [successmessage,setSuccessMessage]=useState("");
 
 
-  const submitData=()=>{
-    Axios.post('http://localhost:5000/',{
-      name:name,
-      tagline:tagline,
-      description:description,
-      image:image
+  const submit=()=>{
 
-    }).then((res)=>{
+    const data=new FormData();
+
+    data.append('name',name);
+    data.append('tagline',tagline);
+    data.append('description',description);
+    data.append('file',file);
+
+
+    Axios.post('http://localhost:5000/',data).then((res)=>{
+      console.log('success')
       if(res.data.successmessage){
-          setSuccessMessage(res.data.successmessage);
-          sweetAlert();
-      }else{
-        
-      }
+        setSuccessMessage(res.data.successmessage);
+        sweetAlert();
+        }else{
+            
+        }
+    }).catch((res)=>{
+      console.error('error')
     })
+
+    // Axios.post('http://localhost:5000/',{
+    //   name:name,
+    //   tagline:tagline,
+    //   description:description,
+    //   file:file
+
+    // }).then((res)=>{
+    //   if(res.data.successmessage){
+    //       setSuccessMessage(res.data.successmessage);
+    //       sweetAlert();
+    //   }else{
+        
+    //   }
+    // })
+
+
   }
 
   const sweetAlert=(successmessage)=>{
@@ -54,15 +77,15 @@ const Add=()=> {
         <div className='row'>
             <div className='col-md-4'></div>
             <div className='col-md-4'>
-            <div class="alert alert-success" role="alert">
+            <div className="alert alert-success" role="alert">
             <span>{successmessage}</span>
             </div>
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="#" method="post" enctype="multipart/form-data">
             <input type='text' onChange={(e)=>{setName(e.target.value)}}  placeholder='name' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setTagline(e.target.value)}} placeholder='tagline' className='form-control my-3'/>
             <input type='text' onChange={(e)=>{setDescription(e.target.value)}} placeholder='description' className='form-control my-3'/>
-            <input type='file' name='image' onChange={(e)=>{setImage(e.target.files)}} placeholder='Image' className='form-control my-3'/>
-            <Button onClick={submitData} className='form-control'>Add Beers</Button>
+            <input type='file' multiple  onChange={(e)=>{setFile(e.target.files[0])}} placeholder='Image' className='form-control my-3'/>
+            <Button onClick={submit}  className='form-control'>Add Beers</Button>
             </form>
 
             </div>

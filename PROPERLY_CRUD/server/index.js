@@ -2,29 +2,26 @@ const express=require('express');
 const bodyParser=require('body-parser');
 const mysql=require('mysql');
 const cors=require("cors");
+const multer=require("multer");
+const path=require('path');
 
 const app=express();
 app.use(express.json());
 app.use(cors());
 
-const multer=require("multer");
-const path=require('path');
-
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
-
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './public');
+const storage=multer.diskStorage({
+    destination:(req,file,cb)=>{
+        cb(null,'public')
     },
-    filename: function (req, file, cb) {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null, file.fieldname + '-' + uniqueSuffix)
+    filename:(req,file,cb)=>{
+        cb(null,Date.now() + '-' + file.originalname)
     }
-  })
+})
 
-  const upload = multer({ storage: storage })
+const upload=multer({storage});
 
 
 
@@ -184,13 +181,14 @@ app.post('/login', (req, res) => {
 
 
 //insert
-app.post('',upload.single('image'), (req, res) => {
+app.post('',upload.single('file'), (req, res) => {
 
     pool.getConnection((err, connection) => {
         if(err) throw err
         
-        const params = req.body
-        connection.query('INSERT INTO beers SET ?', params, (err, result) => {
+        const { name,tagline,description,file } = req.body;
+
+        connection.query("INSERT INTO beers (name,tagline,description,file) VALUES (?,?,?,?)",[name,tagline,description,file],  (err, result) => {
         connection.release()
         if (err) {
             res.send({err:err});
