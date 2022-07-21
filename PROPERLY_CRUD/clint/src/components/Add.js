@@ -10,6 +10,8 @@ const Add=()=> {
   const [name,setName] = useState("");
   const [tagline,setTagline] = useState("");
   const [description,setDescription] = useState("");
+
+  //for file
   const [file,setFile]=useState("");
 
   const [successmessage,setSuccessMessage]=useState("");
