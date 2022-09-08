@@ -1,0 +1,43 @@
+.wrapper{
+    background-image: url('../assets/images/walpaper.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.textWrapper {
+    margin: auto;
+    padding: 150px 0px 280px 0px;
+}
+
+.title h1 {
+    font-family: cursive;
+    font-weight: bold;
+    font-size: 42px;
+    color: crimson;
+    text-shadow: 1px 2px black;
+}
+
+.description {
+    letter-spacing: 1.5px;
+    line-height: 30px;
+    font-style: oblique;
+    font-weight: 400;
+    padding-top: 30px;
+    padding-bottom: 64px;
+    color: black;
+}
+
+button.btn.shadow.memberShipButton {
+    background: space;
+    border: 2px solid #ed143d;
+    color: initial;
+    font-weight: 400;
+}
+
+button.btn.shadow.memberShipButton:hover {
+    background: space;
+    border: 2px solid #ffc107;
+    color: black;
+    font-weight: 400;
+}
