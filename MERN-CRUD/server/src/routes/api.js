@@ -8,5 +8,6 @@ router.post('/CreateFood',FoodController.CreateFood);
 router.get('/ReadFood',FoodController.ReadFood);
 router.get('/ReadById/:id',FoodController.ReadById);
 router.post('/UpdateFood/:id',FoodController.UpdateFood);
+router.get('/DeleteFood/:id',FoodController.DeleteFood);
 
 module.exports=router;
