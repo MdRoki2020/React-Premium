@@ -38,46 +38,6 @@ function App() {
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-    // <Router>
-    // <div className="">
-
-    //   <Navbar bg="light" variant="light" className='fixed-top'>
-    //   <Container>
-    //   <Navbar.Brand as={Link} to={'/'}>Navbar</Navbar.Brand>
-
-    //       <Form className="d-flex me-auto">
-    //         <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search"/>
-    //         <Button variant="outline-success">Search</Button>
-    //       </Form>
-          
-    //       <Nav>
-    //         <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
-    //         <Nav.Link as={Link} to={'/dashboard'}>Dashboard</Nav.Link>
-    //       </Nav>
-          
-    //     </Container>
-    //   </Navbar>
-
-
-    //   <Routes>
-    //       <Route path="/" element={<Home />} />
-    //       <Route path="/Dashboard" element={<Dashboard />} />
-    //   </Routes>
-    // </div>
-    // </Router>
-
   );
 }
 
