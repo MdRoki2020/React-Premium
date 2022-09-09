@@ -1,14 +1,40 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {Modal,Form,Button } from 'react-bootstrap'
 import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
+import { ErrorToast, IsEmail, IsEmpty } from '../helper/FormHelper';
+import { useNavigate } from 'react-router-dom';
+import { Membership } from '../Api Request/ApiRequest';
 
 const Home = () => {
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  let FullNameRef,EmailRef,PasswordRef,ImgRef=useRef();
+  let navigate=useNavigate()
+
+  const OnMembership=()=>{
+    const fullName=FullNameRef.value;
+    const email=EmailRef.value;
+    const password=PasswordRef.value;
+    const image=ImgRef.value;
+
+    if(IsEmail(email)){
+      ErrorToast("Valid Email Address Required");
+    }else if(IsEmpty(fullName)){
+      ErrorToast("Full Name Is Required");
+    }else if(IsEmpty(password)){
+      ErrorToast("Password Is Required");
+    }else{
+      Membership(fullName,email,password,image).then((result)=>{
+        if(result===true){
+          navigate('/Home')
+        }
+      })
+    }
+  }
 
 
   return (
@@ -44,40 +70,33 @@ const Home = () => {
                   </Modal.Header>
 
                   <Modal.Body>
-                    <form action='' method=''>
+                    
                       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         
                         <Form.Label>Full Name</Form.Label>
-                        <input type="text" className='form-control mb-3' placeholder="Enter Full Name" autoFocus required />
+                        <input ref={(input)=>FullNameRef=input} type="text" className='form-control mb-3' placeholder="Enter Full Name"  required />
 
                         <Form.Label>Email address</Form.Label>
-                        <input type="email" className='form-control mb-3' placeholder="Enter Email" autoFocus required />
+                        <input ref={(input)=>EmailRef=input} type="email" className='form-control mb-3' placeholder="Enter Email"  required />
 
                         <Form.Label>Password</Form.Label>
-                        <input type="password" className='form-control mb-3' placeholder="Enter Password" autoFocus required />
+                        <input ref={(input)=>PasswordRef=input} type="password" className='form-control mb-3' placeholder="Enter Password"  required />
 
                         <Form.Label>Profile Image</Form.Label>
-                        <input type="file" className='form-control mb-3'/>
+                        <input ref={(input)=>ImgRef=input} type="file" className='form-control mb-3'/>
 
 
                       </Form.Group>
 
-                      {/* <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Example textarea</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                      </Form.Group> */}
-                    </form>
+                    
                   </Modal.Body>
 
                   <Modal.Footer>
-                    {/* <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button> */}
-                    <Button className='form-control' variant="primary" onClick={handleClose}>
+
+                    <Button className='form-control' variant="info" onClick={OnMembership }>
                       Membership
                     </Button>
+                    
                   </Modal.Footer>
 
               </Modal>
