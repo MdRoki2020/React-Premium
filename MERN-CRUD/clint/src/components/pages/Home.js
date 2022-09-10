@@ -1,11 +1,12 @@
-import React, { useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import {Modal,Form,Button } from 'react-bootstrap'
 import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { ErrorToast, IsEmail, IsEmpty } from '../helper/FormHelper';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { Membership } from '../Api Request/ApiRequest';
+import FullScreenLoader from '../common/FullScreenLoader';
 
 const Home = () => {
 
@@ -13,7 +14,7 @@ const Home = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let FullNameRef,EmailRef,PasswordRef,ImgRef=useRef();
+  let FullNameRef,EmailRef,PasswordRef,ImgRef,Loader=useRef();
   // let navigate=useNavigate();
 
   const OnMembership=()=>{
@@ -22,6 +23,9 @@ const Home = () => {
     let email=EmailRef.value;
     let password=PasswordRef.value;
     let image=ImgRef.value;
+
+    Loader.classList.remove('d-none');
+
 
     if(IsEmail(email)){
       ErrorToast("Valid Email Address Required");
@@ -34,7 +38,8 @@ const Home = () => {
     }else{
       Membership(fullName,email,password,image).then((result)=>{
         if(result===true){
-        
+          Loader.classList.add('d-none');
+
           FullNameRef.value="";
           EmailRef.value="";
           PasswordRef.value="";
@@ -54,14 +59,14 @@ const Home = () => {
 
   const successMes=()=>{
     Swal.fire(
-      'Member Added Successfully Done !',
+      'You Got Membership !',
       'You clicked the button!',
       'success'
     )
 }
 
   return (
-        
+        <Fragment>
         <div className='wrapper'>
           <div className='container'>
             <div className='row'>
@@ -132,6 +137,15 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+
+        <div className='d-none' ref={(div)=>Loader=div}>
+
+        <FullScreenLoader />
+
+        </div>
+
+        </Fragment>
         
   )
 }
