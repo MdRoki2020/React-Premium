@@ -1,11 +1,11 @@
 import Axios from 'axios';
 
-export function Membership(fullName,email,password,image){
+export function Membership(FullName,Email,password,image){
     let URL="http://localhost:5000/api/v1/CreateUser"
 
     let PostBody={
-        fullName:fullName,
-        email:email,
+        FullName:FullName,
+        Email:Email,
         password:password,
         image:image
     }

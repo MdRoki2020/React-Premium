@@ -4,6 +4,7 @@ import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { ErrorToast, IsEmail, IsEmpty } from '../helper/FormHelper';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import { Membership } from '../Api Request/ApiRequest';
 
 const Home = () => {
@@ -13,16 +14,19 @@ const Home = () => {
   const handleShow = () => setShow(true);
 
   let FullNameRef,EmailRef,PasswordRef,ImgRef=useRef();
-  let navigate=useNavigate()
+  // let navigate=useNavigate();
 
   const OnMembership=()=>{
-    const fullName=FullNameRef.value;
-    const email=EmailRef.value;
-    const password=PasswordRef.value;
-    const image=ImgRef.value;
+
+    let fullName=FullNameRef.value;
+    let email=EmailRef.value;
+    let password=PasswordRef.value;
+    let image=ImgRef.value;
 
     if(IsEmail(email)){
       ErrorToast("Valid Email Address Required");
+    }else if(IsEmpty(email)){
+      ErrorToast("Email Is Required");
     }else if(IsEmpty(fullName)){
       ErrorToast("Full Name Is Required");
     }else if(IsEmpty(password)){
@@ -30,12 +34,31 @@ const Home = () => {
     }else{
       Membership(fullName,email,password,image).then((result)=>{
         if(result===true){
-          navigate('/Home')
+        
+          FullNameRef.value="";
+          EmailRef.value="";
+          PasswordRef.value="";
+          ImgRef.value="";
+  
+          successMes();
+          handleClose();
+          
+
+        }else{
+          console.log('something went wrong');
         }
       })
     }
   }
 
+
+  const successMes=()=>{
+    Swal.fire(
+      'Member Added Successfully Done !',
+      'You clicked the button!',
+      'success'
+    )
+}
 
   return (
         
