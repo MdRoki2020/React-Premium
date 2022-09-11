@@ -82,4 +82,5 @@ exports.DeleteFood=(req,res)=>{
             res.status(200).json({"status":"successfull",data:data})
         }
     })
+    
 }
