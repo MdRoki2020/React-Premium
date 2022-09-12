@@ -2,6 +2,7 @@ const express=require('express');
 
 const FoodController=require("../controllers/FoodsController");
 const UserController=require('../controllers/UserController');
+const AuthVerifyMiddleware=require('../middleware/AuthVerifyMiddleware');
 const router=express.Router();
 
 //Food management
@@ -14,5 +15,6 @@ router.get('/DeleteFood/:id',FoodController.DeleteFood);
 
 //User Management
 router.post('/CreateUser',UserController.CreateUser);
+router.post('/Login',UserController.Login);
 
 module.exports=router;
