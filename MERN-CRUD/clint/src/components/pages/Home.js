@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react'
 import {Modal,Form,Button } from 'react-bootstrap'
 import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
-import { ErrorToast, IsEmail, IsEmpty } from '../helper/FormHelper';
+import { ErrorToast, getBase64, IsEmail, IsEmpty } from '../helper/FormHelper';
 // import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { Membership } from '../Api Request/ApiRequest';
@@ -14,15 +14,22 @@ const Home = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let FullNameRef,EmailRef,PasswordRef,ImgRef,Loader=useRef();
+  let FullNameRef,EmailRef,PasswordRef,ImgRef,Loader,ImgView=useRef();
   // let navigate=useNavigate();
+
+  const PreviewImage = () => {
+    let ImgFile = ImgRef.files[0];
+    getBase64(ImgFile).then((base64Img)=>{
+      ImgView.src=base64Img;
+    })
+}
 
   const OnMembership=()=>{
 
     let fullName=FullNameRef.value;
     let email=EmailRef.value;
     let password=PasswordRef.value;
-    let image=ImgRef.value;
+    let image=ImgView.src;
 
     Loader.classList.remove('d-none');
 
@@ -111,7 +118,7 @@ const Home = () => {
                         <input ref={(input)=>PasswordRef=input} type="password" className='form-control mb-3' placeholder="Enter Password"  required />
 
                         <Form.Label>Profile Image</Form.Label>
-                        <input ref={(input)=>ImgRef=input} type="file" className='form-control mb-3'/>
+                        <input onChange={PreviewImage} ref={(input)=>ImgRef=input} type="file" className='form-control mb-3'/>
 
 
                       </Form.Group>
