@@ -41,3 +41,7 @@ button.btn.shadow.memberShipButton:hover {
     color: black;
     font-weight: 400;
 }
+
+span.popupText a {
+    text-decoration: none;
+}

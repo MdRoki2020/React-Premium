@@ -4,6 +4,7 @@ import {Navbar,Container,Nav,Form,Button,FormControl} from 'react-bootstrap';
 import {BrowserRouter as Router,Route,Link, Routes} from "react-router-dom";
 import Home from './components/pages/Home';
 import Dashboard from './components/pages/Dashboard';
+import Login from './components/pages/Login';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
                 <Nav className="">
 
                     <Nav.Link as={Link} to={'/'}> HOME</Nav.Link>
-                    <Nav.Link as={Link} to={'/dashboard'}> ADD STUDENT</Nav.Link>
+                    <Nav.Link as={Link} to={'/dashboard'}> DASHBOARD</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>
@@ -32,6 +33,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/login' element={<Login />}/>
           <Route path="/dashboard" element={<Dashboard />}/>
         </Routes>
       </Router>
