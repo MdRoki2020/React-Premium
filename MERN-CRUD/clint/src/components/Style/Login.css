@@ -1,5 +1,5 @@
-.wrapper{
-    background-image: url('https://i.pinimg.com/originals/db/74/de/db74de0e08c343c8035cb471c5021d9f.jpg');
+.loginwrapper{
+    background-image: url('https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -11,7 +11,14 @@
 }
 
 .topSpaceLoginForm {
-    margin: 220px 0px;
+    margin: 190px 0px;
+    background: transparent;
+}
+
+.topSpaceLoginForm input {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid ghostwhite;
 }
 
 span.popupText a {

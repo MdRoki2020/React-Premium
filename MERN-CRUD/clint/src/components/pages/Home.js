@@ -4,11 +4,11 @@ import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { BsPlusSquare } from "react-icons/bs";
 import { ErrorToast, getBase64, IsEmail, IsEmpty } from '../helper/FormHelper';
-// import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { Membership } from '../Api Request/ApiRequest';
 import FullScreenLoader from '../common/FullScreenLoader';
 import { Link } from 'react-router-dom';
+
 
 const Home = () => {
 
@@ -17,7 +17,6 @@ const Home = () => {
   const handleShow = () => setShow(true);
 
   let FullNameRef,EmailRef,PasswordRef,ImgRef,Loader,ImgView=useRef();
-  // let navigate=useNavigate();
 
   const PreviewImage = () => {
     let ImgFile = ImgRef.files[0];

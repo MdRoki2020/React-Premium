@@ -1,5 +1,5 @@
 .wrapper{
-    background-image: url('../assets/images/walpaper.jpg');
+    background-image: url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -22,7 +22,7 @@
     letter-spacing: 1.5px;
     line-height: 30px;
     font-style: oblique;
-    font-weight: 400;
+    font-weight: 500;
     padding-top: 30px;
     padding-bottom: 64px;
     color: black;
@@ -32,14 +32,14 @@ button.btn.shadow.memberShipButton {
     background: space;
     border: 2px solid #ed143d;
     color: initial;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 button.btn.shadow.memberShipButton:hover {
     background: space;
     border: 2px solid #ffc107;
     color: black;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 span.popupText a {

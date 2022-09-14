@@ -42,16 +42,17 @@ const Login = () => {
 
   return (
     <Fragment>
-        <div className='wrapper'>
+        <div className='loginwrapper'>
         <div className='container'>
         <div className='row'>
             <div className='col-md-4'>
-            <section className='topSpace'>
-                <h3>User Login</h3>
-            </section>
+            
             </div>
             <div className='col-md-4'>
             <Card className='topSpaceLoginForm px-4 py-5 shadow'>
+            <div class="card-body">
+                <h3>Login</h3>
+            </div>
             <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1"><BsFillEnvelopeFill/></InputGroup.Text>
                 <Form.Control ref={(input)=>EmailRef=input} placeholder="Enter Email" aria-label="Email" aria-describedby="basic-addon1"
