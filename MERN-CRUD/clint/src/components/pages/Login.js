@@ -42,6 +42,7 @@ const Login = () => {
 
   return (
     <Fragment>
+        <div className='wrapper'>
         <div className='container'>
         <div className='row'>
             <div className='col-md-4'>
@@ -80,6 +81,7 @@ const Login = () => {
         <FullScreenLoader />
 
     </div>
+        </div>
     </Fragment>
   )
 }
