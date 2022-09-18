@@ -5,17 +5,34 @@ import {Table} from 'react-bootstrap'
 
 const Dashboard = () => {
 
+
   const [dataList,setDataList]=useState([]);
 
+
   useEffect(()=>{
-    getUserData();
+
+    setDataList(getUserDetails());
+
   },[])
 
-  const getUserData=()=>{
-    getUserDetails().then((data)=>{
-      setDataList(data);
-    })
-  }
+  console.log(dataList);
+
+  // const getUserData=()=>{
+  //   getUserDetails().then((data)=>{
+  //     setDataList(data);
+  //   })
+  // }
+
+  // const getUserData=()=>{
+  //   const data=getUserDetails();
+  //   console.log(data);
+  //   setDataList(data);
+  // }
+
+  // const data=getUserDetails();
+  // setDataList(data);
+  // console.log(dataList);
+
   
   return (
     <div className='DashboardtopSpace'>
@@ -29,22 +46,18 @@ const Dashboard = () => {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Email</th>             {/* <th>Image</th> */}
+                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               {
-                dataList.map((value)=>
-
-
-                <tr>
-                <td>{value.FullName}</td>
-                <td>{value.Email}</td>
-                {/* <td><img className='img-fluid img-thumbnail' src={value.Img} alt='product_Image' width="80"/></td> */}
-
+                
+                dataList.map((value,key)=>
+                <tr key={key}>
+          
+                  <td>{value.FullName}</td>
+                  <td>{value.Email}</td>
                 </tr>
-
-
                 )
               }
             </tbody>
