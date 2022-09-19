@@ -11,17 +11,17 @@ const Dashboard = () => {
 
   useEffect(()=>{
 
-    setDataList(getUserDetails());
+    getUserData();
 
   },[])
 
   console.log(dataList);
 
-  // const getUserData=()=>{
-  //   getUserDetails().then((data)=>{
-  //     setDataList(data);
-  //   })
-  // }
+  const getUserData=()=>{
+    getUserDetails().then((data)=>{
+      setDataList(data);
+    })
+  }
 
   // const getUserData=()=>{
   //   const data=getUserDetails();
