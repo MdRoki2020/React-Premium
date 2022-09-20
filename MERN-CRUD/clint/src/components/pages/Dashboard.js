@@ -23,6 +23,8 @@ const Dashboard = () => {
     })
   }
 
+  console.log(dataList)
+
   // const getUserData=()=>{
   //   const data=getUserDetails();
   //   console.log(data);
