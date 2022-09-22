@@ -15,7 +15,7 @@ const Dashboard = () => {
 
   },[])
 
-  // console.log(dataList);
+
 
   const getUserData=()=>{
     getUserDetails().then((data)=>{
