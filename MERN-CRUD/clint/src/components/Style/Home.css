@@ -1,5 +1,5 @@
 .wrapper{
-    background-image: url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-image: url('../../components/assets/images/walpaper.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -25,7 +25,7 @@
     font-weight: 500;
     padding-top: 30px;
     padding-bottom: 64px;
-    color: black;
+    color: white;
 }
 
 button.btn.shadow.memberShipButton {
@@ -33,13 +33,14 @@ button.btn.shadow.memberShipButton {
     border: 2px solid #ed143d;
     color: initial;
     font-weight: 500;
+    color: white;
 }
 
 button.btn.shadow.memberShipButton:hover {
     background: space;
     border: 2px solid #ffc107;
-    color: black;
     font-weight: 500;
+    color: #ed143d;
 }
 
 span.popupText a {
