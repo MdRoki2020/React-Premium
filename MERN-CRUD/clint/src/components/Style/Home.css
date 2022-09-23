@@ -13,7 +13,7 @@
 .title h1 {
     font-family: cursive;
     font-weight: bold;
-    font-size: 42px;
+    font-size: 50px;
     color: crimson;
     text-shadow: 1px 2px black;
 }
@@ -26,6 +26,28 @@
     padding-top: 30px;
     padding-bottom: 64px;
     color: white;
+}
+
+.modal-content {
+    background: #00000087;
+    border: 2px solid crimson;
+}
+
+.modal-title.h4 {
+    color: white;
+}
+
+label.form-label {
+    color: white;
+}
+.closeIcon {
+    margin-left: 252px;
+  }
+
+input.form-control.mb-3 {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ffc107;
 }
 
 button.btn.shadow.memberShipButton {
@@ -41,6 +63,14 @@ button.btn.shadow.memberShipButton:hover {
     border: 2px solid #ffc107;
     font-weight: 500;
     color: #ed143d;
+}
+
+button.form-control.mb-2.btn.btn-primary {
+    background: transparent;
+}
+
+span.popupText {
+    color: white;
 }
 
 span.popupText a {

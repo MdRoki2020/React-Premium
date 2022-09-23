@@ -2,7 +2,7 @@ import React, { Fragment, useRef, useState } from 'react'
 import {Modal,Form,Button } from 'react-bootstrap'
 import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
-import { BsPlusSquare } from "react-icons/bs";
+import { BsPlusSquare,BsXCircle } from "react-icons/bs";
 import { ErrorToast, getBase64, IsEmail, IsEmpty } from '../helper/FormHelper';
 import Swal from 'sweetalert2'
 import { Membership } from '../Api Request/ApiRequest';
@@ -23,6 +23,10 @@ const Home = () => {
     getBase64(ImgFile).then((base64Img)=>{
       ImgView.src=base64Img;
     })
+}
+
+const close=()=>{
+  handleClose();
 }
 
   const OnMembership=()=>{
@@ -101,8 +105,8 @@ const Home = () => {
 
               <Modal show={show} onHide={handleClose}>
 
-                  <Modal.Header closeButton>
-                    <Modal.Title>Get membership</Modal.Title>
+                  <Modal.Header  >
+                    <Modal.Title><span className='membershipHeading'>Get membership</span> <span onClick={close} className='closeIcon'><BsXCircle /></span></Modal.Title>
                   </Modal.Header>
 
                   <Modal.Body>
@@ -129,7 +133,7 @@ const Home = () => {
 
                   <Modal.Footer>
 
-                    <Button className='form-control mb-2' variant="info" onClick={OnMembership }>
+                    <Button className='form-control mb-2' onClick={OnMembership }>
                       Membership <BsPlusSquare/>
                     </Button>
 
