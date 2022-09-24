@@ -1,12 +1,13 @@
 import React from 'react'
 import {Navbar,Container,Nav,Form,Button,FormControl} from 'react-bootstrap';
 import {Link} from "react-router-dom";
+import '../Style/NavBar.css';
 
 const NavBar = () => {
   return (
     
         <div>
-        <Navbar bg="light" expand="lg" className='fixed-top'>
+        <Navbar expand="lg" className='fixed-top'>
             <Container fluid>
                 <Navbar.Brand as={Link} to={'/'}>REACT</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />

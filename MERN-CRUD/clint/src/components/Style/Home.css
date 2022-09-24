@@ -48,6 +48,7 @@ input.form-control.mb-3 {
     background: transparent;
     border: none;
     border-bottom: 1px solid #ffc107;
+    color: white;
 }
 
 button.btn.shadow.memberShipButton {
