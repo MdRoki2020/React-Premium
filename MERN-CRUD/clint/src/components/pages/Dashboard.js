@@ -16,7 +16,6 @@ const Dashboard = () => {
   },[])
 
 
-
   const getUserData=()=>{
     getUserDetails().then((data)=>{
       setDataList(data);
@@ -25,13 +24,9 @@ const Dashboard = () => {
 
   console.log(dataList)
 
-  // const getUserData=()=>{
-  //   const data=getUserDetails();
-  //   console.log(data);
-  //   setDataList(data);
-  // }
 
-  // const data=getUserDetails();
+
+
   // setDataList(data);
   // console.log(dataList);
 
