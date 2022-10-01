@@ -1,28 +1,38 @@
 import React, { useEffect, useState } from 'react'
-import { getUserDetails } from '../helper/SessionHelper'
+// import { getUserDetails } from '../helper/SessionHelper'
 import '../Style/Dashboard.css'
 import {Table} from 'react-bootstrap'
 
 const Dashboard = () => {
 
 
-  const [dataList,setDataList]=useState([]);
+  const [userData,setUserData]=useState([]);
 
 
-  useEffect(()=>{
+  // useEffect(()=>{
 
-    getUserData();
+  //   getUserData();
 
-  },[])
+  // },[])
 
 
-  const getUserData=()=>{
-    getUserDetails().then((data)=>{
-      setDataList(data);
-    })
-  }
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem('UserDetails'));
+    if (items) {
+      setUserData(items);
+    }
+  }, []);
 
-  console.log(dataList)
+  console.log(userData);
+
+
+
+
+  // const getUserData=()=>{
+  //   getUserDetails().then((data)=>{
+  //     setDataList(data);
+  //   })
+  // }
 
 
 
@@ -47,16 +57,8 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {
-                
-                dataList.map((value,key)=>
-                <tr key={key}>
-          
-                  <td>{value.FullName}</td>
-                  <td>{value.Email}</td>
-                </tr>
-                )
-              }
+              <td>roki</td>
+              <td>poki</td>
             </tbody>
           </Table>
 
