@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 // import { getUserDetails } from '../helper/SessionHelper'
 import '../Style/Dashboard.css'
-import {Table} from 'react-bootstrap'
+// import {} from 'react-bootstrap'
 
 const Dashboard = () => {
 
@@ -18,6 +18,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('UserDetails'));
+    debugger
     if (items) {
       setUserData(items);
     }
@@ -49,7 +50,8 @@ const Dashboard = () => {
           <div className='3'></div>
           <div className='6'>
 
-          <Table striped bordered hover responsive>
+
+          <table>
             <thead>
               <tr>
                 <th>Name</th>
@@ -57,10 +59,21 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              <td>roki</td>
-              <td>poki</td>
+              {
+                
+                userData.map((value,key)=>{
+                  return(
+                    <tr key={key}>
+                    <td>{value.FullName}</td>
+                    <td>{value.Email}</td>
+                  </tr>
+                  );
+                }
+                )
+                
+              }
             </tbody>
-          </Table>
+          </table>
 
           </div>
           <div className='3'></div>
