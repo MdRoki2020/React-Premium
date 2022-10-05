@@ -38,7 +38,7 @@ const Dashboard = () => {
 
 
   // setDataList(data);
-  // console.log(dataList);
+
 
   
   return (
