@@ -1,43 +1,33 @@
 import React, { useEffect, useState } from 'react'
-// import { getUserDetails } from '../helper/SessionHelper'
+import { getUserDetails } from '../helper/SessionHelper'
 import '../Style/Dashboard.css'
 
 const Dashboard = () => {
 
-
   const [userData,setUserData]=useState([]);
 
 
-  // useEffect(()=>{
-
-  //   getUserData();
-
-  // },[])
-
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem('UserDetails'));
-    debugger
-    if (items) {
-      setUserData(items);
-    }
-  }, []);
-
-  console.log(userData);
+  // useEffect(() => {
+  //   const items = JSON.parse(localStorage.getItem('UserDetails'));
+  //   if (items) {
+  //     setUserData(items);
+  //   }
+  // }, []);
 
 
+  useEffect(()=>{
+
+    setUserData(getUserDetails())
+
+  },[])
 
 
   // const getUserData=()=>{
-  //   getUserDetails().then((data)=>{
-  //     setDataList(data);
-  //   })
+  //   getUserDetails()
   // }
 
 
-
-
-  // setDataList(data);
+  console.log(userData);
 
 
   
@@ -58,19 +48,12 @@ const Dashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {
                 
-                userData.map((value,key)=>{
-                  return(
-                    <tr key={key}>
-                    <td>{value.FullName}</td>
-                    <td>{value.Email}</td>
-                  </tr>
-                  );
-                }
-                )
-                
-              }
+              <tr >
+                <td>{userData.FullName}</td>
+                <td>{userData.Email}</td>
+              </tr>
+
             </tbody>
           </table>
 
