@@ -40,7 +40,7 @@ const Dashboard = () => {
           <div className='6'>
 
 
-          <table>
+          <table className='table table-striped table-bordered table-hover table-responsive'>
             <thead>
               <tr>
                 <th>Name</th>
