@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "./components/assets/css/sidebar.css"
+import "./components/assets/css/style.css"
+import "./components/assets/css/animate.min.css"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
