@@ -36,8 +36,6 @@ const close=()=>{
     let password=PasswordRef.value;
     let image=ImgView.src;
 
-    // Loader.classList.remove('d-none');
-
 
     if(IsEmail(email)){
       ErrorToast("Valid Email Address Required");
@@ -47,7 +45,10 @@ const close=()=>{
       ErrorToast("Full Name Is Required");
     }else if(IsEmpty(password)){
       ErrorToast("Password Is Required");
+
     }else{
+      Loader.classList.remove('d-none');
+      
       Membership(fullName,email,password,image).then((result)=>{
         if(result===true){
           Loader.classList.add('d-none');
