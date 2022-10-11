@@ -49,8 +49,9 @@ const Login = () => {
             
             </div>
             <div className='col-md-4'>
-            <Card className='topSpaceLoginForm px-4 py-5 shadow'>
-            <div class="card-body">
+            <Card className='topSpaceLoginForm px-4 py-4 shadow'>
+            <div className='card px-3 py-4 shadow'>
+            <div class="card-body cardTitle">
                 <h3>Login</h3>
             </div>
             <InputGroup className="mb-3">
@@ -66,9 +67,10 @@ const Login = () => {
             </InputGroup>
 
             <InputGroup className="mb-3">
-                <Button onClick={OnLogin} className='form-control'>Login <BsBoxArrowInRight/></Button>
+                <Button onClick={OnLogin} className='form-control loginButton'>Login <BsBoxArrowInRight/></Button>
             </InputGroup>
             <span className='popupText'>Not a Member? <Link to="/" className='fw-bold'>Membership</Link></span>
+            </div>
             </Card>
             </div>
             <div className='col-md-4'>

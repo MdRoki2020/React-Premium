@@ -1,26 +1,28 @@
 .loginwrapper{
-    background-image: url('https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg');
+    background-image: url('https://images.pexels.com/photos/673648/pexels-photo-673648.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
-
 .topSpace{
     margin-top: 60px;
     color:white;
 }
-
 .topSpaceLoginForm {
     margin: 190px 0px;
     background: transparent;
 }
-
 .topSpaceLoginForm input {
     border: none;
     background: transparent;
-    border-bottom: 1px solid ghostwhite;
+    border-bottom:1px solid #b2b2b6;
 }
-
 span.popupText a {
     text-decoration: none;
+}
+.cardTitle h3 {
+    font-family: auto !important;
+}
+span.popupText {
+    color: #605f5f;
 }
