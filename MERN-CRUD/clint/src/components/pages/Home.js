@@ -36,7 +36,7 @@ const close=()=>{
     let password=PasswordRef.value;
     let image=ImgView.src;
 
-    Loader.classList.remove('d-none');
+    // Loader.classList.remove('d-none');
 
 
     if(IsEmail(email)){
