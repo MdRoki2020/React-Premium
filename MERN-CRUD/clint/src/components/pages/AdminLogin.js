@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom';
 import { ErrorToast, IsEmail, IsEmpty } from '../helper/FormHelper';
 import FullScreenLoader from '../common/FullScreenLoader';
 import { useNavigate } from 'react-router-dom';
-import { LoginRequest } from '../Api Request/ApiRequest';
+import { AdminLoginRequest } from '../Api Request/ApiRequest';
 
 
-const Login = () => {
+const AdminLogin = () => {
 
     let EmailRef,PasswordRef,Loader=useRef();
 
@@ -28,16 +28,17 @@ const Login = () => {
         }else if(IsEmpty(Password)){
             ErrorToast("Password Is Required");
         }else{
-            LoginRequest(Email,Password).then((result)=>{
+            AdminLoginRequest(Email,Password).then((result)=>{
                 if(result===true){
                     Loader.classList.add('d-none');
-                    navigate("/dashboard");
+                    navigate("/AdminDashboard");
                 }else{
                     console.log('something went wrong');
                 }
             })
         }
     }
+
 
   return (
     <Fragment>
@@ -51,7 +52,7 @@ const Login = () => {
             <Card className='topSpaceLoginForm px-4 py-4 shadow'>
             <div className='card px-3 py-4 shadow'>
             <div class="card-body cardTitle">
-                <h3>Login</h3>
+                <h3>Admin Login</h3>
             </div>
             <InputGroup className="mb-3">
                 <InputGroup.Text id="basic-addon1"><BsFillEnvelopeFill/></InputGroup.Text>
@@ -88,4 +89,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default AdminLogin

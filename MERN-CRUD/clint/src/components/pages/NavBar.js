@@ -19,7 +19,7 @@ const NavBar = () => {
                 <Nav>
 
                     <Nav.Link as={Link} to={'/'}> HOME</Nav.Link>
-                    <Nav.Link as={Link} to={'/dashboard'}> DASHBOARD</Nav.Link>
+                    <Nav.Link as={Link} to={'/adminLogin'}> Admin</Nav.Link>
 
                 </Nav>
                 </Navbar.Collapse>

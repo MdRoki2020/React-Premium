@@ -56,3 +56,33 @@ export function LoginRequest(Email,Password){
     });
 
 }
+
+
+//for admin Login.....
+export function AdminLoginRequest(Email,Password){
+    let URL="http://localhost:5000/api/v1/AdminLogin"
+
+    let PostBody={
+        Email:Email,
+        password:Password
+    }
+
+
+    return Axios.post(URL,PostBody).then((res)=>{
+
+        if(res.status===200){
+            setToken(res.data['token']);
+            setUserDetails(res.data['data']);
+            SuccessToast("Login Success")
+            return true;
+        }
+        else{
+            ErrorToast("Invalid Email or Password")
+            return  false;
+        }
+    }).catch((err)=>{
+        ErrorToast("Something Went Wrong")
+        return false;
+    });
+
+}
