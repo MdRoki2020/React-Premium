@@ -91,3 +91,27 @@ export function AdminLoginRequest(Email,Password){
 
 
 //for food insert..
+export function FoodRequest(foodName,foodDes,foodType,foodPrice,foodStock,foodImg){
+    let URL="http://localhost:5000/api/v1/CreateFood"
+
+    let PostBody={
+        foodsName:foodName,
+        foodsType:foodType,
+        foodsPrice:foodPrice,
+        foodsStockQty:foodStock,
+        foodImage:foodImg,
+        foodsDescription:foodDes
+    }
+
+    return Axios.post(URL,PostBody).then((res)=>{
+        if(res.status===200){
+            return true;
+        }else{
+            return false;
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+
+}

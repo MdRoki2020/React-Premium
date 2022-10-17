@@ -1,6 +1,8 @@
-import React, { useRef } from 'react'
-import Swal from 'sweetalert2';
+import React, { Fragment, useRef } from 'react'
+import Swal from 'sweetalert2'
+import { FoodRequest } from '../Api Request/ApiRequest';
 import { ErrorToast, getBase64, IsEmpty } from '../helper/FormHelper';
+import FullScreenLoader from '../common/FullScreenLoader';
 
 const AdminDashboard = () => {
 
@@ -40,7 +42,7 @@ const AdminDashboard = () => {
         }else{
           Loader.classList.remove('d-none');
           
-          FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDes).then((result)=>{
+          FoodRequest(foodName,foodDes,foodType,foodPrice,foodStock,foodImg).then((result)=>{
             if(result===true){
               Loader.classList.add('d-none');
     
@@ -63,14 +65,15 @@ const AdminDashboard = () => {
 
       const successMes=()=>{
         Swal.fire(
-          'Food Insert Successfully !',
+          'You Got Membership !',
           'You clicked the button!',
           'success'
         )
     }
-
+    
   return (
-    <div className='container'>
+    <Fragment>
+        <div className='container'>
     <div className='row'>
     <h2>Admin Dashboard</h2>
     <form className="row g-3">
@@ -90,11 +93,11 @@ const AdminDashboard = () => {
         </div>
         <div className="col-12">
             <label for="inputAddress" className="form-label text-dark">Food Price</label>
-            <input ref={(input)=>FoodPriceRef=input} type="number" className="form-control"  id="inputAddress" placeholder="Food Price"/>
+            <input ref={(input)=>FoodPriceRef=input} type="text" className="form-control"  id="inputAddress" placeholder="Food Price"/>
         </div>
         <div className="col-12">
             <label for="inputAddress2" className="form-label text-dark">Stock Food Quantity</label>
-            <input ref={(input)=>FoodStockQntyRef=input} type="number" className="form-control"  id="inputAddress2" placeholder="Food Quantity"/>
+            <input ref={(input)=>FoodStockQntyRef=input} type="text" className="form-control"  id="inputAddress2" placeholder="Food Quantity"/>
         </div>
         <div className="col-md-6">
             <label for="inputCity" className="form-label text-dark">Image</label>
@@ -110,7 +113,13 @@ const AdminDashboard = () => {
     </form>
     </div>
     </div>
+    <div className='d-none' ref={(div)=>Loader=div}>
 
+    <FullScreenLoader />
+
+    </div>
+
+    </Fragment>
   )
 }
 
