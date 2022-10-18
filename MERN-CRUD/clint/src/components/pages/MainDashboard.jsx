@@ -1,7 +1,7 @@
 import React, { Fragment, useRef } from 'react';
 import Swal from 'sweetalert2';
 import { FoodRequest } from '../Api Request/ApiRequest';
-import FullScreenLoader from '../common/FullScreenLoader';
+import RoundLoader from '../common/RoundLoader';
 import { ErrorToast, getBase64, IsEmpty } from '../helper/FormHelper';
 
 
@@ -129,7 +129,7 @@ const MainDashboard = () => {
 </div>
     <div className='d-none' ref={(div)=>Loader=div}>
 
-    <FullScreenLoader />
+    <RoundLoader />
 
     </div>
 
