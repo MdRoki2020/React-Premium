@@ -69,7 +69,7 @@ const AdminLogin = () => {
             <InputGroup className="mb-3">
                 <Button onClick={OnLogin} className='form-control loginButton'>Login <BsBoxArrowInRight/></Button>
             </InputGroup>
-            <span className='popupText'>Not a Member? <Link to="/" className='fw-bold'>Membership</Link></span>
+            <span className='popupTxt'>Not a Member? <Link to="/" className='fw-bold memberTxt'>Membership</Link></span>
             </div>
             </Card>
             </div>

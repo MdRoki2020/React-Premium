@@ -23,6 +23,17 @@ span.popupText a {
 .cardTitle h3 {
     font-family: auto !important;
 }
-span.popupText {
-    color: #605f5f;
+.card-body.cardTitle {
+    border-bottom: 4px solid red;
+    border-radius: 16px;
+    margin-bottom: 38px;
+}
+.card.px-3.py-4.shadow {
+    background: #dcdcdc9e;
+}
+span.forgetText.my-2 {
+    color: #0000ffa3;
+}
+a.fw-bold.memberTxt {
+    color: #0000ffa3;
 }
