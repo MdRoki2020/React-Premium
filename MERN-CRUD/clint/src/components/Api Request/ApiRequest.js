@@ -10,7 +10,7 @@ export function Membership(FullName,Email,password,image){
         FullName:FullName,
         Email:Email,
         password:password,
-        image:image
+        image:image,
     }
 
     return Axios.post(URL,PostBody).then((res)=>{

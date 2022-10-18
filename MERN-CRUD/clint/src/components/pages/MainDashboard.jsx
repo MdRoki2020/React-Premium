@@ -48,6 +48,7 @@ const MainDashboard = () => {
       
       FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDes).then((result)=>{
         if(result===true){
+
           Loader.classList.add('d-none');
 
           foodName.value="";
@@ -57,23 +58,29 @@ const MainDashboard = () => {
           foodImg.value="";
           foodDes.value="";
   
-          successMes();
+        success();
           
 
         }else{
+
+          ErrorToast('Something Went Wrong');
           console.log('something went wrong');
+
         }
       })
 
         }
     }
 
-    const successMes=()=>{
-        Swal.fire(
-          'Food added Success !',
-          'You clicked the button!',
-          'success'
-        )
+
+    const success=()=>{
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+          })
     }
 
 
