@@ -91,7 +91,7 @@ export function AdminLoginRequest(Email,Password){
 
 
 //for food insert..
-export function FoodRequest(foodName,foodDes,foodType,foodPrice,foodStock,foodImg){
+export function FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDes){
     let URL="http://localhost:5000/api/v1/CreateFood"
 
     let PostBody={

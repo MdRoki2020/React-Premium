@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import AdminDashboard from '../components/pages/AdminDashboard'
+import MainDashboard from '../components/pages/MainDashboard'
 import MasterLayout from '../components/pages/MasterLayout'
 
 const AdminDashboardLayout = () => {
@@ -7,7 +7,7 @@ const AdminDashboardLayout = () => {
     <MasterLayout>
         <Suspense>
 
-          <AdminDashboard />
+          <MainDashboard />
 
         </Suspense>
       </MasterLayout>

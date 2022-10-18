@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import {AiFillProfile, AiOutlineMenuUnfold, AiOutlineLogout, AiFillDashboard} from "react-icons/ai";
 import { FaCreativeCommonsNd,FaUserPlus,FaTachometerAlt,FaRegTimesCircle,FaBraille } from "react-icons/fa";
 import logo from "../assets/images/logo.svg";
-import roki from "../assets/images/ROKI.jpg";
 import { getUserDetails, removeSessions } from "../helper/SessionHelper";
 
 const MasterLayout = (props) => {
