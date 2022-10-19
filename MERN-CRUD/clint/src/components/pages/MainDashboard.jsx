@@ -1,8 +1,8 @@
 import React, { Fragment, useRef } from 'react';
 import Swal from 'sweetalert2';
-import { FoodRequest } from '../Api Request/ApiRequest';
+import {FoodRequest} from '../Api Request/ApiRequest';
 import RoundLoader from '../common/RoundLoader';
-import { ErrorToast, getBase64, IsEmpty } from '../helper/FormHelper';
+import { ErrorToast, getBase64, IsEmpty, successMes } from '../helper/FormHelper';
 
 
 const MainDashboard = () => {
@@ -57,8 +57,9 @@ const MainDashboard = () => {
           foodStock.value="";
           foodImg.value="";
           foodDes.value="";
-  
-        success();
+
+          successMes();
+        
           
 
         }else{
@@ -73,15 +74,15 @@ const MainDashboard = () => {
     }
 
 
-    const success=()=>{
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Your work has been saved',
-            showConfirmButton: false,
-            timer: 1500
-          })
-    }
+    // const success=()=>{
+    //     Swal.fire({
+    //         position: 'top-end',
+    //         icon: 'success',
+    //         title: 'Your work has been saved',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       })
+    // }
 
 
   return (

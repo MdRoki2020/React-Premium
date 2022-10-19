@@ -3,8 +3,7 @@ import {Modal,Form,Button } from 'react-bootstrap'
 import '../Style/Home.css'
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { BsPlusSquare,BsXCircle } from "react-icons/bs";
-import { ErrorToast, getBase64, IsEmail, IsEmpty } from '../helper/FormHelper';
-import Swal from 'sweetalert2'
+import { ErrorToast, getBase64, IsEmail, IsEmpty, successMes} from '../helper/FormHelper';
 import { Membership } from '../Api Request/ApiRequest';
 import FullScreenLoader from '../common/FullScreenLoader';
 import { Link } from 'react-router-dom';
@@ -70,13 +69,13 @@ const close=()=>{
   }
 
 
-  const successMes=()=>{
-    Swal.fire(
-      'You Got Membership !',
-      'You clicked the button!',
-      'success'
-    )
-}
+//   const successMes=()=>{
+//     Swal.fire(
+//       'You Got Membership !',
+//       'You clicked the button!',
+//       'success'
+//     )
+// }
 
   return (
         <Fragment>

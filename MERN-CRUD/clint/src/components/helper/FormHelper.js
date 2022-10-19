@@ -1,4 +1,5 @@
 import cogoToast from 'cogo-toast';
+import Swal from 'sweetalert2'
 
 
 let EmailRegx = /\S+@\S+\.\S+/;
@@ -29,12 +30,23 @@ class FormHelper{
             reader.onerror=(error)=>reject(error);
         });
     }
+
+    successMes=()=>{
+        Swal.fire(
+          'You Got Membership !',
+          'You clicked the button!',
+          'success'
+        )
+    }
 }
+
+
 
 export const{
     IsEmpty,
     IsEmail,
     ErrorToast,
     SuccessToast,
-    getBase64
+    getBase64,
+    successMes
 }=new FormHelper();
