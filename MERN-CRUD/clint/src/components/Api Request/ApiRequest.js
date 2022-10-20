@@ -1,6 +1,8 @@
 import Axios from 'axios';
 import { ErrorToast, SuccessToast } from '../helper/FormHelper';
-import { setToken, setUserDetails } from '../helper/SessionHelper';
+import { getToken,setToken, setUserDetails } from '../helper/SessionHelper';
+
+const AxiosHeader={headers:{"token":getToken()}}
 
 //for insert data..
 export function Membership(FullName,Email,password,image){
@@ -103,7 +105,7 @@ export function FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDe
         foodsDescription:foodDes
     }
 
-    return Axios.post(URL,PostBody).then((res)=>{
+    return Axios.post(URL,PostBody,AxiosHeader).then((res)=>{
         if(res.status===200){
             return true;
         }else{

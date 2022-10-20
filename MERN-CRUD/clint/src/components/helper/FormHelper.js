@@ -1,6 +1,4 @@
 import cogoToast from 'cogo-toast';
-import Swal from 'sweetalert2'
-
 
 let EmailRegx = /\S+@\S+\.\S+/;
 // let MobileRegx = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/; 
@@ -30,14 +28,6 @@ class FormHelper{
             reader.onerror=(error)=>reject(error);
         });
     }
-
-    successMes=()=>{
-        Swal.fire(
-          'You Got Membership !',
-          'You clicked the button!',
-          'success'
-        )
-    }
 }
 
 
@@ -48,5 +38,4 @@ export const{
     ErrorToast,
     SuccessToast,
     getBase64,
-    successMes
 }=new FormHelper();

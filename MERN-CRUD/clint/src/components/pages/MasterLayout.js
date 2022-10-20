@@ -65,14 +65,14 @@ const MasterLayout = (props) => {
 
             <div ref={(div) =>{sideNavRef=div}} className="side-nav-open">
 
-                <NavLink   className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/"  end>
+                <NavLink   className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/adminDashboard"  end>
                     <AiFillDashboard className="side-bar-item-icon" />
                     <span className="side-bar-item-caption">Dashboard</span>
                 </NavLink>
 
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/" >
+                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/addFood" >
                     <FaUserPlus className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Create New</span>
+                    <span className="side-bar-item-caption">Add Food</span>
                 </NavLink>
 
                 <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/" >

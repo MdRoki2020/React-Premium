@@ -6,6 +6,7 @@ import Login from './components/pages/Login';
 import DashboardLayout from './Layout/DashboardLayout';
 import AdminDashboardLayout from './Layout/AdminDashboardLayout';
 import AdminLoginLayout from './Layout/AdminLoginLayout';
+import CreateFoodLayout from './Layout/CreateFoodLayout';
 
 
 
@@ -22,6 +23,8 @@ function App() {
 
           <Route path="/adminDashboard" element={<AdminDashboardLayout/>}/>
           <Route path="/adminLogin" element={<AdminLoginLayout/>}/>
+          <Route path="/addFood" element={<CreateFoodLayout/>}/>
+          
         </Routes>
 
         </BrowserRouter>
