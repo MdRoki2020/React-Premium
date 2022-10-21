@@ -53,7 +53,7 @@ export function LoginRequest(Email,Password){
             return  false;
         }
     }).catch((err)=>{
-        ErrorToast("Something Went Wrong")
+        console.log("Something Went Wrong");
         return false;
     });
 

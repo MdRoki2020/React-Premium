@@ -33,6 +33,7 @@ const Login = () => {
                     Loader.classList.add('d-none');
                     navigate("/dashboard");
                 }else{
+                    ErrorToast("Email And Password Dosen't Match");
                     console.log('something went wrong');
                 }
             })
