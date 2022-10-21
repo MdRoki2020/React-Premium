@@ -6,6 +6,21 @@ class SessionHelper{
         return localStorage.getItem("token");
     }
 
+    setEmail(Email){
+        localStorage.setItem("Email",Email)
+    }
+    getEmail(){
+        return localStorage.getItem("Email")
+    }
+
+    setOTP(OTP){
+        localStorage.setItem("OTP",OTP)
+    }
+
+    getOTP(){
+        return localStorage.getItem('OTP');
+    }
+
     setUserDetails(UserDetails){
         localStorage.setItem("UserDetails",JSON.stringify(UserDetails));
     }
@@ -18,6 +33,9 @@ class SessionHelper{
         window.location.href="/login"
     }
 
+    
+
+
 }
 
-export const {setToken,getToken,setUserDetails,getUserDetails,removeSessions}=new SessionHelper();
+export const {setToken,getToken,setEmail,getEmail,setUserDetails,getUserDetails,setOTP,getOTP,removeSessions}=new SessionHelper();

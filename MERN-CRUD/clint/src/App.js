@@ -7,6 +7,7 @@ import DashboardLayout from './Layout/DashboardLayout';
 import AdminDashboardLayout from './Layout/AdminDashboardLayout';
 import AdminLoginLayout from './Layout/AdminLoginLayout';
 import CreateFoodLayout from './Layout/CreateFoodLayout';
+import SendOtp from './components/pages/SendOtp';
 
 
 
@@ -24,6 +25,8 @@ function App() {
           <Route path="/adminDashboard" element={<AdminDashboardLayout/>}/>
           <Route path="/adminLogin" element={<AdminLoginLayout/>}/>
           <Route path="/addFood" element={<CreateFoodLayout/>}/>
+
+          <Route path="/sendOtp" element={<SendOtp/>}/>
           
         </Routes>
 

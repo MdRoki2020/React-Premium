@@ -28,6 +28,7 @@ const Login = () => {
         }else if(IsEmpty(Password)){
             ErrorToast("Password Is Required");
         }else{
+            Loader.classList.remove('d-none');
             LoginRequest(Email,Password).then((result)=>{
                 if(result===true){
                     Loader.classList.add('d-none');
@@ -70,7 +71,7 @@ const Login = () => {
                 <Button onClick={OnLogin} className='form-control loginButton'>Login <BsBoxArrowInRight/></Button>
             </InputGroup>
             <span className='popupTxt'>Not a Member? <Link to="/" className='fw-bold memberTxt'>Membership</Link></span>
-            <span className='forgetText my-2'><Link to="/" className='fw-bold '>Forget Password ?</Link></span>
+            <span className='forgetText my-2'><Link to="/sendOtp" className='fw-bold '>Forget Password ?</Link></span>
             </div>
             </Card>
             </div>
