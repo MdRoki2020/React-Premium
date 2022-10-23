@@ -170,3 +170,30 @@ export function RecoverVerifyOTPRequest(email,OTP){
         return false;
     });
 }
+
+
+//password change request
+export function RecoverResetPassRequest(email,OTP,password){
+    let URL=".........url....../RecoverResetPass/";
+
+    let postBody={email:email,OTP:OTP,password:password}
+
+    return axios.post(URL,postBody).then((res)=>{
+        if(res.status===200){
+            if(res.data['status']==='fail'){
+                ErrorToast(res.data['data'])
+                return false;
+            }else{
+                setOTP(OTP)
+                SuccessToast("New Password Created");
+                return true;
+            }
+        }
+        else{
+            ErrorToast("Something Went Wrong")
+            return false
+        }
+    }).catch((err)=>{
+        ErrorToast("Something Went Wrong")
+    });
+}

@@ -8,6 +8,7 @@ import AdminDashboardLayout from './Layout/AdminDashboardLayout';
 import AdminLoginLayout from './Layout/AdminLoginLayout';
 import CreateFoodLayout from './Layout/CreateFoodLayout';
 import SendOtp from './components/pages/SendOtp';
+import VerifyOtp from './components/pages/VerifyOtp';
 
 
 
@@ -20,13 +21,14 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeLayout />} />
           <Route path="/login" element={<Login />}/>
-          <Route path="/dashboard" element={<DashboardLayout/>}/>
+          <Route path="/dashboard" element={<DashboardLayout />}/>
 
-          <Route path="/adminDashboard" element={<AdminDashboardLayout/>}/>
-          <Route path="/adminLogin" element={<AdminLoginLayout/>}/>
-          <Route path="/addFood" element={<CreateFoodLayout/>}/>
+          <Route path="/adminDashboard" element={<AdminDashboardLayout />}/>
+          <Route path="/adminLogin" element={<AdminLoginLayout />}/>
+          <Route path="/addFood" element={<CreateFoodLayout />}/>
 
-          <Route path="/sendOtp" element={<SendOtp/>}/>
+          <Route path="/sendOtp" element={<SendOtp />}/>
+          <Route path="/verifyOtp" element={<VerifyOtp />}/>
           
         </Routes>
 
