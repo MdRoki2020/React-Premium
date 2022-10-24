@@ -17,7 +17,7 @@ const SendEmailUtility= async (EmailTo, EmailText, EmailSubject) => {
 
 
     let mailOptions = {
-        from: 'Task Manager MERN <info@teamrabbil.com>',
+        from: 'Rich World <info@teamrabbil.com>',
         to: EmailTo,
         subject: EmailSubject,
         text: EmailText
