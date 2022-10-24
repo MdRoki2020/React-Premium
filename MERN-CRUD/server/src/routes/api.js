@@ -22,4 +22,10 @@ router.post('/Login',UserController.Login);
 router.post('/AdminLogin',AdminController.AdminLogin);
 router.post('/CreateAdmin',AdminController.CreateAdmin);
 
+
+//for recovery password
+router.get("/RecoverVerifyEmail/:email",UserController.RecoverVerifyEmail);
+router.get("/RecoverVerifyOTP/:email/:otp",UserController.RecoverVerifyOTP);
+router.post("/RecoverResetPass",UserController.RecoverResetPass);
+
 module.exports=router;
