@@ -147,8 +147,8 @@ export function RecoverVerifyEmailRequest(email){
 
 
 //OTP verify..
-export function RecoverVerifyOTPRequest(email,OTP){
-    let URL="http://localhost:5000/api/v1/RecoverVerifyOTP"+email+"/"+OTP;
+export function RecoverVerifyOTPRequest(email,otp){
+    let URL="http://localhost:5000/api/v1/RecoverVerifyOTP/"+email+"/"+otp;
     return axios.get(URL).then((res)=>{
         if(res.status===200){
             if(res.data['status']==="fail"){
@@ -156,7 +156,7 @@ export function RecoverVerifyOTPRequest(email,OTP){
                 return false;
             }
             else{
-                setOTP(OTP)
+                setOTP(otp)
                 SuccessToast("Code Verification Success");
                 return true;
             }

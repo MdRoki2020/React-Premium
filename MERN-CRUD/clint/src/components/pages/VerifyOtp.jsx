@@ -7,11 +7,11 @@ import { RecoverVerifyOTPRequest } from '../Api Request/ApiRequest';
 const VerifyOtp = () => {
 
     let nevigate=useNavigate();
-    let [OTP,SetOTP]=useState("")
+    let [otp,SetOTP]=useState("")
 
     const SubmitOTP = () => {
-        if(OTP.length===6){
-            RecoverVerifyOTPRequest(getEmail(),OTP).then((result)=>{
+        if(otp.length===6){
+            RecoverVerifyOTPRequest(getEmail(),otp).then((result)=>{
                 if(result===true){
                     nevigate("/createPassword");
                 }
