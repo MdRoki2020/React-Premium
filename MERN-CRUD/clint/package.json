@@ -9,6 +9,8 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "cogo-toast": "^4.2.3",
+    "nodemailer": "^6.8.0",
+    "nodemailer-smtp-transport": "^2.7.4",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-code-input-2": "^3.10.6",

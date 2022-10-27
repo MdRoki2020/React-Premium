@@ -9,7 +9,7 @@ import { RecoverVerifyEmailRequest } from '../Api Request/ApiRequest';
 
 const SendOtp = () => {
 
-    let navigate=useNavigate()
+    let navigate=useNavigate();
     let EmailRef,Loader=useRef();
 
 
@@ -23,7 +23,7 @@ const SendOtp = () => {
             RecoverVerifyEmailRequest(Email).then((result)=>{
                 if(result===true){
                     Loader.classList.add('d-none');
-                    navigate('/VerifyOtp');
+                    navigate('/verifyOtp');
                 }
             })
         }

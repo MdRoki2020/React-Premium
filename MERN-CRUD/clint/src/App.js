@@ -9,6 +9,7 @@ import AdminLoginLayout from './Layout/AdminLoginLayout';
 import CreateFoodLayout from './Layout/CreateFoodLayout';
 import SendOtp from './components/pages/SendOtp';
 import VerifyOtp from './components/pages/VerifyOtp';
+import CreatePassword from './components/pages/CreatePassword';
 
 
 
@@ -29,6 +30,7 @@ function App() {
 
           <Route path="/sendOtp" element={<SendOtp />}/>
           <Route path="/verifyOtp" element={<VerifyOtp />}/>
+          <Route path="/createPassword" element={<CreatePassword />} />
           
         </Routes>
 

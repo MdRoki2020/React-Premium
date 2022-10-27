@@ -13,12 +13,12 @@ const VerifyOtp = () => {
         if(OTP.length===6){
             RecoverVerifyOTPRequest(getEmail(),OTP).then((result)=>{
                 if(result===true){
-                    nevigate("/CreatePassword");
+                    nevigate("/createPassword");
                 }
             })
         }
         else {
-            ErrorToast("Enter 6 Digit Code")
+            ErrorToast("Enter 6 Digit Code");
         }
       }
 

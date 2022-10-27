@@ -122,7 +122,7 @@ export function FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDe
 
 //sendOTP email..
 export function RecoverVerifyEmailRequest(email){
-    let URL=".....url............./RecoverVerifyEmail/"+email;
+    let URL="http://localhost:5000/api/v1/RecoverVerifyEmail/"+email;
 
     return axios.get(URL).then((res)=>{
         if(res.status===200){
@@ -148,7 +148,7 @@ export function RecoverVerifyEmailRequest(email){
 
 //OTP verify..
 export function RecoverVerifyOTPRequest(email,OTP){
-    let URL="..........URL...../RecoverVerifyOTP/"+email+"/"+OTP;
+    let URL="http://localhost:5000/api/v1/RecoverVerifyOTP"+email+"/"+OTP;
     return axios.get(URL).then((res)=>{
         if(res.status===200){
             if(res.data['status']==="fail"){
@@ -174,7 +174,7 @@ export function RecoverVerifyOTPRequest(email,OTP){
 
 //password change request
 export function RecoverResetPassRequest(email,OTP,password){
-    let URL=".........url....../RecoverResetPass/";
+    let URL="http://localhost:5000/api/v1/RecoverResetPass";
 
     let postBody={email:email,OTP:OTP,password:password}
 
