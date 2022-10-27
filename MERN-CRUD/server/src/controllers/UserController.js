@@ -66,27 +66,26 @@ exports.RecoverVerifyEmail=async (req,res)=>{
 
 exports.RecoverVerifyOTP=async(req,res)=>{
     let Email=req.params.email;
-    let OTPCode=req.params.OTP;
+    let OTPCode=req.params.otp;
     let status=0;
     let statusUpdate=1;
 
     try{
 
     let OTPCount=(await OtpModel.aggregate([{$match:{Email:Email,otp:OTPCode,status:status}},{$count:"total"}]))
-
     if(OTPCount.length>0){
-        let OTPUpdate = await OtpModel.updateOne({Email: Email, otp:OTPCode, status: status}, {
-            Email: Email,
-            otp: OTPCode,
+        let OTPUpdate = await OtpModel.updateOne({Email:Email, otp:OTPCode, status:status}, {
+            Email:Email,
+            otp:OTPCode,
             status:statusUpdate
         })
-        res.status(200).json({status:"success", data:OTPUpdate});
+        res.status(200).json({status:"success", data:OTPUpdate})
 
     }else{
         res.status(200).json({status:"fail",data:"invalid OTP Code"})
     }
 }catch(e){
-    res.status(200).json({status: "fail", data:e})
+    res.status(200).json({status:"fail", data:e})
 }
 
 }
