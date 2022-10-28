@@ -99,7 +99,7 @@ exports.RecoverResetPass=async (req,res)=>{
     let statusUpdate=1;
 
     try {
-        let OTPUsedCount = await UserModel.aggregate([{$match: {Email: Email, otp: OTPCode, status: statusUpdate}}, {$count: "total"}])
+        let OTPUsedCount = await OtpModel.aggregate([{$match: {Email: Email, otp: OTPCode, status: statusUpdate}}, {$count: "total"}])
         if (OTPUsedCount.length>0) {
             let PassUpdate = await UserModel.updateOne({Email: Email}, {
                 password: NewPass
