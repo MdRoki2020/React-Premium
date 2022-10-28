@@ -75,9 +75,9 @@ const MasterLayout = (props) => {
                     <span className="side-bar-item-caption">Add Food</span>
                 </NavLink>
 
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/" >
+                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/foodstore" >
                     <FaCreativeCommonsNd className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">New Task</span>
+                    <span className="side-bar-item-caption">Foods Wall</span>
                 </NavLink>
 
                 <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/" >

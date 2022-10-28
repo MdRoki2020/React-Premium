@@ -10,7 +10,7 @@ import CreateFoodLayout from './Layout/CreateFoodLayout';
 import SendOtp from './components/pages/SendOtp';
 import VerifyOtp from './components/pages/VerifyOtp';
 import CreatePassword from './components/pages/CreatePassword';
-
+import FoodStoreLayout from './Layout/FoodStoreLayout';
 
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
           <Route path="/adminDashboard" element={<AdminDashboardLayout />}/>
           <Route path="/adminLogin" element={<AdminLoginLayout />}/>
           <Route path="/addFood" element={<CreateFoodLayout />}/>
+          <Route path="/foodStore" element={<FoodStoreLayout />}/>
 
           <Route path="/sendOtp" element={<SendOtp />}/>
           <Route path="/verifyOtp" element={<VerifyOtp />}/>
