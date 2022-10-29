@@ -119,6 +119,22 @@ export function FoodRequest(foodName,foodType,foodPrice,foodStock,foodImg,foodDe
 
 }
 
+//Food Read..
+export function ReadFood(){
+    let URL="http://localhost:5000/api/v1/ReadFood"
+    return Axios.get(URL).then((res)=>{
+
+        if(res.status===200){
+            return res.data['data'];
+        }else{
+            return false
+        }
+
+    }).catch((err)=>{
+        return false
+    })
+}
+
 
 //sendOTP email..
 export function RecoverVerifyEmailRequest(email){

@@ -1,0 +1,5 @@
+.singleProduct {transition: .5s;}
+
+.singleProduct:hover {
+    transform: scale(1.1);
+}
