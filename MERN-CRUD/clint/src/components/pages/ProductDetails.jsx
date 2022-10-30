@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import { ReadById } from '../Api Request/ApiRequest';
 import { useState } from 'react';
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const ProductDetails = () => {
 
@@ -31,7 +33,13 @@ const ProductDetails = () => {
                 <div className="row animate__animated animate__zoomIn">
                     <div className="col-sm-4">
                         <div className="SingleProductImage">
-                            <img id="" width="350" height="250" className="img-thumbnail img-fluid" src={product.foodImage} alt=""/>
+                        <Zoom>
+                        <img
+                        alt="That Wanaka Tree, New Zealand by Laura Smetsers"
+                        src={product.foodImage}
+                        width="350" height="250"
+                        />
+                        </Zoom>
                         </div>
                     </div>
                     <div className="col-sm-4">
