@@ -1,8 +1,8 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {Card,Button} from 'react-bootstrap'
-import { AiOutlineShopping } from "react-icons/ai";
+import {Card} from 'react-bootstrap'
+import { } from "react-icons/ai";
 import { ReadFood } from '../Api Request/ApiRequest';
 import '../Style/FoodStore.css'
 
@@ -36,8 +36,8 @@ const FoodStore = () => {
                     <Card.Img variant="top" src={value.foodImage} />
                     <Card.Body>
                       <h6>{value.foodsName}</h6>
-                      <span>Price:{value.foodsPrice} ৳</span>
-                      <Button className='my-2' variant="info">Buy Now <AiOutlineShopping /></Button>
+                      <span>{value.foodsPrice} ৳</span>
+                      <span>{value.description}</span>
                     </Card.Body>
                   </Card>
 			          </div>

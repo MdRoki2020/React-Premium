@@ -1,0 +1,21 @@
+.customStyle{
+    color:rgb(204, 18, 18) !important;
+}
+.main-heading {
+    color: rgb(204, 18, 18);
+    font-size: 26px;
+    font-family: cursive;
+    margin-top: 75px;
+}
+.underline{
+    height:04px;
+    width:4rem;
+    background-color: #f76c27;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.option {
+    font-weight: 600;
+    color: #848080;
+}
