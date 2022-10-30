@@ -2,8 +2,27 @@ import React from 'react'
 import { Button } from 'react-bootstrap'
 import '../Style/ProductDetails.css'
 import { AiOutlineExclamationCircle,AiOutlineDollar,AiOutlineEuroCircle,AiOutlineReload,AiOutlineIssuesClose,AiOutlineCloseCircle,AiOutlineSafety } from "react-icons/ai";
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { ReadById } from '../Api Request/ApiRequest';
+import { useState } from 'react';
 
 const ProductDetails = () => {
+
+    const [product,setProduct]=useState([]);
+    // let navigate = useNavigate ();
+
+  const {id}=useParams();
+
+
+  useEffect(()=>{
+    ReadById(id).then((data)=>{
+
+        setProduct(data[0]);
+
+      })
+  },[id])
+
   return (
     <div>
         <section className="productDetailsWrapper">
@@ -11,17 +30,17 @@ const ProductDetails = () => {
             <div className="container">
                 <div className="row animate__animated animate__zoomIn">
                     <div className="col-sm-4">
-                        <div class="SingleProductImage">
-                            <img id="" width="350" height="250" className="img-thumbnail img-fluid" src="https://media.istockphoto.com/photos/juicy-hamburger-on-white-background-picture-id1206323282?k=20&m=1206323282&s=612x612&w=0&h=yatlq6BHRCCvoTzFZLSwaJc0O8Quct_tRPWtH0dj9Fc=" alt=""/>
+                        <div className="SingleProductImage">
+                            <img id="" width="350" height="250" className="img-thumbnail img-fluid" src={product.foodImage} alt=""/>
                         </div>
                     </div>
                     <div className="col-sm-4">
                         <div className="singleProductDetails">
-                            <h3>name</h3>
-                            <p><b>Price:</b> <i>200৳</i></p>
-                            <p><b>Description:</b> <i>hfsedyufyesbfybaydbsayfbi</i></p>
-                            <p><b>Type:</b> <i>Burger</i></p>
-                            <p><b>Stock:</b> <i>10</i></p>
+                            <h3>{product.foodsName}</h3>
+                            <p><b>Price:</b> <i>{product.foodsPrice}</i></p>
+                            <p><b>Description:</b> <i>{product.foodsDescription}</i></p>
+                            <p><b>Type:</b> <i>{product.foodsType}</i></p>
+                            <p><b>Stock:</b> <i>{product.foodsType}</i></p>
                         </div>
                         <div className="buttonWrapper mb-3">
                             <span><Button className='btn btn-info'>Buy Now</Button>  <Button className='btn btn-warning'>Add Cart</Button></span>

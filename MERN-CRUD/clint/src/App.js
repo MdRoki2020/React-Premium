@@ -29,7 +29,7 @@ function App() {
           <Route path="/adminLogin" element={<AdminLoginLayout />}/>
           <Route path="/addFood" element={<CreateFoodLayout />}/>
           <Route path="/foodStore" element={<FoodStoreLayout />}/>
-          <Route path="/foodDetails" element={<ProductDetailsLayout />}/>
+          <Route path="/foodDetails/:id" element={<ProductDetailsLayout />}/>
 
 
           <Route path="/sendOtp" element={<SendOtp />}/>
