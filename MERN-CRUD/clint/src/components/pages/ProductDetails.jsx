@@ -34,8 +34,7 @@ const ProductDetails = () => {
                     <div className="col-sm-4">
                         <div className="SingleProductImage">
                         <Zoom>
-                        <img
-                        alt="That Wanaka Tree, New Zealand by Laura Smetsers"
+                        <img className='img-fluid img-thumbnail' alt={product.foodsName}
                         src={product.foodImage}
                         width="350" height="250"
                         />

@@ -3,3 +3,6 @@
 .singleProduct:hover {
     transform: scale(1.1);
 }
+span.review {
+    color: gold;
+}

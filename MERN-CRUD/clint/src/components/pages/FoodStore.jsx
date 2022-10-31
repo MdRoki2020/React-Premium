@@ -6,6 +6,7 @@ import { } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import { ReadFood } from '../Api Request/ApiRequest';
 import '../Style/FoodStore.css'
+import { AiTwotoneStar } from "react-icons/ai";
 
 
 const FoodStore = () => {
@@ -43,8 +44,9 @@ const FoodStore = () => {
                     <Card.Img variant="top" src={value.foodImage} />
                     <Card.Body>
                       <h6>{value.foodsName}</h6>
-                      <span>{value.foodsPrice} ৳</span>
-                      <span>{value.description}</span>
+                      <span>{value.foodsPrice} ৳</span><br/>
+                      <span>{value.description}</span><br/>
+                      <span className='review'><AiTwotoneStar/> <AiTwotoneStar/> <AiTwotoneStar/></span>
                     </Card.Body>
                   </Card>
 			          </div>
