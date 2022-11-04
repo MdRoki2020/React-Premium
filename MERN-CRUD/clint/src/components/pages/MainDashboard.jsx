@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import ReactPaginate from "react-paginate";
+import { useSelector } from 'react-redux';
 import { GetProductList } from '../APIRequest/APIRequest';
 
 
