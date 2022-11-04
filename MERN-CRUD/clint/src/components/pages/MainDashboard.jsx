@@ -1,7 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ReactPaginate from "react-paginate";
 import { useSelector } from 'react-redux';
-import { GetProductList } from '../APIRequest/APIRequest';
+import { GetProductList } from '../Api Request/ApiRequest';
+
 
 
 const MainDashboard = () => {
@@ -72,10 +73,10 @@ const MainDashboard = () => {
                                   <table className="table ">
                                       <thead className="sticky-top bg-white">
                                       <tr>
-                                          <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
+                                          <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foods</th>
                                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
                                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stock</th>
-                                          <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Code</th>
+                                          <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Added Date</th>
                                       </tr>
                                       </thead>
                                       <tbody>
@@ -85,23 +86,23 @@ const MainDashboard = () => {
                                                   <td>
                                                       <div className="d-flex px-2 py-1">
                                                           <div>
-                                                              <img src={item.image} className="avatar me-3" alt='' width="80" height="80"/>
+                                                              <img src={item.foodImage} className="avatar me-3" alt='' width="80" height="80"/>
                                                           </div>
                                                           <div className="d-flex flex-column justify-content-center">
-                                                              <h6 className="mb-0  text-xs">{item.title}</h6>
-                                                              <p className="text-xs  text-secondary mb-0">{item.category}</p>
+                                                              <h6 className="mb-0  text-xs">{item.foodsName}</h6>
+                                                              <p className="text-xs  text-secondary mb-0">{item.foodsDescription}</p>
                                                           </div>
                                                       </div>
                                                   </td>
                                                   <td>
-                                                      <p className="text-xs font-weight-bold mb-0">{item.brand}</p>
-                                                      <p className="text-xs  text-secondary mb-0">{item.price} Taka </p>
+                                                      <p className="text-xs font-weight-bold mb-0">{item.foodsType}</p>
+                                                      <p className="text-xs  text-secondary mb-0">{item.foodsPrice} Taka </p>
                                                   </td >
                                                   <td>
-                                                      <p className="badge  bg-success">{item.stock}</p>
+                                                      <p className="badge  bg-success">{item.foodsStockQty}</p>
                                                   </td>
                                                   <td>
-                                                      <span className="text-secondary text-xs font-weight-bold">{item.product_code}</span>
+                                                      <span className="text-secondary text-xs font-weight-bold">{item.createdDate}</span>
                                                   </td>
                                               </tr>
                                           )
