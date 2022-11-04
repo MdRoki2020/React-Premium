@@ -3,6 +3,7 @@ const AuthVerifyMiddleware=require("../middleware/AuthVerifyMiddleware");
 const FoodController=require("../controllers/FoodsController");
 const UserController=require('../controllers/UserController');
 const AdminController=require('../controllers/AdminController');
+const ProductsController=require("../controllers/ProductController");
 const router=express.Router();
 
 //Food management
@@ -27,5 +28,10 @@ router.post('/CreateAdmin',AdminController.CreateAdmin);
 router.get("/RecoverVerifyEmail/:email",UserController.RecoverVerifyEmail);
 router.get("/RecoverVerifyOTP/:email/:otp",UserController.RecoverVerifyOTP);
 router.post("/RecoverResetPass",UserController.RecoverResetPass);
+
+//product shown
+router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.ProductList);
+
+
 
 module.exports=router;
