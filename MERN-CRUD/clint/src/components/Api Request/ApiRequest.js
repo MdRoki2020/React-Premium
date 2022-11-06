@@ -235,7 +235,7 @@ export function RecoverResetPassRequest(email,OTP,password){
 }
 
 
-//product table
+//food table with business
 
 export async function GetProductList(pageNo,perPage,searchKeyword){
     
