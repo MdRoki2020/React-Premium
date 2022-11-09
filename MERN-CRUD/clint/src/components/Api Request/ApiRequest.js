@@ -159,6 +159,7 @@ export function Delete(id){
 //update food
 export function UpdateFood(id,foodName,foodType,foodPrice,foodStockQty,foodDescription,photo){
     let URL="http://localhost:5000/api/v1/UpdateFood/"+id;
+    debugger
 
     let PostBody={
         foodsName:foodName,

@@ -1,13 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { ReadById, UpdateFood } from '../Api Request/ApiRequest';
+import RoundLoader from '../common/RoundLoader';
 import { ErrorToast, getBase64, IsEmpty } from '../helper/FormHelper';
 
 const FoodEdit = () => {
 
     const [foodData,setFood]=useState([]);
 
-    let foodsNameRef,foodsTypeRef,foodsPriceRef,foodsStockQtyRef,foodsDescriptionRef,userImgRef,userImgView=useRef();
+    let foodsNameRef,foodsTypeRef,foodsPriceRef,foodsStockQtyRef,foodsDescriptionRef,userImgRef,userImgView,Loader=useRef();
 
     const {id}=useParams();
 
@@ -35,14 +36,16 @@ const FoodEdit = () => {
 
     
     
-    const UpdateMyProfile = () => {
+    const UpdateMyFood = () => {
         let foodName=foodsNameRef.value;
         let foodType=foodsTypeRef.value;
         let foodPrice=foodsPriceRef.value;
         let foodStockQty=foodsStockQtyRef.value;
         let foodDescription= foodsDescriptionRef.value;
         let photo=userImgView.src
-        debugger;
+
+        console.log(foodName);
+
 
         if(IsEmpty(foodName)){
             ErrorToast("Valid Email Address Required !")
@@ -60,9 +63,12 @@ const FoodEdit = () => {
             ErrorToast("Password Required !")
         }
         else{
+            Loader.classList.remove('d-none');
+
             UpdateFood(id,foodName,foodType,foodPrice,foodStockQty,foodDescription,photo).then((result)=>{
-                debugger;
                 if(result===true){
+                    Loader.classList.add('d-none');
+                    
                     navigate("/adminDashboard");
                 }
             })
@@ -71,13 +77,14 @@ const FoodEdit = () => {
 
 
   return (
-    <div className="container">
+    <Fragment>
+        <div className="container">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12">
                 <div className="card">
                     <div className="card-body">
                         <div className="container-fluid">
-                            <img  ref={(input)=>userImgView=input} className="icon-nav-img-lg" src={foodData['foodImage']} alt=""/>
+                            <img  ref={(input)=>userImgView=input} className="icon-nav-img-lg" src={foodData['foodImage']} alt={foodData['foodsName']}/>
                             <hr/>
                             <div className="row">
                               <div className="col-4 p-2">
@@ -112,7 +119,7 @@ const FoodEdit = () => {
                                   <textarea key={Date.now()} defaultValue={foodData['foodsDescription']} ref={(input)=>foodsDescriptionRef=input} className="form-control" id="exampleFormControlTextarea1"  rows="3" required></textarea>
                                </div>
                               <div className="col-4 p-2">
-                                  <button onClick={UpdateMyProfile}  className="btn w-100 float-end btn-primary animated fadeInUp">Update</button>
+                                  <button onClick={UpdateMyFood}  className="btn w-100 float-end btn-primary animated fadeInUp">Update</button>
                               </div>
                             </div>
                         </div>
@@ -121,6 +128,12 @@ const FoodEdit = () => {
             </div>
           </div>
         </div>
+        <div className='d-none' ref={(div)=>Loader=div}>
+
+    <RoundLoader />
+
+    </div>
+    </Fragment>
   )
 }
 
