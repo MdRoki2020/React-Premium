@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ReactPaginate from "react-paginate";
 import { useSelector } from 'react-redux';
-import { GetProductList } from '../Api Request/ApiRequest';
+import { Delete, GetProductList } from '../Api Request/ApiRequest';
+import { AiOutlineEdit,AiOutlineDelete } from "react-icons/ai";
+import '../Style/MainDashboard.css'
+import { ErrorToast } from '../helper/FormHelper';
+import Swal from 'sweetalert2'
 
 
 
@@ -36,6 +40,98 @@ const MainDashboard = () => {
 
     const searchData=()=>{
         GetProductList(1,perPage,searchKeyword)
+    }
+
+    const UpdateItem=(id)=>{
+        showDetails();
+    }
+
+    const showDetails=()=>{
+        Swal.fire({
+            title: 'Submit your Github username',
+            input: 'text',
+            input: 'text',
+            inputAttributes: {
+              autocapitalize: 'off'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Look up',
+            showLoaderOnConfirm: true,
+            preConfirm: (login) => {
+              return fetch(`//api.github.com/users/${login}`)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.statusText)
+                  }
+                  return response.json()
+                })
+                .catch(error => {
+                  Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                  )
+                })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `${result.value.login}'s avatar`,
+                imageUrl: result.value.avatar_url
+              })
+            }
+          })
+    }
+
+    const DeleteItem=(id)=>{
+        Delete(id).then((data)=>{
+            if(data===true){
+                
+                successMes();
+            }else{
+                ErrorToast('Something Went Wrong !');
+            }
+        })
+    }
+
+
+    const successMes=()=>{
+
+        const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+        }).then((result) => {
+        if (result.isConfirmed) {
+            GetProductList(1,perPage,searchKeyword);
+            swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+            )
+        } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your imaginary file is safe :)',
+            'error'
+            )
+        }
+        })
+
     }
 
   return (
@@ -77,6 +173,7 @@ const MainDashboard = () => {
                                           <th className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
                                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Stock</th>
                                           <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Added Date</th>
+                                          <th className="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                       </tr>
                                       </thead>
                                       <tbody>
@@ -103,6 +200,9 @@ const MainDashboard = () => {
                                                   </td>
                                                   <td>
                                                       <span className="text-secondary text-xs font-weight-bold">{item.createdDate}</span>
+                                                  </td>
+                                                  <td>
+                                                      <span onClick={UpdateItem.bind(this,item._id)} className='edit text-info'><AiOutlineEdit/></span>&nbsp; &nbsp; &nbsp; &nbsp;<span onClick={DeleteItem.bind(this,item._id)} className='delete text-danger'><AiOutlineDelete/></span>
                                                   </td>
                                               </tr>
                                           )

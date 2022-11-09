@@ -1,0 +1,7 @@
+span.edit.text-info:hover {
+    cursor: pointer;
+}
+
+span.delete.text-danger:hover {
+    cursor: pointer;
+}

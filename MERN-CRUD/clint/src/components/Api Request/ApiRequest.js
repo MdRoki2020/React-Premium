@@ -139,6 +139,24 @@ export function ReadFood(){
     })
 }
 
+//delete food
+
+export function Delete(id){
+    let URL="http://localhost:5000/api/v1/DeleteFood/"+id;
+    return Axios.get(URL).then((res)=>{
+
+        if(res.status===200){
+            return true
+        }else{
+            return false
+        }
+
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+}
+
 //read data by id
 export function ReadById(id){
     let URL="http://localhost:5000/api/v1/ReadById/"+id;
@@ -235,7 +253,7 @@ export function RecoverResetPassRequest(email,OTP,password){
 }
 
 
-//food table with business
+//food table with business 
 
 export async function GetProductList(pageNo,perPage,searchKeyword){
     
