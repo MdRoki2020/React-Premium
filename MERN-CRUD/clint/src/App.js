@@ -12,6 +12,7 @@ import VerifyOtp from './components/pages/VerifyOtp';
 import CreatePassword from './components/pages/CreatePassword';
 import FoodStoreLayout from './Layout/FoodStoreLayout';
 import ProductDetailsLayout from './Layout/ProductDetailsLayout';
+import FoodEditLayout from './Layout/FoodEditLayout';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/addFood" element={<CreateFoodLayout />}/>
           <Route path="/foodStore" element={<FoodStoreLayout />}/>
           <Route path="/foodDetails/:id" element={<ProductDetailsLayout />}/>
+          <Route path="/updatefood/:id" element={<FoodEditLayout />}/>
 
 
           <Route path="/sendOtp" element={<SendOtp />}/>

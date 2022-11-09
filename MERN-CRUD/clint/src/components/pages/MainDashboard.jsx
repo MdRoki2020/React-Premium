@@ -1,15 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import ReactPaginate from "react-paginate";
 import { useSelector } from 'react-redux';
-import { Delete, GetProductList } from '../Api Request/ApiRequest';
+import { Delete, GetProductList, UpdateFood } from '../Api Request/ApiRequest';
 import { AiOutlineEdit,AiOutlineDelete } from "react-icons/ai";
 import '../Style/MainDashboard.css'
 import { ErrorToast } from '../helper/FormHelper';
 import Swal from 'sweetalert2'
+import {useNavigate} from 'react-router-dom'
 
 
 
 const MainDashboard = () => {
+
+    let navigate = useNavigate();
 
   let [searchKeyword,setSearchKeyword]=useState("0");
     let [perPage,setPerPage]=useState(5);
@@ -43,50 +46,15 @@ const MainDashboard = () => {
     }
 
     const UpdateItem=(id)=>{
-        showDetails();
-    }
-
-    const showDetails=()=>{
-        Swal.fire({
-            title: 'Submit your Github username',
-            input: 'text',
-            input: 'text',
-            inputAttributes: {
-              autocapitalize: 'off'
-            },
-            showCancelButton: true,
-            confirmButtonText: 'Look up',
-            showLoaderOnConfirm: true,
-            preConfirm: (login) => {
-              return fetch(`//api.github.com/users/${login}`)
-                .then(response => {
-                  if (!response.ok) {
-                    throw new Error(response.statusText)
-                  }
-                  return response.json()
-                })
-                .catch(error => {
-                  Swal.showValidationMessage(
-                    `Request failed: ${error}`
-                  )
-                })
-            },
-            allowOutsideClick: () => !Swal.isLoading()
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: `${result.value.login}'s avatar`,
-                imageUrl: result.value.avatar_url
-              })
-            }
-          })
-    }
+          navigate("/updatefood/"+id);
+      }
 
     const DeleteItem=(id)=>{
         Delete(id).then((data)=>{
             if(data===true){
-                
+
                 successMes();
+
             }else{
                 ErrorToast('Something Went Wrong !');
             }

@@ -140,7 +140,6 @@ export function ReadFood(){
 }
 
 //delete food
-
 export function Delete(id){
     let URL="http://localhost:5000/api/v1/DeleteFood/"+id;
     return Axios.get(URL).then((res)=>{
@@ -153,6 +152,31 @@ export function Delete(id){
 
     }).catch((err)=>{
         console.log(err);
+        return false;
+    })
+}
+
+//update food
+export function UpdateFood(id,foodName,foodType,foodPrice,foodStockQty,foodDescription,photo){
+    let URL="http://localhost:5000/api/v1/UpdateFood/"+id;
+
+    let PostBody={
+        foodsName:foodName,
+        foodsType:foodType,
+        foodsPrice:foodPrice,
+        foodsStockQty:foodStockQty,
+        foodsDescription:foodDescription,
+        foodImage:photo
+    }
+
+    return Axios.post(URL,PostBody).then((res)=>{
+        if(res.status===200){
+            return true;
+        }else{
+            return false
+        }
+    }).catch((err)=>{
+        console.log(err)
         return false;
     })
 }
