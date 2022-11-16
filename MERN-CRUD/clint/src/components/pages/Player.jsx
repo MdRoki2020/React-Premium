@@ -1,7 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 
 const Player = () => {
+
+    const [VideoList,setVideoList]=useState([]);
+  let navigate = useNavigate ();
+
+  useEffect(()=>{
+    getVideo();
+  },[])
+
+  const getVideo=()=>{
+    ReadVideo().then((data)=>{
+        setVideoList(data);
+    })
+  }
+
+  const singleItem=(videoLink)=>{
+    // navigate("/player/"+videoLink);
+  }
+
+
   return (
     <div>
       <div class="container">
@@ -26,88 +47,14 @@ const Player = () => {
 		<div class="containsList">
 		<table class="table table-striped">
 			<tbody>
-				<tr>
-				  <td>@mdo</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				<tr>
-				  <td>@fat</td>
-				</tr>
-				<tr>
-				  <td>@twitter</td>
-				</tr>
-				
+				{
+                    VideoList.map((value)=>
+                        <tr key={value._id} onClick={singleItem.bind(this,value.videoLink)}
+                        >
+                            <td>{value.videoName}</td>
+                        </tr>
+                    )
+                }
 			</tbody>
         </table>
 		</div>

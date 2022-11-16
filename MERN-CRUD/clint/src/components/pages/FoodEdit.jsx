@@ -29,7 +29,7 @@ const FoodEdit = () => {
     
     const PreviewImage = () => {
         let ImgFile = userImgRef.files[0];
-        getBase64(ImgFile).then((base64Img)=>{
+        getBase64(ImgFile).then((base64Img)=>{   
             userImgView.src=base64Img;
         })
     }

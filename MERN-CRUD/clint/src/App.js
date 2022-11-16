@@ -33,7 +33,7 @@ function App() {
           <Route path="/foodStore" element={<FoodStoreLayout />}/>
           <Route path="/foodDetails/:id" element={<ProductDetailsLayout />}/>
           <Route path="/updatefood/:id" element={<FoodEditLayout />}/>
-          <Route path="/player" element={<PlayerLayout/>} />
+          <Route path="/player/" element={<PlayerLayout/>} />
 
 
           <Route path="/sendOtp" element={<SendOtp />}/>

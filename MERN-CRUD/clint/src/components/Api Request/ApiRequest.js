@@ -311,3 +311,20 @@ export async function GetProductList(pageNo,perPage,searchKeyword){
         // store.dispatch(HideLoader())
     }
 }
+
+
+//read Video
+export function ReadVideo(){
+    let URL="http://localhost:5000/api/v1/ReadVideo"
+    return Axios.get(URL).then((res)=>{
+
+        if(res.status===200){
+            return res.data['data'];
+        }else{
+            return false
+        }
+
+    }).catch((err)=>{
+        return false
+    })
+}
