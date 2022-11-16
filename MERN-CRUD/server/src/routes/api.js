@@ -4,6 +4,7 @@ const FoodController=require("../controllers/FoodsController");
 const UserController=require('../controllers/UserController');
 const AdminController=require('../controllers/AdminController');
 const ProductsController=require("../controllers/ProductController");
+const PlayerController=require("../controllers/PlayerController");
 const router=express.Router();
 
 //Food management
@@ -32,6 +33,10 @@ router.post("/RecoverResetPass",UserController.RecoverResetPass);
 //product shown
 router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.ProductList);
 
+
+//Video Controller
+router.post("/CreateVideo",PlayerController.CreateVideo);
+router.get("/ReadVideo",PlayerController.ReadVideo);
 
 
 module.exports=router;

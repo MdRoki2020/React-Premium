@@ -12,7 +12,7 @@ exports.ProductList=async(req,res)=>{
         if (searchValue!=="0") {
 
             let SearchRgx = {"$regex": searchValue, "$options": "i"}
-            let SearchQuery = {$or: [{category: SearchRgx}]}
+            let SearchQuery = {$or: [{foodsType: SearchRgx}]}
 
             data = await ProductsModel.aggregate([{
                 $facet:{
