@@ -80,9 +80,9 @@ const MasterLayout = (props) => {
                     <span className="side-bar-item-caption">Foods Wall</span>
                 </NavLink>
 
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/" >
+                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" } to="/player" >
                     <FaTachometerAlt className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">In Progress</span>
+                    <span className="side-bar-item-caption">Player</span>
                 </NavLink>
 
                 <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/" >

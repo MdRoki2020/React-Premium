@@ -13,6 +13,7 @@ import CreatePassword from './components/pages/CreatePassword';
 import FoodStoreLayout from './Layout/FoodStoreLayout';
 import ProductDetailsLayout from './Layout/ProductDetailsLayout';
 import FoodEditLayout from './Layout/FoodEditLayout';
+import PlayerLayout from './Layout/PlayerLayout';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="/foodStore" element={<FoodStoreLayout />}/>
           <Route path="/foodDetails/:id" element={<ProductDetailsLayout />}/>
           <Route path="/updatefood/:id" element={<FoodEditLayout />}/>
+          <Route path="/player" element={<PlayerLayout/>} />
 
 
           <Route path="/sendOtp" element={<SendOtp />}/>
