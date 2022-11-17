@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 
 const Player = () => {
 
     const [VideoList,setVideoList]=useState([]);
-  let navigate = useNavigate ();
+    const [videoLink,setVideoLink]=useState("");
+  // let navigate = useNavigate ();
 
   useEffect(()=>{
     getVideo();
@@ -19,8 +20,13 @@ const Player = () => {
   }
 
   const singleItem=(videoLink)=>{
+    setVideoLink(videoLink)
     // navigate("/player/"+videoLink);
   }
+
+  console.log(videoLink);
+
+
 
 
   return (
@@ -35,10 +41,10 @@ const Player = () => {
 				  <source src="demo.mp4" type="video/mp4" size="1080"/>
 				  
 				  
-				  <track src="demo.mp4" kind="captions" srclang="en" label="English"/>
+				  {/* <track src="demo.mp4" kind="captions" srclang="en" label="English"/>
 				  <track src="demo.mp4" kind="captions" srclang="fr" label="Francais"/>
 				  <track src="demo.mp4" kind="captions" srclang="id" label="Indonesia"/>
-				  <track src="demo.mp4" kind="captions" srclang="ms" label="Melayu"/>
+				  <track src="demo.mp4" kind="captions" srclang="ms" label="Melayu"/> */}
 				Your browser does not support the video tag.
 				</video>
 			</div>
@@ -49,8 +55,7 @@ const Player = () => {
 			<tbody>
 				{
                     VideoList.map((value)=>
-                        <tr key={value._id} onClick={singleItem.bind(this,value.videoLink)}
-                        >
+                        <tr key={value._id} onClick={singleItem.bind(this,value.videoLink)}>
                             <td>{value.videoName}</td>
                         </tr>
                     )
