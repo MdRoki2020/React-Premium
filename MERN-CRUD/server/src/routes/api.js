@@ -36,7 +36,7 @@ router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.Pr
 
 //Video Controller
 router.post("/CreateVideo",PlayerController.CreateVideo);
-router.get("/ReadVideo",PlayerController.ReadVideo);
+router.get("/ReadVideo/",PlayerController.ReadVideo);
 
 
 module.exports=router;
