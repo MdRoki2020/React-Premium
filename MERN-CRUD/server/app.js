@@ -5,36 +5,18 @@ const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
 const multer=require('multer');
-const fs=require('fs');
+// const fs=require('fs');
 
-const storage=multer.diskStorage({
-    destination:function(req,file,cb){
-        if(!fs.existsSync('public')){
-            fs.mkdirSync("public");
-        }
-
-        if(!fs.existsSync('public/videos')){
-            fs.mkdirSync('public/videos');
-        }
-        cb(null,"public/videos");
+var storage=multer.diskStorage({
+    destination:function(req,file,callBack){
+        callBack(null,'./uploads');
     },
-    filename: function(req,file,cb){
-        cb(null,Date.now() + file.originalname)
+    filename:function(req,file,callBack){
+        callBack(null,file.originalname);
     }
-});
+})
 
-const upload = multer({
-    storage:storage,
-    fileFilter: function(req,file,cb){
-        var ext= path.extname(file.originalname);
-
-        if(ext !== ".mkv" && ext !== ".mp4"){
-            return cb(new Error("Only Videos Are Allowed"));
-        }
-        cb(null,true);
-    },
-});
-
+var upload=multer({storage:storage}).single('myfile');
 
 //security middleware
 const rateLimit=require('express-rate-limit');
@@ -78,7 +60,7 @@ mongoose.connect(URI,OPTION,(err)=>{
 })
 
 //Routing Implimet...
-app.use("/api/v1",router)
+app.use("/api/v1",router);
 
 //undefined Route Impliment
 app.use('*',(req,res)=>{
