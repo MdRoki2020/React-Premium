@@ -4,19 +4,19 @@ const router=require('./src/routes/api')
 const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
-const multer=require('multer');
+// const multer=require('multer');
 // const fs=require('fs');
 
-var storage=multer.diskStorage({
-    destination:function(req,file,callBack){
-        callBack(null,'./uploads');
-    },
-    filename:function(req,file,callBack){
-        callBack(null,file.originalname);
-    }
-})
+// var storage=multer.diskStorage({
+//     destination:(req,file,callBack)=>{
+//         callBack(null,'./uploads')
+//     },
+//     filename:(req,file,callBack)=>{
+//         callBack(null,file.originalname)
+//     }
+// })
 
-var upload=multer({storage:storage}).single('myfile');
+// var upload=multer({storage:storage}).single('videos');
 
 //security middleware
 const rateLimit=require('express-rate-limit');
