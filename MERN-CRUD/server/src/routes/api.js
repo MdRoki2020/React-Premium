@@ -11,35 +11,35 @@ const ProductsController=require("../controllers/ProductController");
 const PlayerController=require("../controllers/PlayerController");
 const router=express.Router();
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      if (!fs.existsSync("public")) {
-        fs.mkdirSync("public");
-      }
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       if (!fs.existsSync("public")) {
+//         fs.mkdirSync("public");
+//       }
   
-      if (!fs.existsSync("public/videos")) {
-        fs.mkdirSync("public/videos");
-      }
+//       if (!fs.existsSync("public/videos")) {
+//         fs.mkdirSync("public/videos");
+//       }
   
-      cb(null, "public/videos");
-    },
-    filename: function (req, file, cb) {
-      cb(null, Date.now() + file.originalname);
-    },
-  });
+//       cb(null, "public/videos");
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, Date.now() + file.originalname);
+//     },
+//   });
   
-  const upload = multer({
-    storage: storage,
-    fileFilter: function (req, file, cb) {
-      var ext = path.extname(file.originalname);
+//   const upload = multer({
+//     storage: storage,
+//     fileFilter: function (req, file, cb) {
+//       var ext = path.extname(file.originalname);
   
-      if (ext !== ".mkv" && ext !== ".mp4") {
-        return cb(new Error("Only videos are allowed!"));
-      }
+//       if (ext !== ".mkv" && ext !== ".mp4") {
+//         return cb(new Error("Only videos are allowed!"));
+//       }
   
-      cb(null, true);
-    },
-  });
+//       cb(null, true);
+//     },
+//   });
 
 //Food management
 router.post('/CreateFood',AuthVerifyMiddleware,FoodController.CreateFood);
@@ -69,12 +69,7 @@ router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.Pr
 
 
 //Video Controller
-router.post("/CreateVideo", upload.fields([
-    {
-    name:"videos",
-    maxCount:5,
-    },
-]), PlayerController.create);
+router.post("/CreateVideo/",PlayerController.create);
 router.get("/ReadVideo/",PlayerController.ReadVideo);
 
 
