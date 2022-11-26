@@ -4,19 +4,7 @@ const router=require('./src/routes/api')
 const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
-// const multer=require('multer');
-// const fs=require('fs');
 
-// var storage=multer.diskStorage({
-//     destination:(req,file,callBack)=>{
-//         callBack(null,'./uploads')
-//     },
-//     filename:(req,file,callBack)=>{
-//         callBack(null,file.originalname)
-//     }
-// })
-
-// var upload=multer({storage:storage}).single('videos');
 
 //security middleware
 const rateLimit=require('express-rate-limit');
@@ -48,6 +36,8 @@ app.use(bodyParser.json());
 //request rate limit..
 const limiter=rateLimit({windowMs:15*60*1000,max:3000})
 app.use(limiter);
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 
 //Mongodb Connection

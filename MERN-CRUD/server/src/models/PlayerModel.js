@@ -1,22 +1,11 @@
 const mongoose=require('mongoose');
 const DataSchema=mongoose.Schema({
-    name:{
-        type:String,
-        trim:true,
-        maxlength:2000,
-    },
-    videos:{
-        public_id:{
-            type:String,
-            required:true
-        },
-        url:{
-            type:String,
-            required:true
-        }
-
-    },
+    fileName:{type:String},
+    filePath:{type:String},
+    fileType:{type:String},
+    fileSize:{type:String},
     createdDate:{type:Date,default:Date.now()}
 })
-const PlayerModel=mongoose.model('videos',DataSchema)
+
+const PlayerModel=mongoose.model('fileDetails',DataSchema)
 module.exports=PlayerModel;

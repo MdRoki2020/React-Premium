@@ -1,57 +1,32 @@
 const PlayerModel = require("../models/PlayerModel");
-const cloudinary=require("../utility/Cloudinary");
+// const cloudinary=require("../utility/Cloudinary");
 
-
-exports.create=async(req,res,next)=>{
-
-  const {name,videos}=req.body;
-
+exports.singleFileUpload = async (req, res, next) => {
   try{
-    const result=await cloudinary.uploader.upload(videos,{
-      folder:"product",
-      // width:300,
-      // crop:"scale"
-    })
-    const playerModel=await PlayerModel.create({
-      name:name,
-      videos:{
-        public_id:result.public_id,
-        url:result.secure_url
-      }
-    });
-    res.status(201).json({
-      success:true,
-      playerModel
-    })
-  }catch(error){
-    console.log(error);
-    next(error);
+      const file=new PlayerModel({
+        fileName:req.file.originalname,
+        filePath:req.file.path,
+        fileType:req.file.mimetype,
+        fileSize: fileSizeFormatter(req.file.size, 2) // 0.00
+      });
+      await file.save();
+      console.log(file);
+      res.status(201).send('File Uploaded Successfully');
+  }catch(error) {
+      res.status(400).send(error.message);
   }
 }
 
+const fileSizeFormatter = (bytes, decimal) => {
+  if(bytes === 0){
+      return '0 Bytes';
+  }
+  const dm = decimal || 2;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'];
+  const index = Math.floor(Math.log(bytes) / Math.log(1000));
+  return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + ' ' + sizes[index];
 
-// exports.create = async (req,res) => {
-//     const { name } = req.body;
-//     let videosPaths = [];
-  
-//     if (Array.isArray(req.files.videos) && req.files.videos.length > 0) {
-//       for (let video of req.files.videos) {
-//         videosPaths.push("/" + video.path);
-//       }
-//     }
-  
-//     try {
-//       const createdMedia = await PlayerModel.create({
-//         name,
-//         videos: videosPaths,
-//       });
-  
-//       res.json({ message: "Media created successfully", createdMedia });
-//     } catch (error) {
-//       console.log(error);
-//       res.status(400).json(error);
-//     }
-//   };
+}
 
 
 
