@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 // import { useNavigate } from 'react-router-dom';
 import { ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
+import { DefaultPlayer as Video } from 'react-html5video';
+import 'react-html5video/dist/styles.css';
+import mainVideo from '../upload/dark_cover_page2.mp4'
+
 
 const Player = () => {
 
     const [VideoList,setVideoList]=useState([]);
-    const [videoLink,setVideoLink]=useState("");
   // let navigate = useNavigate ();
 
   useEffect(()=>{
@@ -19,13 +22,6 @@ const Player = () => {
     })
   }
 
-  const singleItem=(videoLink)=>{
-    setVideoLink(videoLink)
-    // navigate("/player/"+videoLink);
-  }
-
-  console.log(videoLink);
-
 
 
 
@@ -35,18 +31,17 @@ const Player = () => {
 	<div class="row">
 		<div class="col-md-8">
 			<div class="mediaPlayer img-thumbnail rounded img-fluid">
-				<video width="850" height="500" controls>
-				  <source src="demo.mp4" type="video/mp4" size="576"/>
-				  <source src="demo.mp4" type="video/mp4" size="720"/>
-				  <source src="demo.mp4" type="video/mp4" size="1080"/>
-				  
-				  
-				  {/* <track src="demo.mp4" kind="captions" srclang="en" label="English"/>
-				  <track src="demo.mp4" kind="captions" srclang="fr" label="Francais"/>
-				  <track src="demo.mp4" kind="captions" srclang="id" label="Indonesia"/>
-				  <track src="demo.mp4" kind="captions" srclang="ms" label="Melayu"/> */}
-				Your browser does not support the video tag.
-				</video>
+			
+			<Video autoPlay loop muted width="320" height="240"
+            controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+            poster="http://sourceposter.jpg"
+            onCanPlayThrough={() => {
+                // Do stuff
+            }}>
+            <source src={mainVideo} type="video/webm" />
+            <track label="English" kind="subtitles" srcLang="en" src={mainVideo} default />
+            </Video>
+			
 			</div>
 		</div>
 	<div class="col-md-4">
@@ -55,8 +50,8 @@ const Player = () => {
 			<tbody>
 				{
                     VideoList.map((value)=>
-                        <tr key={value._id} onClick={singleItem.bind(this,value.videoLink)}>
-                            <td>{value.videoName}</td>
+                        <tr key={value._id}>
+                            <td>{value.videoname}</td>
                         </tr>
                     )
                 }

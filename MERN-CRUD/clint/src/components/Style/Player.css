@@ -13,14 +13,14 @@ body{
 	.containsList::-webkit-scrollbar-thumb{
 	background:red;
 	}
-	video {
+	/* video {
 	  width: 100%;
-	  height: auto;
-   }
+	  height: 100%;
+   } */
 	
 	
 	.containsList {
-    height: 430px;
+    height: 480px;
     overflow: scroll;
     }
 	
