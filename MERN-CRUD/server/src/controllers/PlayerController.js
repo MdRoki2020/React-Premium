@@ -1,21 +1,79 @@
 const PlayerModel = require("../models/PlayerModel");
-// const cloudinary=require("../utility/Cloudinary");
 
-exports.singleFileUpload = async (req, res, next) => {
-  try{
-      const file=new PlayerModel({
+// exports.CreateVideo = async (req, res, next) => {
+//   try{
+//       const file=new PlayerModel({
+//         fileName:req.file.originalname,
+//         filePath:req.file.path,
+//         fileType:req.file.mimetype,
+//         fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
+//         videoname:req.body.name
+//       });
+//       await file.save();
+//       console.log(file);
+//       res.status(201).send('File Uploaded Successfully');
+//   }catch(error) {
+//       res.status(400).send(error.message);
+//   }
+// }
+
+
+// exports.CreateVideo = async (req, res, next) => {
+//     try{
+//         const file=new PlayerModel({
+//           fileName:req.file.originalname,
+//           filePath:req.file.path,
+//           fileType:req.file.mimetype,
+//           fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
+//           videoname:req.body.name
+//         });
+//         await file.save();
+//         console.log(file);
+//         res.status(201).send('File Uploaded Successfully');
+//     }catch(error) {
+//         res.status(400).send(error.message);
+//     }
+//   }
+
+
+  exports.CreateVideo=(req,res)=>{
+
+    const file=new PlayerModel({
         fileName:req.file.originalname,
         filePath:req.file.path,
         fileType:req.file.mimetype,
-        fileSize: fileSizeFormatter(req.file.size, 2) // 0.00
+        fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
+        videoname:req.body.name
       });
-      await file.save();
-      console.log(file);
-      res.status(201).send('File Uploaded Successfully');
-  }catch(error) {
-      res.status(400).send(error.message);
-  }
+
+      PlayerModel.create(file,(err,data)=>{
+
+        if(err){
+            res.status(400).json({status:"fail",data:err})
+        }else{
+            res.status(200).json({status:"success",data:data})
+        }
+    })
+    
 }
+
+
+// exports.CreateVideo = async (req, res, next) => {
+//     try{
+//         const file=new PlayerModel({
+//           fileName:req.body.fileName,
+//           filePath:req.file.path
+
+//         });
+//         await file.save();
+//         console.log(file);
+//         res.status(201).send('File Uploaded Successfully');
+//     }catch(error) {
+//         res.status(400).send(error.message);
+//     }
+//   }
+
+
 
 const fileSizeFormatter = (bytes, decimal) => {
   if(bytes === 0){

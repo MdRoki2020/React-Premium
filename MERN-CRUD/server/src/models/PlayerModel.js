@@ -4,8 +4,9 @@ const DataSchema=mongoose.Schema({
     filePath:{type:String},
     fileType:{type:String},
     fileSize:{type:String},
+    videoname:{type:String},
     createdDate:{type:Date,default:Date.now()}
 })
 
-const PlayerModel=mongoose.model('fileDetails',DataSchema)
+const PlayerModel=mongoose.model('videos',DataSchema)
 module.exports=PlayerModel;

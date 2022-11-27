@@ -38,7 +38,7 @@ router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.Pr
 
 
 //Video Controller
-router.post("/CreateVideo/",upload.single('file'),PlayerController.singleFileUpload);
+router.post("/CreateVideo/",upload.single('file'),PlayerController.CreateVideo);
 router.get("/ReadVideo/",PlayerController.ReadVideo);
 
 
