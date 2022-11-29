@@ -4,7 +4,7 @@ import { ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
-import mainVideo from '../upload/dark_cover_page2.mp4'
+import mainVideo from '../../../../server/uploads/2022-11-27T14-18-21.706Z-dark cover page2.mp4'
 
 
 const Player = () => {
@@ -49,14 +49,14 @@ const Player = () => {
 		<table class="table table-striped">
 			<tbody>
 				{
-                    VideoList.map((value)=>
-                        <tr key={value._id}>
-                            <td>{value.videoname}</td>
-                        </tr>
-                    )
-                }
+            VideoList.map((value)=>
+                <tr key={value._id}>
+                    <td>{value.videoname}</td>
+                </tr>
+            )
+        }
 			</tbody>
-        </table>
+    </table>
 		</div>
 	</div>
 	</div>
