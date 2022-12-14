@@ -31,14 +31,17 @@ const Player = () => {
 			<div class="mediaPlayer img-thumbnail rounded img-fluid">
 			
 			<Video autoPlay loop muted width="320" height="240"
-            controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
-            poster="http://sourceposter.jpg"
-            onCanPlayThrough={() => {
-                // Do stuff
-            }}>
-            <source src={mainVideo} type="video/webm" />
-            <track label="English" kind="subtitles" srcLang="en" src={mainVideo} default />
-            </Video>
+          controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+          poster="http://sourceposter.jpg"
+          onCanPlayThrough={() => {
+              // Do stuff
+          }}>
+          <source src={mainVideo} type="video/webm" />
+          <track label="English" kind="subtitles" srcLang="en" src={mainVideo} default />
+      </Video>
+
+
+
 			
 			</div>
 		</div>
