@@ -29,15 +29,19 @@ app.use(helmet());
 app.use(express.json({limit:'50mb'}));
 app.use(express.urlencoded({limit:'50mb'}));
 
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+
 
 //body parser implement..
 app.use(bodyParser.json());
+// app.use('/uploads',express.static('uploads'))
 
 //request rate limit..
 const limiter=rateLimit({windowMs:15*60*1000,max:3000})
 app.use(limiter);
 
 app.use('/uploads',express.static(path.join(__dirname,'uploads')));
+
 
 
 //Mongodb Connection
