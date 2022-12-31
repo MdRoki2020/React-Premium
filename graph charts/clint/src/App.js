@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { AreaChart,BarChart,Line,LineChart, Bar, XAxis,Area, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
 
@@ -53,7 +53,8 @@ const data = [
 export default function App() {
   
     return (
-      <div className='Container fluid'>
+        <Fragment>
+          <div className='container'>
         <div className='row my-5'>
 
 
@@ -155,5 +156,7 @@ export default function App() {
           </div>
         </div>
       </div>
+
+        </Fragment>
     );
 }
