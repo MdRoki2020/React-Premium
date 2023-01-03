@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
-import { ReadVideo } from '../Api Request/ApiRequest';
+import { foodCount, ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
-// import { DefaultPlayer as Video } from 'react-html5video';
 import 'react-html5video/dist/styles.css';
-// import mainVideo from '../upload/dark_cover_page2.mp4'
 
 
 const Player = () => {
 
     const [VideoList,setVideoList]=useState([]);  // let navigate = useNavigate ();
+    const [count,setCount]=useState([]);
 
   useEffect(()=>{
     getVideo();
+    foodList();
   },[])
 
   const getVideo=()=>{
@@ -22,9 +21,21 @@ const Player = () => {
   }
 
 
+  const foodList=()=>{
+    foodCount().then((data)=>{
+        setCount(data);
+    })
+  }
+
+
   return (
     <div>
       <div className="container">
+
+      <div className='count'>
+        <h5>Total Product: {count.total}</h5>
+    </div>
+
 	<div className="row">
 		<div className="col-md-4">
 			<div className="img-thumbnail rounded img-fluid">

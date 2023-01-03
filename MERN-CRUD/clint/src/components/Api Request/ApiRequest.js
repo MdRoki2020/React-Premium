@@ -328,3 +328,38 @@ export function ReadVideo(){
         return false
     })
 }
+
+
+//foodCount
+export function foodCount(){
+    let URL="http://localhost:5000/api/v1/foodCount"
+    return Axios.get(URL).then((res)=>{
+
+        if(res.status===200){
+            return res.data['data'][0];
+        }else{
+            return false
+        }
+
+    }).catch((err)=>{
+        return false
+    })
+}
+
+
+
+//match by foodsType
+export function matchingByFoodType(foodsType){
+    let URL="http://localhost:5000/api/v1/matchingByFoodType/"+foodsType;
+    return Axios.get(URL).then((res)=>{
+
+        if(res.status===200){
+            return res.data['data'];
+        }else{
+            return false
+        }
+
+    }).catch((err)=>{
+        return false
+    })
+}
