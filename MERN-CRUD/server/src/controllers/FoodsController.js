@@ -97,3 +97,25 @@ exports.foodCount=(req,res)=>{
         }
     })
 }
+
+//match by foodsType
+exports.matchingByFoodType=(req,res)=>{
+    let foodsType=req.params.foodsType;
+
+    FoodsModel.aggregate([
+        {$match:{foodsType:foodsType}},
+        {$project:{
+            _id:1,foodsName:1,foodsDescription:1,foodsType:1,foodsPrice:1,foodsStockQty:1,
+            createdDate:{
+                date:"$createdDate",
+                format:"%d-%m-%Y"
+            }
+        }}
+    ],(err,data)=>{
+        if(err){
+            res.status(400).json({status:"fail",data:err})
+        }else{
+            res.status(200).json({status:"success",data:data})
+        }
+    })
+}

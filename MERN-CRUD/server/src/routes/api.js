@@ -17,6 +17,7 @@ router.get('/ReadById/:id',FoodController.ReadById);
 router.post('/UpdateFood/:id',FoodController.UpdateFood);
 router.get('/DeleteFood/:id',FoodController.DeleteFood);
 router.get('/foodCount',FoodController.foodCount);
+router.get('/matchingByFoodType/:foodsType',FoodController.matchingByFoodType);
 
 
 //User Management
