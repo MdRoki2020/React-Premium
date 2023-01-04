@@ -319,7 +319,7 @@ export function ReadVideo(){
     return Axios.get(URL).then((res)=>{
 
         if(res.status===200){
-            return res.data['data'];
+            return res.data['data']; 
         }else{
             return false
         }
@@ -345,7 +345,6 @@ export function foodCount(){
         return false
     })
 }
-
 
 
 //match by foodsType

@@ -47,7 +47,7 @@ const ProductDetails = () => {
                             <p><b>Price:</b> <i>{product.foodsPrice}</i></p>
                             <p><b>Description:</b> <i>{product.foodsDescription}</i></p>
                             <p><b>Type:</b> <i>{product.foodsType}</i></p>
-                            <p><b>Stock:</b> <i>{product.foodsType}</i></p>
+                            <p><b>Stock:</b> <i>{product.foodsStockQty}</i></p>
                         </div>
                         <div className="buttonWrapper mb-3">
                             <span><Button className='btn btn-info'>Buy Now</Button>  <Button className='btn btn-warning'>Add Cart</Button></span>

@@ -14,6 +14,7 @@ import FoodStoreLayout from './Layout/FoodStoreLayout';
 import ProductDetailsLayout from './Layout/ProductDetailsLayout';
 import FoodEditLayout from './Layout/FoodEditLayout';
 import PlayerLayout from './Layout/PlayerLayout';
+import AllProductsLayout from './Layout/AllProductsLayout';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/" element={<HomeLayout />} />
           <Route path="/login" element={<Login />}/>
           <Route path="/dashboard" element={<DashboardLayout />}/>
+          <Route path="/allProducts" element={<AllProductsLayout />}/>
 
           <Route path="/adminDashboard" element={<AdminDashboardLayout />}/>
           <Route path="/adminLogin" element={<AdminLoginLayout />}/>

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { foodCount, ReadVideo } from '../Api Request/ApiRequest';
+import React, { useEffect, useRef, useState } from 'react'
+import { foodCount, matchingByFoodType, ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 import 'react-html5video/dist/styles.css';
+import { ErrorToast, IsEmpty, SuccessToast } from '../helper/FormHelper';
 
 
 const Player = () => {
@@ -27,6 +28,29 @@ const Player = () => {
     })
   }
 
+  let foodTypeRef=useRef();
+
+  const show=()=>{
+    
+        
+    let foodType=foodTypeRef.value;
+    console.log(foodType)
+
+
+    if(IsEmpty(foodType)){
+        ErrorToast("FoodType Is Required");
+    }else{
+        matchingByFoodType(foodType).then((result)=>{
+            if(result===true){
+                SuccessToast("Request Done");
+            }else{
+                ErrorToast("Dosen't Match");
+                console.log('something went wrong');
+            }
+        })
+    }
+}
+
 
   return (
     <div>
@@ -38,7 +62,27 @@ const Player = () => {
 
 	<div className="row">
 		<div className="col-md-4">
-			<div className="img-thumbnail rounded img-fluid">
+			<div className="">
+        <input ref={(input)=>foodTypeRef=input} className='form-control' placeholder='Enter Food Type'/>
+        <button onClick={show} className='btn btn-primary mt-2'>Show Details</button>
+
+      <table className="table table-striped mt-4">
+			<tbody>
+
+                <tr >
+                <td>oke</td>
+                </tr>
+
+                <tr >
+                <td>dne</td>
+                </tr>
+
+                <tr >
+                <td>yap</td>
+                </tr>
+
+			</tbody>
+      </table>
 			</div>
 		</div>
 	<div className="col-md-8">
