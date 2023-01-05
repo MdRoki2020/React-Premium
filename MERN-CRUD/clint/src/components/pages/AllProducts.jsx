@@ -1,25 +1,29 @@
 import { React,useEffect,useState } from 'react'
 import axios from 'axios'
-import _ from 'lodash'
+import ReactPaginate from 'react-paginate';
 
-const pageSize=24;
+
 const AllProducts = () => {
 
-    const [posts,setPost]=useState([]);
-    const [paginatedPosts,setpaginatedPosts]=useState();
+    const [users,setUsers]=useState([]);
+    const [pageNumber,setPageNumber]=useState(0);
+
+    const usersPerPage=18;
+    const pagesVisited=pageNumber * usersPerPage
+    const displayUsers=users.slice(pagesVisited,pagesVisited+usersPerPage)
+    const pageCount=Math.ceil(users.length / usersPerPage);
+    const changePage=({selected})=>{
+      setPageNumber(selected);
+    };
 
     useEffect(()=>{
         axios.get('https://jsonplaceholder.typicode.com/todos')
-        .then(res=>{
+        .then((res)=>{
             console.log(res.data);
-            setPost(res.data);
-            setpaginatedPosts(_(res.data).slice(0).take(pageSize).value());
+            setUsers(res.data);
         })
     },[]);
 
-    const pageCount=posts ? Math.ceil(posts.length/pageSize) :0;
-    if(pageCount ===1)return null;
-    const pages=_.range(1,pageCount+1)
   return (
     <div className='mt-5'>
       <h1 className=''>All Product</h1>
@@ -27,7 +31,7 @@ const AllProducts = () => {
       <div className='container'>
         <div className='row d-block d-lg-flex'>
         {
-            paginatedPosts.map((post,index)=>
+            displayUsers.map((post,index)=>
                 <div key={index} className='col-md-2 d-block d-lg-flex mb-4'>
                     <div className='card text-center'>
                       <h5>userId:{post.title}</h5>
@@ -39,17 +43,27 @@ const AllProducts = () => {
             )
         }
 
-        <nav className='d-flex justify-content-center'>
-            <ul className='pagination'>
-                {
-                    pages.map((page)=>(
-                        <li className='page-link'>{page}</li>
-                    ))
-                }
-
-            </ul>
-        </nav>
         </div>
+        <div className=''>
+        <ReactPaginate 
+          previousLabel={"previous"}
+          nextLabel={"next"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          onPageChange={changePage}
+          containerClassName={"pagination justify-content-center"}
+          pageClassName={"page-item"}
+          pageLinkClassName={"page-link"}
+          previousClassName={"page-item"}
+          previousLinkClassName={"page-link"}
+          nextClassName={"page-item"}
+          nextLinkClassName={"page-link"}
+          breakClassName={"page-item"}
+          breakLinkClassName={"page-link"}
+          activeClassName={"active"}
+        />
+        </div>
+
       </div>
     </div>
   )
