@@ -1,6 +1,6 @@
 import { React,useEffect,useState } from 'react'
-import axios from 'axios'
 import ReactPaginate from 'react-paginate';
+import { ReadFood } from '../Api Request/ApiRequest';
 
 
 const AllProducts = () => {
@@ -17,12 +17,14 @@ const AllProducts = () => {
     };
 
     useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/todos')
-        .then((res)=>{
-            console.log(res.data);
-            setUsers(res.data);
-        })
+      getFood();
     },[]);
+
+    const getFood=()=>{
+      ReadFood().then((data)=>{
+        setUsers(data);
+      })
+    }
 
   return (
     <div className='mt-5'>
@@ -34,10 +36,12 @@ const AllProducts = () => {
             displayUsers.map((post,index)=>
                 <div key={index} className='col-md-2 d-block d-lg-flex mb-4'>
                     <div className='card text-center'>
-                      <h5>userId:{post.title}</h5>
-                      <p>UserId:{post.userId}</p>
-                      <p>Id:{post.id}</p>
-                      <p>Completed:{post.completed}</p>
+                      <h5>{post.foodsName}</h5>
+                      <p>{post.foodsDescription}</p>
+                      <p>{post.foodsType}</p>
+                      <p>{post.foodsPrice}</p>
+                      <p>{post.foodsStockQty}</p>
+                      <p>{post.createdDate}</p>
                     </div>
                 </div>
             )
