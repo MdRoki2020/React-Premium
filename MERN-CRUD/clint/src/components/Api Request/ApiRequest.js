@@ -351,7 +351,6 @@ export function foodCount(){
 export function matchingByFoodType(foodsType){
     let URL="http://localhost:5000/api/v1/matchingByFoodType/"+foodsType;
     return Axios.get(URL).then((res)=>{
-
         if(res.status===200){
             return res.data['data'];
         }else{
@@ -362,3 +361,19 @@ export function matchingByFoodType(foodsType){
         return false
     })
 }
+
+////match by foodsType
+// export function matchingByFoodType(foodsType){
+//     let URL="http://localhost:5000/api/v1/matchingByFoodType/"+foodsType;
+//     return Axios.get(URL).then((res)=>{
+
+//         if(res.status===200){
+//             return res.data['data'] && true
+//         }else{
+//             return false
+//         }
+
+//     }).catch((err)=>{
+//         return false
+//     })
+// }

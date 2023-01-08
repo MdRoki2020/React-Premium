@@ -2,13 +2,36 @@ import React, { useEffect, useRef, useState } from 'react'
 import { foodCount, matchingByFoodType, ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 import 'react-html5video/dist/styles.css';
-import { ErrorToast, IsEmpty, SuccessToast } from '../helper/FormHelper';
+import { ErrorToast, IsEmpty } from '../helper/FormHelper';
 
 
 const Player = () => {
 
     const [VideoList,setVideoList]=useState([]);  // let navigate = useNavigate ();
     const [count,setCount]=useState([]);
+    const [product,setProduct]=useState([]);
+
+    let foodTypeRef=useRef();
+
+    const show=()=>{
+      let foodsType=foodTypeRef.value;
+
+      if(IsEmpty(foodsType)){
+        ErrorToast("Food Type Required");
+      }else{
+
+        matchingByFoodType(foodsType).then((data)=>{
+          setProduct(data);
+          
+        })
+        
+      }
+
+    }
+
+  console.log(product);
+
+
 
   useEffect(()=>{
     getVideo();
@@ -28,28 +51,7 @@ const Player = () => {
     })
   }
 
-  let foodTypeRef=useRef();
 
-  const show=()=>{
-    
-        
-    let foodType=foodTypeRef.value;
-    console.log(foodType)
-
-
-    if(IsEmpty(foodType)){
-        ErrorToast("FoodType Is Required");
-    }else{
-        matchingByFoodType(foodType).then((result)=>{
-            if(result===true){
-                SuccessToast("Request Done");
-            }else{
-                ErrorToast("Dosen't Match");
-                console.log('something went wrong');
-            }
-        })
-    }
-}
 
 
   return (
@@ -57,32 +59,43 @@ const Player = () => {
       <div className="container">
 
       <div className='count'>
-        <h5>Total Product: {count.total}</h5>
+        <h5>Total Count: {count.total}</h5>
     </div>
 
 	<div className="row">
 		<div className="col-md-4">
 			<div className="">
+
+
         <input ref={(input)=>foodTypeRef=input} className='form-control' placeholder='Enter Food Type'/>
         <button onClick={show} className='btn btn-primary mt-2'>Show Details</button>
 
-      <table className="table table-striped mt-4">
+        <table className="table table-striped mt-4">
 			<tbody>
 
                 <tr >
-                <td>oke</td>
+                <th>Foods Name:</th>
+                <td>{product.foodsName}</td>
                 </tr>
 
                 <tr >
-                <td>dne</td>
+                <th>Food Description</th>
+                <td>{product.foodsDescription}</td>
                 </tr>
 
                 <tr >
-                <td>yap</td>
+                <th>Foods Type</th>
+                <td>{product.foodsType}</td>
+                </tr>
+
+                <tr >
+                <th>Foods Price</th>
+                <td>{product.foodsPrice}</td>
                 </tr>
 
 			</tbody>
       </table>
+      
 			</div>
 		</div>
 	<div className="col-md-8">
