@@ -21,15 +21,20 @@ const Player = () => {
       }else{
 
         matchingByFoodType(foodsType).then((data)=>{
-          setProduct(data);
           
+          setProduct(data[0]);
         })
         
       }
 
     }
 
-  console.log(product);
+
+
+    console.log(product)
+
+    // console.log(product)
+    
 
 
 
@@ -50,7 +55,6 @@ const Player = () => {
         setCount(data);
     })
   }
-
 
 
 
