@@ -45,7 +45,7 @@ app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 
 //Mongodb Connection
-let URI="mongodb+srv://rsroki2022:AaBbCc2580@cluster0.l3mtknu.mongodb.net/?retryWrites=true&w=majority"
+let URI="mongodb+srv://rsroki2022:AaBbCc2580@cluster0.l3mtknu.mongodb.net/CRUD?retryWrites=true&w=majority"
 let OPTION={autoIndex:true}
 
 mongoose.connect(URI,OPTION,(err)=>{
