@@ -15,6 +15,7 @@ import ProductDetailsLayout from './Layout/ProductDetailsLayout';
 import FoodEditLayout from './Layout/FoodEditLayout';
 import PlayerLayout from './Layout/PlayerLayout';
 import AllProductsLayout from './Layout/AllProductsLayout';
+import FileUploader from './components/pages/FileUploader';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
           <Route path="/foodDetails/:id" element={<ProductDetailsLayout />}/>
           <Route path="/updatefood/:id" element={<FoodEditLayout />}/>
           <Route path="/player/" element={<PlayerLayout/>} />
+          <Route path="/fileUploader/" element={<FileUploader/>} />
 
 
           <Route path="/sendOtp" element={<SendOtp />}/>

@@ -377,3 +377,26 @@ export function matchingByFoodType(foodsType){
 //         return false
 //     })
 // }
+
+
+//for food insert..
+export function InsertRequest(data){
+
+    let URL="http://localhost:5000/api/v1/CreateVideo"
+
+    // let PostBody={
+    //     data:data,
+    //     name:name
+    // }
+
+    return Axios.post(URL,data).then((res)=>{
+        if(res.status===200){
+            return true;
+        }else{
+            return false;
+        }
+    }).catch((err)=>{
+        console.log(err);
+        return false;
+    })
+}

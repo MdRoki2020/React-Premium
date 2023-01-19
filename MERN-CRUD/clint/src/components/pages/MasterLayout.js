@@ -85,9 +85,9 @@ const MasterLayout = (props) => {
                     <span className="side-bar-item-caption">Player</span>
                 </NavLink>
 
-                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/" >
+                <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/fileuploader" >
                     <FaBraille className="side-bar-item-icon" />
-                    <span className="side-bar-item-caption">Completed</span>
+                    <span className="side-bar-item-caption">File Uploader</span>
                 </NavLink>
 
                 <NavLink className={(navData) => navData.isActive ? "side-bar-item-active side-bar-item mt-2" : "side-bar-item mt-2" }  to="/" >

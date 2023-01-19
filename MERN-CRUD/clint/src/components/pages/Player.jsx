@@ -1,11 +1,73 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { foodCount, matchingByFoodType, ReadVideo } from '../Api Request/ApiRequest';
+import { foodCount, InsertRequest, matchingByFoodType, ReadVideo } from '../Api Request/ApiRequest';
 import '../Style/Player.css'
 import 'react-html5video/dist/styles.css';
 import { ErrorToast, IsEmpty } from '../helper/FormHelper';
+import RoundLoader from '../common/RoundLoader';
+import Swal from 'sweetalert2';
 
 
 const Player = () => {
+
+  let fileRef,nameRef,Loader=useRef();
+
+  const OnUpload=()=>{
+
+    let file=fileRef.file[0];
+    let name=nameRef.value;
+
+    console.log(file)
+    console.log(name)
+
+    if(IsEmpty(file)){
+        ErrorToast("Food Name Required");
+      }
+      else if(IsEmpty(name)){
+        ErrorToast("Food Type Required");
+      }else{
+
+        Loader.classList.remove('d-none');
+  
+  // InsertRequest(file,name).then((result)=>{
+  //   if(result===true){
+
+  //     Loader.classList.add('d-none');
+
+  //     // fileRef.value="";
+  //     // nameRef.value="";
+
+  //     success();
+
+  //   }
+  //   else{
+  //     Loader.classList.add('d-none');
+  //     ErrorToast('Something Went Wrong');
+  //     console.log('something went wrong');
+
+  //   }
+  // })
+
+    }
+  }
+
+
+  const success=()=>{
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Food Added Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }
+
+
+
+
+
+
+
+
 
     const [VideoList,setVideoList]=useState([]);  // let navigate = useNavigate ();
     const [count,setCount]=useState([]);
@@ -99,6 +161,18 @@ const Player = () => {
 
 			</tbody>
       </table>
+
+
+      <h4 className='mt-4'>File Upload</h4>
+      <form enctype="multipart/form-data">
+
+        <input type='file' ref={(input)=>fileRef=input} className='form-control mb-2'/>
+
+        <input type='text' ref={(input)=>nameRef=input} className='form-control mb-2' placeholder='Video Name'/>
+
+        <button onClick={OnUpload} className='btn btn-primary '>Submit</button>
+
+      </form>
       
 			</div>
 		</div>
@@ -121,6 +195,12 @@ const Player = () => {
 	</div>
 	</div>
 	</div>
+
+  <div className='d-none' ref={(div)=>Loader=div}>
+
+    <RoundLoader />
+
+    </div>
     </div>
   )
 }

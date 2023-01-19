@@ -15,6 +15,7 @@ const ProductDetails = () => {
     // let navigate = useNavigate ();
 
   const {id}=useParams();
+  console.log(id)
 
 
   useEffect(()=>{
