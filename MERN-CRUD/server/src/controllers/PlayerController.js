@@ -20,10 +20,11 @@ const PlayerModel = require("../models/PlayerModel");
   exports.CreateVideo=(req,res)=>{
 
     const file=new PlayerModel({
-        fileName:req.file.originalname,
+        // fileName:req.file.originalname,
+
         filePath:req.file.path,
-        fileType:req.file.mimetype,
-        fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
+        // fileType:req.file.mimetype,
+        // fileSize: fileSizeFormatter(req.file.size, 2), // 0.00
         videoname:req.body.name
       });
 
@@ -39,16 +40,16 @@ const PlayerModel = require("../models/PlayerModel");
 }
 
 
-const fileSizeFormatter = (bytes, decimal) => {
-  if(bytes === 0){
-      return '0 Bytes';
-  }
-  const dm = decimal || 2;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'];
-  const index = Math.floor(Math.log(bytes) / Math.log(1000));
-  return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + ' ' + sizes[index];
+// const fileSizeFormatter = (bytes, decimal) => {
+//   if(bytes === 0){
+//       return '0 Bytes';
+//   }
+//   const dm = decimal || 2;
+//   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'YB', 'ZB'];
+//   const index = Math.floor(Math.log(bytes) / Math.log(1000));
+//   return parseFloat((bytes / Math.pow(1000, index)).toFixed(dm)) + ' ' + sizes[index];
 
-}
+// }
 
 
 
