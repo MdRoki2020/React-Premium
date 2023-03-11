@@ -37,21 +37,21 @@ const FoodStore = () => {
         <div className='row d-block d-lg-flex'>
         
         {
-                foodList.map((value,key)=>
+          foodList.map((value,key)=>
 
-                <div className='col-md-2 d-block d-lg-flex mb-4'>
-                  <Card className='shadow singleProduct' onClick={singleItem.bind(this,value._id)}>
-                    <Card.Img variant="top" src={value.foodImage} />
-                    <Card.Body>
-                      <h6>{value.foodsName}</h6>
-                      <span>{value.foodsPrice} ৳</span><br/>
-                      <span>{value.description}</span><br/>
-                      <span className='review'><AiTwotoneStar/> <AiTwotoneStar/> <AiTwotoneStar/></span>
-                    </Card.Body>
-                  </Card>
-			          </div>
+          <div className='col-md-2 d-block d-lg-flex mb-4'>
+            <Card className='shadow singleProduct d-block d-lg-flex' onClick={singleItem.bind(this,value._id)}>
+              <Card.Img variant="top" src={value.foodImage} />
+              <Card.Body>
+                <h6>{value.foodsName}</h6>
+                <span>{value.foodsPrice} ৳</span><br/>
+                <span>{value.description}</span><br/>
+                <span className='review'><AiTwotoneStar/> <AiTwotoneStar/> <AiTwotoneStar/></span>
+              </Card.Body>
+            </Card>
+          </div>
 
-                )
+          )
         }
         
         </div>

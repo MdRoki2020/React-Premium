@@ -5,6 +5,8 @@ import 'react-html5video/dist/styles.css';
 import { ErrorToast, IsEmpty } from '../helper/FormHelper';
 import RoundLoader from '../common/RoundLoader';
 import Swal from 'sweetalert2';
+import { GoogleMap, Marker, withGoogleMap } from 'react-google-maps';
+import axios from 'axios';
 
 
 const Player = () => {
@@ -28,24 +30,24 @@ const Player = () => {
 
         Loader.classList.remove('d-none');
   
-  // InsertRequest(file,name).then((result)=>{
-  //   if(result===true){
+  InsertRequest(file,name).then((result)=>{
+    if(result===true){
 
-  //     Loader.classList.add('d-none');
+      Loader.classList.add('d-none');
 
-  //     // fileRef.value="";
-  //     // nameRef.value="";
+      // fileRef.value="";
+      // nameRef.value="";
 
-  //     success();
+      success();
 
-  //   }
-  //   else{
-  //     Loader.classList.add('d-none');
-  //     ErrorToast('Something Went Wrong');
-  //     console.log('something went wrong');
+    }
+    else{
+      Loader.classList.add('d-none');
+      ErrorToast('Something Went Wrong');
+      console.log('something went wrong');
 
-  //   }
-  // })
+    }
+  })
 
     }
   }
@@ -120,6 +122,36 @@ const Player = () => {
 
 
 
+
+
+  // const MapComponent = withScriptjs(withGoogleMap((props) => {
+  // const [location, setLocation] = useState('');
+  
+  // const handleLocationChange = (event) => {
+  //   setLocation(event.target.value);
+  // };
+
+  const MapComponent = withScriptjs(
+    withGoogleMap((props) => {
+      const [location, setLocation] = useState('');
+      // Rest of your code goes here...
+    })
+  );
+
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleMapClick = (event) => {
+    const lat = event.latLng.lat();
+    const lng = event.latLng.lng();
+    axios.post('/location', { lat, lng });
+  };
+
+
+
+
+
   return (
     <div>
       <div className="container">
@@ -176,7 +208,7 @@ const Player = () => {
       
 			</div>
 		</div>
-	<div className="col-md-8">
+	<div className="col-md-4">
 		<div className="">
 		<table className="table table-striped">
 			<tbody>
@@ -193,6 +225,22 @@ const Player = () => {
     </table>
 		</div>
 	</div>
+  <div className='col-md-4'>
+
+    <div>
+
+    <input type="text" value={location} onChange={handleLocationChange} />
+      <GoogleMap
+        defaultZoom={8}
+        defaultCenter={{ lat: -34.397, lng: 150.644 }}
+        onClick={handleMapClick}
+      >
+        <Marker position={{ lat: -34.397, lng: 150.644 }} />
+      </GoogleMap>
+
+    </div>
+
+  </div>
 	</div>
 	</div>
 
