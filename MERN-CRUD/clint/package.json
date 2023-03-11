@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.1",
     "cogo-toast": "^4.2.3",
+    "google-map-react": "^2.2.0",
     "google-maps-react": "^2.0.6",
     "lodash": "^4.17.21",
     "nodemailer": "^6.8.0",

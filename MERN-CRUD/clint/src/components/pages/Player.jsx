@@ -6,6 +6,7 @@ import { ErrorToast, IsEmpty } from '../helper/FormHelper';
 import RoundLoader from '../common/RoundLoader';
 import Swal from 'sweetalert2';
 import { GoogleMap, Marker, withGoogleMap } from 'react-google-maps';
+import GoogleMapReact from "google-map-react";
 import axios from 'axios';
 
 
@@ -131,21 +132,40 @@ const Player = () => {
   //   setLocation(event.target.value);
   // };
 
-  const MapComponent = withScriptjs(
-    withGoogleMap((props) => {
-      const [location, setLocation] = useState('');
-      // Rest of your code goes here...
-    })
-  );
+  // const MapComponent = withScriptjs(
+  //   withGoogleMap((props) => {
+  //     const [location, setLocation] = useState('');
+  //     // Rest of your code goes here...
+  //   })
+  // );
 
-  const handleLocationChange = (event) => {
-    setLocation(event.target.value);
-  };
+  // const handleLocationChange = (event) => {
+  //   setLocation(event.target.value);
+  // };
 
-  const handleMapClick = (event) => {
-    const lat = event.latLng.lat();
-    const lng = event.latLng.lng();
-    axios.post('/location', { lat, lng });
+  // const handleMapClick = (event) => {
+  //   const lat = event.latLng.lat();
+  //   const lng = event.latLng.lng();
+  //   axios.post('/location', { lat, lng });
+  // };
+
+  const [center, setCenter] = useState({ lat: 0, lng: 0 });
+  const [zoom, setZoom] = useState(15);
+  const [search, setSearch] = useState("");
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${search}&key=YOUR_API_KEY_HERE`
+      );
+      if (response.data.results.length > 0) {
+        const location = response.data.results[0].geometry.location;
+        setCenter({ lat: location.lat, lng: location.lng });
+        setZoom(18);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
 
@@ -229,14 +249,22 @@ const Player = () => {
 
     <div>
 
-    <input type="text" value={location} onChange={handleLocationChange} />
+    <div style={{ height: "100vh", width: "100%" }}>
+      <input
+        type="text"
+        value={search}
+        onChange={(event) => setSearch(event.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
       <GoogleMap
-        defaultZoom={8}
-        defaultCenter={{ lat: -34.397, lng: 150.644 }}
-        onClick={handleMapClick}
-      >
-        <Marker position={{ lat: -34.397, lng: 150.644 }} />
-      </GoogleMap>
+        bootstrapURLKeys={{ key: "YOUR_API_KEY_HERE" }}
+        defaultCenter={center}
+        defaultZoom={zoom}
+        onChildClick={(key, childProps) => {
+          console.log(childProps);
+        }}
+      ></GoogleMap>
+    </div>
 
     </div>
 
