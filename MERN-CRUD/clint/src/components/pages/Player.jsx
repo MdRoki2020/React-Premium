@@ -5,8 +5,7 @@ import 'react-html5video/dist/styles.css';
 import { ErrorToast, IsEmpty } from '../helper/FormHelper';
 import RoundLoader from '../common/RoundLoader';
 import Swal from 'sweetalert2';
-import { GoogleMap, Marker, withGoogleMap } from 'react-google-maps';
-import GoogleMapReact from "google-map-react";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import axios from 'axios';
 
 
@@ -149,24 +148,23 @@ const Player = () => {
   //   axios.post('/location', { lat, lng });
   // };
 
-  const [center, setCenter] = useState({ lat: 0, lng: 0 });
-  const [zoom, setZoom] = useState(15);
-  const [search, setSearch] = useState("");
 
-  const handleSearch = async () => {
-    try {
-      const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${search}&key=YOUR_API_KEY_HERE`
-      );
-      if (response.data.results.length > 0) {
-        const location = response.data.results[0].geometry.location;
-        setCenter({ lat: location.lat, lng: location.lng });
-        setZoom(18);
-      }
-    } catch (error) {
-      console.error(error);
+
+  // function MapComponent(props) {
+  //   const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
+  // }
+  
+    // const handleMarkerDragEnd = (event) => {
+    //   setMarkerPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+    // }
+  
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // Use geocoding to convert the marker position to an address
+      // Send the form data to the server using an HTTP POST request
     }
-  };
+
+
 
 
 
@@ -249,22 +247,27 @@ const Player = () => {
 
     <div>
 
-    <div style={{ height: "100vh", width: "100%" }}>
-      <input
-        type="text"
-        value={search}
-        onChange={(event) => setSearch(event.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
-      <GoogleMap
-        bootstrapURLKeys={{ key: "YOUR_API_KEY_HERE" }}
-        defaultCenter={center}
-        defaultZoom={zoom}
-        onChildClick={(key, childProps) => {
-          console.log(childProps);
-        }}
-      ></GoogleMap>
-    </div>
+        <GoogleMap
+          defaultZoom={8}
+          defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
+        >
+          {/* <Marker
+            position={markerPosition}
+            draggable={true}
+            onDragEnd={handleMarkerDragEnd}
+          /> */}
+          <form onSubmit={handleSubmit}>
+            <label>
+              Name:
+              <input type="text" name="name" />
+            </label>
+            <label>
+              Description:
+              <textarea name="description" />
+            </label>
+            <button type="submit">Save location</button>
+          </form>
+        </GoogleMap>
 
     </div>
 

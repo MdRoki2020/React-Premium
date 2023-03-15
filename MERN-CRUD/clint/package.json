@@ -19,6 +19,7 @@
     "react-bootstrap": "^2.5.0",
     "react-code-input-2": "^3.10.6",
     "react-dom": "^18.2.0",
+    "react-google-maps": "^9.4.5",
     "react-html5video": "^2.5.1",
     "react-icons": "^4.4.0",
     "react-medium-image-zoom": "^5.1.2",
