@@ -40,7 +40,7 @@ exports.Login=(req,res)=>{
 }
 
 
-//recober verify email
+//recover verify email
 exports.RecoverVerifyEmail=async (req,res)=>{
     let Email = req.params.email;
     let OTPCode = Math.floor(100000 + Math.random() * 900000)

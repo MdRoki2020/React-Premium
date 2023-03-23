@@ -5,8 +5,10 @@ import 'react-html5video/dist/styles.css';
 import { ErrorToast, IsEmpty } from '../helper/FormHelper';
 import RoundLoader from '../common/RoundLoader';
 import Swal from 'sweetalert2';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
+import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
+
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 const Player = () => {
@@ -122,51 +124,13 @@ const Player = () => {
 
 
 
-
-
-  // const MapComponent = withScriptjs(withGoogleMap((props) => {
-  // const [location, setLocation] = useState('');
-  
-  // const handleLocationChange = (event) => {
-  //   setLocation(event.target.value);
-  // };
-
-  // const MapComponent = withScriptjs(
-  //   withGoogleMap((props) => {
-  //     const [location, setLocation] = useState('');
-  //     // Rest of your code goes here...
-  //   })
-  // );
-
-  // const handleLocationChange = (event) => {
-  //   setLocation(event.target.value);
-  // };
-
-  // const handleMapClick = (event) => {
-  //   const lat = event.latLng.lat();
-  //   const lng = event.latLng.lng();
-  //   axios.post('/location', { lat, lng });
-  // };
-
-
-
-  // function MapComponent(props) {
-  //   const [markerPosition, setMarkerPosition] = useState({ lat: 0, lng: 0 });
-  // }
-  
-    // const handleMarkerDragEnd = (event) => {
-    //   setMarkerPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() });
-    // }
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      // Use geocoding to convert the marker position to an address
-      // Send the form data to the server using an HTTP POST request
-    }
-
-
-
-
+  const defaultProps = {
+    center: {
+      lat: 10.99835602,
+      lng: 77.01502627
+    },
+    zoom: 11
+  };
 
 
 
@@ -243,35 +207,41 @@ const Player = () => {
     </table>
 		</div>
 	</div>
-  <div className='col-md-4'>
 
-    <div>
 
-        <GoogleMap
-          defaultZoom={8}
-          defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
-        >
-          {/* <Marker
-            position={markerPosition}
-            draggable={true}
-            onDragEnd={handleMarkerDragEnd}
-          /> */}
-          <form onSubmit={handleSubmit}>
-            <label>
-              Name:
-              <input type="text" name="name" />
-            </label>
-            <label>
-              Description:
-              <textarea name="description" />
-            </label>
-            <button type="submit">Save location</button>
-          </form>
-        </GoogleMap>
+  <div className='container'>
+    <div className='row'>
+      <div className='col-md-4'>
+
+
+      <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyARiNBQp02-F6pz5rDeFudZWWJ5IaXDGBA" }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        <AnyReactComponent
+          lat={59.955413}
+          lng={30.337844}
+          text="My Marker"
+        />
+      </GoogleMapReact>
+
 
     </div>
 
+
+
+      </div>
+      <div className='col-md-4'>
+      <h1>Roki</h1>
+      </div>
+      <div className='col-md-4'>
+      <h1>Roki</h1>
+      </div>
+    </div>
   </div>
+
 	</div>
 	</div>
 
