@@ -214,7 +214,7 @@ const Player = () => {
       <div className='col-md-4'>
 
 
-      <div style={{ height: '100vh', width: '100%' }}>
+      {/* <div style={{ height: '100vh', width: '100%' }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyARiNBQp02-F6pz5rDeFudZWWJ5IaXDGBA" }}
         defaultCenter={defaultProps.center}
@@ -228,7 +228,7 @@ const Player = () => {
       </GoogleMapReact>
 
 
-    </div>
+    </div> */}
 
 
 

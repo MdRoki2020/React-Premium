@@ -8,6 +8,7 @@ const AdminController=require('../controllers/AdminController');
 const ProductsController=require("../controllers/ProductController");
 const PlayerController=require("../controllers/PlayerController");
 const { upload } = require('../utility/filehelper');
+const uploads=require("../utility/multer");
 const router=express.Router();
 
 //Food management
@@ -37,7 +38,7 @@ router.post("/RecoverResetPass",UserController.RecoverResetPass);
 
 //product shown
 router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.ProductList);
-router.post("/createProduct",upload.single("file"),FoodController.createProduct);
+router.post("/CreateProduct",uploads.single('image'),FoodController.CreateProduct);
 
 
 //Video Controller

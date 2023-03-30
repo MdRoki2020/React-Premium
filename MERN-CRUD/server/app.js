@@ -4,6 +4,7 @@ const router=require('./src/routes/api');
 const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
+const fileupload=require('express-fileupload');
 
 
 //security middleware
@@ -24,6 +25,9 @@ app.use(hpp());
 app.use(xss());
 app.use(mongoSanitize());
 app.use(helmet());
+app.use(fileupload({
+    useTempFiles:true
+}))
 
 //passing json object object limit
 app.use(express.json({limit:'100mb'}));
