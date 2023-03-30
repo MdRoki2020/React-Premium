@@ -37,6 +37,7 @@ router.post("/RecoverResetPass",UserController.RecoverResetPass);
 
 //product shown
 router.get("/ProductList/:pageNo/:perPage/:searchKeyword?",ProductsController.ProductList);
+router.post("/createProduct",upload.single("file"),FoodController.createProduct);
 
 
 //Video Controller

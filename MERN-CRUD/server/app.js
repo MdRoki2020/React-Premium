@@ -1,6 +1,6 @@
 //basic import
 const express=require('express');
-const router=require('./src/routes/api')
+const router=require('./src/routes/api');
 const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
@@ -26,8 +26,8 @@ app.use(mongoSanitize());
 app.use(helmet());
 
 //passing json object object limit
-app.use(express.json({limit:'50mb'}));
-app.use(express.urlencoded({limit:'50mb'}));
+app.use(express.json({limit:'100mb'}));
+app.use(express.urlencoded({limit:'1000mb'}));
 
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 

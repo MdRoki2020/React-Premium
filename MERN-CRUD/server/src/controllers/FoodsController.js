@@ -1,4 +1,6 @@
 const FoodsModel = require('../models/FoodsModel');
+const Product = require('../models/Product');
+const cloudinary=require('../utility/cloudinary');
 
 //create food
 exports.CreateFood=(req,res)=>{
@@ -14,6 +16,9 @@ exports.CreateFood=(req,res)=>{
     })
     
 }
+
+
+
 
 
 //read food
@@ -133,3 +138,59 @@ exports.matchingByFoodType=(req,res)=>{
 //     })
 
 // }
+
+
+
+//cloudinary
+// exports.createProduct=async (req,res,next)=>{
+//     const { title, content,imageurl } = req.body;
+
+//     try{
+//         const result=await cloudinary.uploader.upload(imageurl,{
+//             folder:"product",
+//             // width:300,
+//             // crop:"scale"
+//         });
+//         const product=await Product.create({
+//             title,
+//             content,
+//             imageurl:{
+//                 public_id:result.public_id,
+//                 url:result.secure_url
+//             }
+//         })
+//         res.status(201).json({
+//             success:true,
+//             product
+//         })
+        
+//     }catch(err){
+//         console.log(err)
+//         next(err)
+//     }
+// }
+
+
+
+exports.createProduct= async function createPost(req, res) {
+    try {
+      const { title, content } = req.body;
+  
+      // Upload image to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path);
+  
+      // Create post with Cloudinary URL
+      const post = new Product({
+        title,
+        content,
+        imageUrl: result.secure_url,
+      });
+      await post.save();
+  
+      res.json(post);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Server error" });
+    }
+  }
+  
