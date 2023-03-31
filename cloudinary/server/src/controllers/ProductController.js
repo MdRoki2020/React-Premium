@@ -1,37 +1,27 @@
-
-const multer = require('multer');
+// const cloudinary = require('cloudinary').v2;
 const Product = require('../models/Product');
-const cloudinary = require('cloudinary').v2;
+const path = require('path');
+const cloudinary=require('../helpers/cloudinary');
+
 
 // Cloudinary configuration
-cloudinary.config({
-  cloud_name: 'dv4u2qxzk',
-  api_key: '714763777119718',
-  api_secret: 'Nba2z-s11igglE6HNwz08d6xlVM'
-});
-
-// Define multer storage and file filter
-const storage = multer.diskStorage({});
-const fileFilter = (req, file, cb) => {
-  // Only accept jpeg, jpg, and png
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-    cb(null, true);
-  } else {
-    cb(new Error('Invalid file type'), false);
-  }
-};
-
-// Set up multer upload
-const upload = multer({
-  storage: storage,
-  fileFilter: fileFilter
-});
+// cloudinary.config({
+//   cloud_name: 'dv4u2qxzk',
+//   api_key: '714763777119718',
+//   api_secret: 'Nba2z-s11igglE6HNwz08d6xlVM'
+// });
 
 // Function to create a new product
 exports.createProduct = async (req, res) => {
   try {
+    // Check if file is present in the request
+    if (!req.file) {
+      return res.status(400).json({ message: "No file attached" });
+    }
+
     // Upload image to Cloudinary
-    const result = await cloudinary.uploader.upload(req.file.path);
+    // const { path } = req.file;
+    const result = await cloudinary.v2.uploader.upload(req.file.path);
 
     // Save product to MongoDB
     const product = new Product({
@@ -47,11 +37,6 @@ exports.createProduct = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
-
-
-
-
-
 
 
 
@@ -83,7 +68,7 @@ exports.createProduct = async (req, res) => {
 
 //     // Upload image to Cloudinary
 //     const { path } = req.file;
-//     const result = await cloudinary.uploader.upload(path);
+//     const result = await cloudinary.uploader.upload(path);  
 
 //     // Save product to MongoDB
 //     const product = new Product({
@@ -101,16 +86,16 @@ exports.createProduct = async (req, res) => {
 // };
 
 
-exports.NewProduct=(req,res)=>{
-    let reqBody=req.body;
+// exports.NewProduct=(req,res)=>{
+//     let reqBody=req.body;
 
-    NewProductModel.create(reqBody,(err,data)=>{
+//     NewProductModel.create(reqBody,(err,data)=>{
 
-        if(err){
-            res.status(400).json({status:"fail",data:err})
-        }else{
-            res.status(200).json({status:"success",data:data})
-        }
-    })
+//         if(err){
+//             res.status(400).json({status:"fail",data:err})
+//         }else{
+//             res.status(200).json({status:"success",data:data})
+//         }
+//     })
     
-}
+// }
