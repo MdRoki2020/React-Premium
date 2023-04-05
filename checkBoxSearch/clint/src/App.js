@@ -1,9 +1,10 @@
 import './App.css';
+import SearchForm from './pages/SearchForm';
 
 function App() {
   return (
-    <div className="App">
-      <h1>MERN</h1>
+    <div className="">
+      <SearchForm />
     </div>
   );
 }
