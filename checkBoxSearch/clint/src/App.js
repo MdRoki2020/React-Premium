@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
   return (
     <div className="">
-      <SearchForm />
+      <SearchForm></SearchForm>
     </div>
   );
 }
