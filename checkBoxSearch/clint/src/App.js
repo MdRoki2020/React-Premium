@@ -1,5 +1,6 @@
 import './App.css';
 import SearchForm from './pages/SearchForm';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
