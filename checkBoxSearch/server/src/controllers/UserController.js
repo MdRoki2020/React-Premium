@@ -48,3 +48,29 @@ exports.searchProducts = async (req, res) => {
     res.status(400).json({ status: "fail", data: err });
   }
 };
+
+
+
+
+//input search
+exports.InputSearch = async (req, res) => {
+  const searchTerm = req.query.searchTerm;
+  try {
+    const data = await PostAdsModel.find({
+      $or: [
+        { ProductName: { $regex: searchTerm, $options: 'i' } },
+        { ProductBrand: { $regex: searchTerm, $options: 'i' } },
+        { ProductCategories: { $regex: searchTerm, $options: 'i' } },
+      ],
+    }
+    );
+    if(data.length>0){
+      res.status(200).json({status:"success",data:data})
+  }
+  else{
+      res.status(200).json({status:"success",data:data})
+  }
+  }catch{
+    res.status(400).json({status:"fail",data:err})
+  }
+};

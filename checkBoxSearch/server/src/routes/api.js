@@ -4,6 +4,7 @@ const router=express.Router();
 
 
 router.get('/searchProducts',UserController.searchProducts);
+router.get('/InputSearch',UserController.InputSearch);
 
 
 module.exports=router;
