@@ -11,8 +11,10 @@
     "cleave.js": "^1.6.0",
     "excel-export": "^0.5.1",
     "export-from-json": "^1.6.0",
+    "google-maps-react": "^2.0.6",
     "html-to-image": "^1.9.0",
     "leaflet": "^1.9.3",
+    "leaflet-gps": "^1.7.8",
     "localforage": "^1.10.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
@@ -32,6 +34,7 @@
     "read-excel-file": "^5.4.4",
     "recharts": "^2.1.13",
     "sweetalert2": "^11.4.24",
+    "typeit": "^8.7.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

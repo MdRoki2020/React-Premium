@@ -5054,6 +5054,11 @@ globby@^11.0.4, globby@^11.1.0:
     merge2 "^1.4.1"
     slash "^3.0.0"
 
+google-maps-react@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/google-maps-react/-/google-maps-react-2.0.6.tgz#0473356207ab6b47227b393b89e4b83f6eab06da"
+  integrity sha512-M8Eo9WndfQEfxcmm6yRq03qdJgw1x6rQmJ9DN+a+xPQ3K7yNDGkVDbinrf4/8vcox7nELbeopbm4bpefKewWfQ==
+
 gopd@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/gopd/-/gopd-1.0.1.tgz#29ff76de69dac7489b7c0918a5788e56477c332c"
@@ -6413,7 +6418,14 @@ launch-editor@^2.6.0:
     picocolors "^1.0.0"
     shell-quote "^1.7.3"
 
-leaflet@^1.9.3:
+leaflet-gps@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.yarnpkg.com/leaflet-gps/-/leaflet-gps-1.7.8.tgz#6d68118ddac2905259ca176feba5cd4c93b00eef"
+  integrity sha512-pNO0Gw8HDkkoiwobIUOnIPvbb8XIAP1DYM/y0BkamkgPAKnTPk1TGbRMrmf/OlmbEyjW9/vGgGM3v1mF796u8g==
+  dependencies:
+    leaflet "*"
+
+leaflet@*, leaflet@^1.9.3:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.9.3.tgz#52ec436954964e2d3d39e0d433da4b2500d74414"
   integrity sha512-iB2cR9vAkDOu5l3HAay2obcUHZ7xwUBBjph8+PGtmW/2lYhbLizWtG7nTeYht36WfOslixQF9D/uSIzhZgGMfQ==
@@ -9329,6 +9341,11 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
+
+typeit@^8.7.1:
+  version "8.7.1"
+  resolved "https://registry.yarnpkg.com/typeit/-/typeit-8.7.1.tgz#d45921def11d4b71a445d34e546a5cdb4d1f9014"
+  integrity sha512-Bx/O4NMz10NWh9FWYtVwV4XwGHF9UDJfpCZPJRtw2/oUcahFAStU8J0t19aroPfTV6s1UlS5ICoqilOqmEnh2Q==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
