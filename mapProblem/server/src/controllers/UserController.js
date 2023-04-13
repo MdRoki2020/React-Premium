@@ -3,10 +3,11 @@ const Place=require('../models/PostModel')
 
 exports.PlacePost = async (req, res) => {
   try {
-    const { name, description, position } = req.body;
+    const { name, description,image, position } = req.body;
     const place = new Place({
       name,
       description,
+      image,
       position: {
         type: 'Point',
         coordinates: position,
