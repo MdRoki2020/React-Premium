@@ -19,6 +19,7 @@ const markerIcon = new L.Icon({
 const NewPlaceForm = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [image, setImage] = useState('');
   const [position, setPosition] = useState([23.810331, 90.412521]); // default position
 
   const markerRef = useRef();
@@ -30,6 +31,7 @@ const NewPlaceForm = () => {
     const newPlace = {
       name,
       description,
+      image,
       position,
     };
     try {
@@ -65,6 +67,11 @@ const NewPlaceForm = () => {
         <input type="text" value={description} onChange={(event) => setDescription(event.target.value)} />
       </label>
       <br />
+      <label>
+        Image link:
+        <input type="text" value={image} onChange={(event) => setImage(event.target.value)} />
+      </label>
+      <br/>
       <button type="submit">Add Place</button>
       <MapContainer center={position} zoom={13} onClick={handleMapClick} scrollWheelZoom={true} style={{ height: '400px', width: '100%' }}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

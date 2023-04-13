@@ -5,6 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import img from '../assets/image/place.jpg';
 
 // Define custom marker icon
 const markerIcon = new L.Icon({
@@ -37,7 +38,17 @@ function Map() {
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {places.map(place => (
         <Marker key={place._id} position={[place.position.coordinates[0], place.position.coordinates[1]]} icon={markerIcon}>
-          <Popup>{place.name}</Popup>
+          <Popup>
+            
+          <Popup>
+            <div>
+              <img src={place.image} alt={place.name} style={{ width: '100%' }} />
+              <p>{place.name}</p>
+              
+            </div>
+          </Popup>
+
+          </Popup>
         </Marker>
       ))}
     </MapContainer>
