@@ -1,9 +1,19 @@
-const mongoose=require('mongoose');
-const DataSchema=mongoose.Schema({
-    PostTitle:{type:String},
-    PostDescription:{type:String},
-    createdDate:{type:Date,default:Date.now()}
-})
+const mongoose = require('mongoose');
 
-const PostModel=mongoose.model('posts',DataSchema)
-module.exports=PostModel;
+const PostSchema = mongoose.Schema({
+  filePath: { type: String },
+  PublisherEmail: { type: String },
+  ProductName: { type: String },
+  ProductBrand: { type: String },
+  ProductPrice: { type: String },
+  ProductExPrice: { type: String },
+  ProductColor: { type: String },
+  ProductBattery: { type: String },
+  ProductWarranty: { type: String },
+  ProductCategories: { type: String },
+  ProductFetures: { type: String },
+  CreatedDate: { type: Date, default: Date.now() }
+});
+
+const PostAdsModel = mongoose.model('ADs', PostSchema);
+module.exports = PostAdsModel;

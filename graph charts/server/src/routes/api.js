@@ -1,8 +1,6 @@
 const express=require('express');
-const PostController=require("../controllers/PostControllers")
+const UserController=require('../controllers/UserController');
 const router=express.Router();
 
-router.post('/CreatePost',PostController.CreatePost);
-router.post('/CreateComment',PostController.CreateComment);
-router.get('/postAndComment',PostController.postAndComment);
+router.get('/categoryGraph',UserController.categoryGraph);
 module.exports=router;

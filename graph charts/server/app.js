@@ -1,9 +1,11 @@
 //basic import
 const express=require('express');
-const router=require('./src/routes/api')
+const router=require('./src/routes/api');
 const app=new express();
 const bodyParser=require('body-parser');
 const path=require('path');
+
+
 
 
 //security middleware
@@ -17,6 +19,8 @@ const cors=require('cors');
 
 //Database
 const mongoose=require('mongoose');
+mongoose.set('strictQuery',true);
+// or mongoose.set('strictQuery',true);
 
 //impliment security middleware
 app.use(cors());
@@ -40,13 +44,13 @@ app.use(bodyParser.json());
 const limiter=rateLimit({windowMs:15*60*1000,max:3000})
 app.use(limiter);
 
-app.use('/uploads',express.static(path.join(__dirname,'uploads')));
-
+app.use('/AdsImages',express.static(path.join(__dirname,'AdsImages')));
+app.use('/AdminAndPublisherImage',express.static(path.join(__dirname,'AdminAndPublisherImage')));
 
 
 //Mongodb Connection
-let URI="mongodb+srv://<username>:<password>@cluster0.l3mtknu.mongodb.net/joining?retryWrites=true&w=majority"
-let OPTION={user:'rsroki2022',pass:'AaBbCc2580!!@@',autoIndex:true}
+let URI="mongodb+srv://rsroki2022:AaBbCc2580@cluster0.l3mtknu.mongodb.net/BECHE_DIN?retryWrites=true&w=majority"
+let OPTION={autoIndex:true}
 
 mongoose.connect(URI,OPTION,(err)=>{
     console.log("Connection Success");
@@ -62,3 +66,6 @@ app.use('*',(req,res)=>{
 })
 
 module.exports=app;
+
+
+
