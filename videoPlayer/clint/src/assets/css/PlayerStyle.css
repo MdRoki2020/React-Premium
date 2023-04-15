@@ -1,0 +1,31 @@
+    body{
+	background:#ddd;
+	}
+	
+	.containsList::-webkit-scrollbar{
+	background:white;
+	}
+	
+	.containsList::-webkit-scrollbar{
+	width:4px;
+	}
+	
+	.containsList::-webkit-scrollbar-thumb{
+	background:red;
+	}
+	.containsList {
+		height: 466px;
+		overflow: scroll;
+		margin-top: 20px;
+		border: 1px solid red;
+	}
+
+	.video-player {
+		margin-top: 20px;
+		border: 2px solid red;
+	}
+
+	table td {
+		cursor: grab;
+	}
+	  

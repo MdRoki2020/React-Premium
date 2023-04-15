@@ -1,0 +1,45 @@
+.playlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .videos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .video {
+    margin: 10px;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .video h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .video-player {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .video-player h2 {
+    margin-bottom: 10px;
+  }
+
+
+
+
+  
+  
