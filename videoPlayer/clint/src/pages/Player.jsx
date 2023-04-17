@@ -1,6 +1,7 @@
 import React , { useState, useEffect } from 'react'
 import axios from "axios";
 import '../assets/css/PlayerStyle.css'
+import { GetVideo } from '../ApiRequest/APIRequest';
 
 
 const Player = () => {
@@ -8,15 +9,19 @@ const Player = () => {
     const [videos, setVideos] = useState([]);
     const [currentVideo, setCurrentVideo] = useState(null);
   
-    useEffect(() => {
-      axios
-        .get("http://localhost:5000/api/v1/GetVideo")
-        .then((res) => {
-          setVideos(res.data.data);
-          setCurrentVideo(res.data.data[0]); // Initialize currentVideo with the first video
+
+    useEffect(()=>{
+      GetData();
+    },[])
+  
+    const GetData=()=>{
+      GetVideo().then((data)=>{
+        setVideos(data);
+        setCurrentVideo(data[0]);
+  
         })
-        .catch((err) => console.log(err));
-    }, []);
+    }
+
   
     const handleVideoClick = (video) => {
       console.log(video);
@@ -36,9 +41,9 @@ const Player = () => {
                       width="850" height="450"
                       key={currentVideo._id}
                     >
-                      <source src={currentVideo.url} type="video/mp4" />
-                      <source src={currentVideo.url} type="video/ogg" />
-                      <source src={currentVideo.url} type="video/webm" />
+                      <source src={currentVideo.videoUrl} type="video/mp4" />
+                      <source src={currentVideo.videoUrl} type="video/ogg" />
+                      <source src={currentVideo.videoUrl} type="video/webm" />
                       <track default kind="captions" srcLang="en" src={currentVideo.captionsUrl} />
                       <track kind="subtitles" srcLang="en" src={currentVideo.subtitlesUrl} />
                       <track kind="descriptions" srcLang="en" src={currentVideo.descriptionsUrl} />

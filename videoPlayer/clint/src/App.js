@@ -8,7 +8,7 @@ import PostVideo from './pages/PostVideo'
 function App() {
   return (
     <div className="">
-      <PostVideo />
+      <Player />
     </div>
   );
 }
