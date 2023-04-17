@@ -1,12 +1,16 @@
+// videoSchema in PostModel
 const mongoose = require('mongoose');
 
-
 const videoSchema = new mongoose.Schema({
-  title:{type:String},
-  url:{type:String},
-  CreatedDate:{type:Date,default:Date.now()}
+  title: {
+    type: String,
+  },
+  videoUrl: {
+    type: String,
+  },
+  cloudinary_id: {
+    type: String,
+  }
 });
 
-const Video = mongoose.model('Video', videoSchema);
-
-module.exports = Video;
+module.exports = mongoose.model('Video', videoSchema);
