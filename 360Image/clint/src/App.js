@@ -1,10 +1,10 @@
 import './App.css';
-import Home from './pages/Home';
+import PannellumReact from './pages/Pannellum';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <PannellumReact />
     </div>
   );
 }
