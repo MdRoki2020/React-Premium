@@ -36,8 +36,8 @@ exports.uploadImage = async (req, res) => {
 exports.getRoom = async (req, res) => {
   try {
     const roomId = req.params.id;
-    const room = await PostModel.findById(roomId);
-    res.status(200).json(room);
+    const data = await PostModel.findById(roomId);
+    res.status(200).json(data);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error getting room data' });
