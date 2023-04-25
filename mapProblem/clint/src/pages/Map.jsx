@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import img from '../assets/image/place.jpg';
+import "leaflet.locatecontrol/dist/L.Control.Locate.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import "leaflet.locatecontrol/dist/L.Control.Locate.min.js";
 
 // Define custom marker icon
 const markerIcon = new L.Icon({
@@ -19,6 +21,7 @@ const markerIcon = new L.Icon({
 
 function Map() {
   const [places, setPlaces] = useState([]);
+  const mapRef = useRef(null);
 
   useEffect(() => {
     async function fetchPlaces() {
@@ -31,27 +34,43 @@ function Map() {
     }
 
     fetchPlaces();
+
+    if (!mapRef.current) {
+
+      const map = L.map("map").setView([23.810331, 90.412521], 13);
+
+      const osm = L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+        {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        }
+      );
+      osm.addTo(map);
+
+      L.control.locate().addTo(map);
+
+      mapRef.current = map;
+    }
   }, []);
 
-  return (
-    <MapContainer center={[23.810331, 90.412521]} zoom={13} scrollWheelZoom={true} style={{ height: '400px', width: '100%' }}>
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {places.map(place => (
-        <Marker key={place._id} position={[place.position.coordinates[0], place.position.coordinates[1]]} icon={markerIcon}>
-          <Popup>
-            
-          <Popup>
-            <div>
-              <img src={place.image} alt={place.name} style={{ width: '100%' }} />
-              <p>{place.name}</p>
-              
-            </div>
-          </Popup>
+  useEffect(() => {
+    // Add markers for places to the map
+    places.forEach(place => {
+      const popupContent = `
+        <div style="width: 200px;">
+          <img src="${place.image}" alt="${place.name}" style="width: 100%;" />
+          <p style="margin-bottom: 0;">${place.name}</p>
+        </div>
+      `;
+      const marker = L.marker([place.position.coordinates[0], place.position.coordinates[1]], {
+        icon: markerIcon
+      }).addTo(mapRef.current).bindPopup(popupContent);
+    });
+  }, [places]);
 
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+  return (
+    <div id="map" style={{ width: "100%", height: "400px" }} />
   );
 }
 
